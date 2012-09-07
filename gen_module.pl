@@ -211,33 +211,43 @@ sub populate_globals {
             }
 
             $all_protocols{ $protocol } = 1;
-            push @services_doc_text, qq{=head3 $protocol\n};
+            push @services_doc_text, (
+                qq{=head3 $protocol},
+                q{},
+                q{=over 4},
+                q{},
+            );
 
             my $port_ref = $protocol_ref->{ $protocol };
+            my $i = 1;
             for  my $port  (keys $port_ref) {
                 my $p = quotemeta $port;
                 $all_ports{ $p } = 1;
 
                 my $info_ref = $port_ref->{ $port };
-                push @services_doc_text, qq{=head4 $port\n};
                 push @services_doc_text, (
+                    qq{=item $i},
+                    q{},
+                    $port,
+                    q{},
                     q{=over 4},
                     q{},
                     q{=item Name},
                     q{},
-                    $info_ref->{name},
+                    $info_ref->{name} // q{},
                     q{},
                     q{=item Description},
                     q{},
-                    $info_ref->{desc},
+                    $info_ref->{desc} // q{},
                     q{},
                     q{=item Note},
                     q{},
-                    $info_ref->{note},
+                    $info_ref->{note} // q{},
                     q{},
                     q{=back},
                     q{},
                 );
+                $i++;
 
                 $ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
                 $services_for_port_proto{ $port        }{ $protocol }{ $name_lookup } = 1;
@@ -246,6 +256,8 @@ sub populate_globals {
                 $assembler_for{ $protocol }{ port    }->add( $p );
                 $assembler_for{ $protocol }{ service }->add( $n );
             }
+
+            push @services_doc_text, qq{=back\n};
         }
     }
 
