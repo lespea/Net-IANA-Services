@@ -22,12 +22,12 @@ use Data::Traverse      qw/ traverse /;
 use File::Path          qw/ make_path  remove_tree /;
 use File::Spec;
 use Regexp::Assemble;
-use YAML::XS            qw/ LoadFile /;
+use YAML::XS            qw/ DumpFile  LoadFile /;
 
 
 #  Subroutine declaration
 sub escape_curly_quote;
-sub gen_imports;
+sub gen_exports;
 sub gen_hash_ref;
 sub gen_hash_refs;
 sub gen_module;
@@ -44,6 +44,10 @@ sub populate_globals;
 
 #  Constants
 #
+
+#  Control how our module works
+const  my $ZIP_YAML => 0;
+
 #  Used to parse the yml files
 const  my $IN_FILENAME      => 'service_mapping.yml';
 const  my $INFO_FOR_SERVICE => LoadFile $IN_FILENAME;
@@ -52,22 +56,40 @@ const  my $INFO_FOR_SERVICE => LoadFile $IN_FILENAME;
 const  my $GEN_ASSEMBLER => sub {return Regexp::Assemble->new( flags => q{i} )};
 
 #  General
-const  my $ALL          => q{all};
-const  my $NOT_YET_IMPL => q{#This feature is not yet implemented!};
+const  my $ALL           => q{all};
+const  my $NOT_YET_IMPL  => q{#This feature is not yet implemented!};
+const  my $DUMP_REF_NAME => q{_HASHES_REF};
 
-#  Strings for the generated module
-const  my $LIB_DIR                  => q{lib};
+#  Folders we use
+const  my $LIB_DIR   => q{lib};
+const  my $SHARE_DIR => q{share};
+
+#  YAML filenames
+const  my $HASHES_YAML_FILENAME_YML => q{services_hashes_dump.yml};
+const  my $HASHES_YAML_FILENAME_ZIP => $HASHES_YAML_FILENAME_YML . q{.zip};
+const  my $HASHES_YAML_FILENAME     => $ZIP_YAML ? $HASHES_YAML_FILENAME_ZIP : $HASHES_YAML_FILENAME_YML;
+
+#  YAML file paths
+const  my $HASHES_YAML_FULLNAME_YML => File::Spec->catfile( $SHARE_DIR, $HASHES_YAML_FILENAME_YML );
+const  my $HASHES_YAML_FULLNAME_ZIP => File::Spec->catfile( $SHARE_DIR, $HASHES_YAML_FILENAME_ZIP );
+const  my $HASHES_YAML_FULLNAME     => $ZIP_YAML ? $HASHES_YAML_FULLNAME_ZIP : $HASHES_YAML_FULLNAME_YML;
+
+#  Name info
 const  my @OUTPUT_MODULE_NAMESPACES => qw/ Net  IANA /;
 const  my $OUTPUT_MODULE_NAME       => q{Services};
-const  my $OUTPUT_MODULE_PATH       => File::Spec->catdir( $LIB_DIR, @OUTPUT_MODULE_NAMESPACES );
-const  my $OUTPUT_MODULE_FILENAME   => $OUTPUT_MODULE_NAME . q{.pm};
-const  my $OUTPUT_MODULE_FULLPATH   => File::Spec->catfile( $OUTPUT_MODULE_PATH, $OUTPUT_MODULE_FILENAME );
 const  my $PACKAGE_NAME             => join q{::}, @OUTPUT_MODULE_NAMESPACES, $OUTPUT_MODULE_NAME;
+const  my $DIST_NAME                => join q{-},  @OUTPUT_MODULE_NAMESPACES, $OUTPUT_MODULE_NAME;
+
+#  Module path/name
+const  my $OUTPUT_MODULE_PATH     => File::Spec->catdir( $LIB_DIR, @OUTPUT_MODULE_NAMESPACES );
+const  my $OUTPUT_MODULE_FILENAME => $OUTPUT_MODULE_NAME . q{.pm};
+const  my $OUTPUT_MODULE_FULLPATH => File::Spec->catfile( $OUTPUT_MODULE_PATH, $OUTPUT_MODULE_FILENAME );
 
 
 
 #  Globals
 my (%all_ports, %all_protocols);
+my (%ports_for_service, %ports_for_service_proto, %services_for_port, %services_for_port_proto );
 my %all_services = map {$_ => 1} keys %$INFO_FOR_SERVICE;
 my %assembler_for = (
     $ALL => {
@@ -77,9 +99,13 @@ my %assembler_for = (
 );
 my %name_for = (
     'hash' => {
-        'service'     => make_const_name(qw/ IANA  hash  services     /),
-        'ports'       => make_const_name(qw/ IANA  hash  ports        /),
-        'ports_proto' => make_const_name(qw/ IANA  hash  ports  proto /),
+        'service_info'  => make_const_name(qw/ IANA  hash  info  for  service /),
+
+        'ports'         => make_const_name(qw/ IANA  hash  services  for  port        /),
+        'ports_proto'   => make_const_name(qw/ IANA  hash  services  for  port  proto /),
+
+        'service'       => make_const_name(qw/ IANA  hash  ports  for  service        /),
+        'service_proto' => make_const_name(qw/ IANA  hash  ports  for  service  proto /),
     },
     'regex' => {
         $ALL => {
@@ -98,10 +124,119 @@ my %name_for = (
         },
     },
 );
+my @info_for_hash_type = (
+    [
+        'service_info',
+        $INFO_FOR_SERVICE,
+        <<'__END_SPRINTF'
+This maps a service and a protocol to the information provided to us by IANA.
+
+For example, C<$IANA_HASH_INFO_FOR_SERVICE->{ ssh }{ tcp }>  will give you the name, description, and note for
+the ssh service over tcp.  The format of the information is a hash ref having the keys I<name>,
+I<desc>, and I<note>.
+__END_SPRINTF
+    ],
+
+    [
+        'ports',
+        \%services_for_port,
+        <<'__END_SPRINTF'
+This lists all of the services for the given port, irregardless of the protocol.
+
+For example, C<$IANA_HASH_SERVICES_FOR_PORT->{ 22 }> will return C<['ssh']>.
+__END_SPRINTF
+    ],
+
+    [
+        'ports_proto',
+        \%services_for_port_proto,
+        <<'__END_SPRINTF'
+This lists all of the services for the given port and protocol.
+
+For example, C<$IANA_HASH_SERVICES_FOR_PORT_PROTO->{ 22 }{ 'tcp' }> will return C<['ssh']>.
+__END_SPRINTF
+    ],
+
+    [
+        'service',
+        \%ports_for_service,
+        <<'__END_SPRINTF'
+This lists all of the ports for the given service, irregardless of the protocol.
+
+For example, C<$IANA_HASH_PORT_FOR_SERVICES->{ 'ssh' }> will return C<[22]>.
+__END_SPRINTF
+    ],
+
+    [
+        'service_proto',
+        \%ports_for_service_proto,
+        <<'__END_SPRINTF'
+This lists all of the ports for the given service, irregardless of the protocol.
+
+For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
+__END_SPRINTF
+    ],
+);
 
 
 
-sub gen_imports {
+#  Pull in the info from the yaml file and put it into the global hashes
+sub populate_globals {
+    for  my $name_lookup  (sort keys %$INFO_FOR_SERVICE) {
+        my $n = quotemeta $name_lookup;
+        $assembler_for{ all }{ service }->add( quotemeta $n );
+
+        my $protocol_ref = $INFO_FOR_SERVICE->{ $name_lookup };
+        for  my $protocol  (keys %$protocol_ref) {
+            for  my $sub_name  (qw/ service  port /) {
+                $assembler_for{ $protocol }{ $sub_name }      //= $GEN_ASSEMBLER->();
+                $name_for{ regex  }{ $protocol }{ $sub_name } //= make_const_name qw/ IANA  regex  /, "${sub_name}s", $protocol;
+                $name_for{ hashes }{ $protocol }{ $sub_name } //= make_const_name qw/ IANA  hash   /, "${sub_name}s", $protocol;
+            }
+
+            $all_protocols{ $protocol } = 1;
+
+            my $port_ref = $protocol_ref->{ $protocol };
+            for  my $port  (keys $port_ref) {
+                my $p = quotemeta $port;
+                $all_ports{ $p } = 1;
+
+                $ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
+                $services_for_port_proto{ $port        }{ $protocol }{ $name_lookup } = 1;
+
+                $assembler_for{ $ALL      }{ port    }->add( $p );
+                $assembler_for{ $protocol }{ port    }->add( $p );
+                $assembler_for{ $protocol }{ service }->add( $n );
+            }
+        }
+    }
+
+    for  my $assembler_name  (keys %assembler_for) {
+        for  my $type  (keys %{ $assembler_for{ $assembler_name } }) {
+            $assembler_for{ $assembler_name }{ $type } =
+                $assembler_for{ $assembler_name }{ $type }->anchor_word( 1 )->re;
+        }
+    }
+
+    for  my $name  (keys %ports_for_service_proto) {
+        my %ports;
+        for  my $ports_ref  (values %{ $ports_for_service_proto{ $name } }) {
+            $ports{ $_ } = 1  for  keys %$ports_ref;
+        }
+        $ports_for_service{ $name } = [sort keys %ports];
+    }
+    for  my $port  (keys %services_for_port_proto) {
+        my %names;
+        for  my $ports_ref  (values %{ $services_for_port_proto{ $port } }) {
+            $names{ $_ } = 1  for  keys %$ports_ref;
+        }
+        $services_for_port{ $port } = [sort keys %names];
+    }
+}
+
+
+
+sub gen_exports {
     my (@hashes, @regexes, @subs);
 
     traverse { push @hashes,  $b} $name_for{ 'hash'  };
@@ -154,15 +289,34 @@ __END_SPRINTF
 
     return $regex_def;
 }
+
+
+
 sub gen_regexes {
     my @regex_defs;
+
+    for  my $sub_name  (sort qw/ service  port /) {
+        my $regex = $assembler_for{ $ALL }{ $sub_name };
+        my $name  = $name_for{ regex }{ $ALL }{ $sub_name };
+
+        push @regex_defs, gen_regex $name, $regex, <<"__END_SPRINTF" =~ s/\v+\z//xmsgr;
+Regular expression to match any ${sub_name}, irregardless of which protocol it goes over.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+__END_SPRINTF
+    }
+
+
     for  my $sub_name  (sort qw/ service  port /) {
         for  my $protocol  (sort keys %all_protocols) {
             my $regex = $assembler_for{ $protocol }{ $sub_name };
             my $name  = $name_for{ regex }{ $protocol }{ $sub_name };
 
             push @regex_defs, gen_regex $name, $regex, <<"__END_SPRINTF" =~ s/\v+\z//xmsgr;
-Regular expression to match any $sub_name that is known to work over $protocol.
+Regular expression to match any ${sub_name} that is known to work over ${protocol}.
 
 While this is a highly optimized regex, you should consider using the hashes or subroutines instead
 as they are much better.  This is merely for your convenience.
@@ -178,21 +332,42 @@ __END_SPRINTF
 
 
 sub gen_hash_ref {
-    my ($name, $hash_ref, $documentation) = @_;
-    my $hash_def = sprintf <<'__END_SPRINTF', uc $name, scalar( Dumper( $hash_ref ) ), $documentation;
+    my ($name, $hash_name, $documentation) = @_;
+    #my $hash_txt = Dumper( $hash_ref );
+    #$hash_txt =~ s/\v+\z//xmsg;
+    my $hash_def = sprintf <<'__END_SPRINTF', uc $name, $DUMP_REF_NAME, $hash_name, $documentation =~ s/\v+\z//xmsgr;
 =const %1$s
 
-%3$s
+%4$s
 
 =cut
 
-our %1$s = %2$s;
+our %1$s = $%2$s->{ q{%3$s} };
 __END_SPRINTF
 
     return $hash_def;
 }
+
+
+
 sub gen_hash_refs {
-    return $NOT_YET_IMPL;
+    my @hash_defs;
+    my %hash_dump;
+
+    for  my $info_ref  (@info_for_hash_type) {
+        my ($name_ref, $hash, $documentation) = @$info_ref;
+        my $name = $name_for{ hash }{ $name_ref };
+        push @hash_defs, gen_hash_ref $name, $name_ref, $documentation;
+        $hash_dump{ $name_ref } = $hash;
+    }
+
+    remove_tree $SHARE_DIR;
+    make_path  $SHARE_DIR;
+
+    open  my $fh_out, '>:encoding(utf8)', $HASHES_YAML_FULLNAME;
+    DumpFile $fh_out, \%hash_dump;
+
+    return join qq{\n\n\n}, @hash_defs;
 }
 
 
@@ -231,8 +406,14 @@ sub gen_module {
 
 
 
+sub gen_consts {
+    return "my \$$DUMP_REF_NAME = LoadFile dist_file q{$DIST_NAME}, q{$HASHES_YAML_FILENAME};";
+}
+
+
+
 sub gen_module_text {
-    return sprintf <<'__END_SPRINTF', $PACKAGE_NAME, gen_imports, gen_regexes, gen_hash_refs, gen_subroutines;
+    return sprintf <<'__END_SPRINTF', $PACKAGE_NAME, gen_exports, gen_consts, gen_regexes, gen_hash_refs, gen_subroutines;
 use strict;
 use warnings;
 use utf8;
@@ -241,7 +422,18 @@ package %1$s;
 
 #ABSTRACT:  Makes working with named ip services easier
 
+
+#  Import needed modules
+use YAML::Any qw/ LoadFile /;
+use File::ShareDir qw/ dist_file /;
+
+
+#  Export our vars/subs
 %2$s
+
+
+#  Constants
+%3$s
 
 
 =encoding utf8
@@ -267,36 +459,39 @@ package %1$s;
 
 
     #  Declare some strings to test
-    my $service = 'https',
-    my $port    = 22,
+    my $service = 'https';
+    my $port    = 22;
 
 
     #  How the regexes work
-    $service =~ $IANA_REGEX_SERVICES;       # 1
-    $service =~ $IANA_REGEX_SERVICES_TCP;   # 1
-    $port    =~ $IANA_REGEX_PORTS;          # 1
-    $port    =~ $IANA_REGEX_PORTS_TCP;      # 1
+    $service =~ $IANA_REGEX_SERVICES;      # 1
+    $service =~ $IANA_REGEX_SERVICES_UDP;  # 1
+    $port    =~ $IANA_REGEX_PORTS;         # 1
+    $port    =~ $IANA_REGEX_PORTS_TCP;     # 1
 
 
     #  Demonstration of the service hashes
-    $IANA_HASH_SERVICES->{ $service }{ tcp };   # { name => 'HTTPS', desc => 'https description', note => 'note about https' }
+    $IANA_HASH_INFO_FOR_SERVICE->{ $service }{ tcp }; # { name => 'HTTPS', desc => 'https description', note => 'note about https' }
+
+    $IANA_HASH_PORTS_FOR_SERVICE      ->{ $service }; # [qw/ 443 /]              --  List of all the services that use that port
+    $IANA_HASH_PORTS_FOR_SERVICE_PROTO->{ $service }; # {tcp => qw/ 443 /, etc}  --  Hash of all the protocol/services that use that port
 
     #  Demonstration  of the port hashes
-    $IANA_HASH_PORTS{ $port };                  # [qw/ ssh /]         --  List of all the services that use that port
-    $IANA_HASH_PORTS_PROTO{ $port };            # {tcp => qw/ ssh /}  --  Hash of all the protocol/services that use that port
+    $IANA_HASH_SERVICES_FOR_PORT      ->{ $port };    # [qw/ ssh /]         --  List of all the services that use that port
+    $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ $port };    # {tcp => qw/ ssh /}  --  Hash of all the protocol/services that use that port
 
 
     #  Demonstration of the service/port checker subroutines
-    iana_has_service( $service        );    # 1
-    iana_has_service( $service, 'tcp' );    # 1
-    iana_has_service( $service, 'bla' );    # 0
-    iana_has_port   ( $port           );    # 1
+    iana_has_service( $service        );  # 1
+    iana_has_service( $service, 'tcp' );  # 1
+    iana_has_service( $service, 'bla' );  # 0
+    iana_has_port   ( $port           );  # 1
 
     #  Demonstration of the service/port info subroutines
-    iana_info_for_service( $service        );   #  Returns a hash of the different protocol definitions
-    iana_info_for_service( $service, 'tcp' );   #  Returns a hash of the info for https over tcp
-    iana_info_for_port   ( $port           );   #  Returns a list all services that go over that port (regardless of the protocol)
-    iana_info_for_port   ( $port, 'tcp'    );   #  Returns a list all services that go over that port on tcp
+    iana_info_for_service( $service        );  #  Returns a hash of the different protocol definitions
+    iana_info_for_service( $service, 'tcp' );  #  Returns a hash of the info for https over tcp
+    iana_info_for_port   ( $port           );  #  Returns a list all services that go over that port (regardless of the protocol)
+    iana_info_for_port   ( $port, 'tcp'    );  #  Returns a list all services that go over that port on tcp
 
 =head1 DESCRIPTION
 
@@ -314,7 +509,7 @@ hashes, functions, and regular expressions.
 #####################
 
 
-%3$s
+%4$s
 
 
 
@@ -324,7 +519,7 @@ hashes, functions, and regular expressions.
 ####################
 
 
-%4$s
+%5$s
 
 
 
@@ -334,7 +529,7 @@ hashes, functions, and regular expressions.
 ##########################
 
 
-%5$s
+%6$s
 
 
 
@@ -342,44 +537,6 @@ hashes, functions, and regular expressions.
 #  Happy ending
 1;
 __END_SPRINTF
-}
-
-
-
-#  Pull in the info from the yaml file and put it into the global hashes
-sub populate_globals {
-    for  my $name_lookup  (sort keys %$INFO_FOR_SERVICE) {
-        my $n = quotemeta $name_lookup;
-        $assembler_for{ all }{ service }->add( quotemeta $n );
-
-        my $protocol_ref = $INFO_FOR_SERVICE->{ $name_lookup };
-        for  my $protocol  (keys %$protocol_ref) {
-            for  my $sub_name  (qw/ service  port /) {
-                $assembler_for{ $protocol }{ $sub_name }      //= $GEN_ASSEMBLER->();
-                $name_for{ regex  }{ $protocol }{ $sub_name } //= make_const_name qw/ IANA  regex  /, "${sub_name}s", $protocol;
-                $name_for{ hashes }{ $protocol }{ $sub_name } //= make_const_name qw/ IANA  hash   /, "${sub_name}s", $protocol;
-            }
-
-            $all_protocols{ $protocol } = 1;
-
-            my $port_ref = $protocol_ref->{ $protocol };
-            for  my $port  (keys $port_ref) {
-                my $p = quotemeta $port;
-                $all_ports{ $p } = 1;
-
-                $assembler_for{ $ALL      }{ port    }->add( $p );
-                $assembler_for{ $protocol }{ port    }->add( $p );
-                $assembler_for{ $protocol }{ service }->add( $n );
-            }
-        }
-    }
-
-    for  my $assembler_name  (keys %assembler_for) {
-        for  my $type  (keys %{ $assembler_for{ $assembler_name } }) {
-            $assembler_for{ $assembler_name }{ $type } =
-                $assembler_for{ $assembler_name }{ $type }->anchor_word( 1 )->re;
-        }
-    }
 }
 
 
