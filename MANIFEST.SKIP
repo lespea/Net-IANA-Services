@@ -81,3 +81,4 @@ pod2htmi.tmp
 
 service_mapping.yaml
 fetch_mapping.pl
+gen_module.pl
