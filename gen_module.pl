@@ -61,8 +61,13 @@ const  my $NOT_YET_IMPL  => q{#This feature is not yet implemented!};
 const  my $DUMP_REF_NAME => q{_HASHES_REF};
 
 #  Folders we use
+const  my $DOC_DIR   => q{.};
 const  my $LIB_DIR   => q{lib};
 const  my $SHARE_DIR => q{share};
+
+#  Extra documentation
+const  my $DOC_SERVICES_FILENAME => q{Service_Descriptions.pod};
+const  my $DOC_SERVICES_FULLNAME => File::Spec->catfile( $DOC_DIR, $DOC_SERVICES_FILENAME );
 
 #  YAML filenames
 const  my $HASHES_YAML_FILENAME_YML => q{services_hashes_dump.yml};
@@ -182,9 +187,20 @@ __END_SPRINTF
 
 #  Pull in the info from the yaml file and put it into the global hashes
 sub populate_globals {
+    my @services_doc_text = (
+        q{#ABSTRACT:  Documents the services defined by IANA},
+        q{},
+        q{=encoding utf8},
+        q{},
+        q{=head1 Services},
+        q{},
+    );
+
     for  my $name_lookup  (sort keys %$INFO_FOR_SERVICE) {
         my $n = quotemeta $name_lookup;
         $assembler_for{ all }{ service }->add( quotemeta $n );
+
+        push @services_doc_text, qq{=head2 $name_lookup\n};
 
         my $protocol_ref = $INFO_FOR_SERVICE->{ $name_lookup };
         for  my $protocol  (keys %$protocol_ref) {
@@ -195,11 +211,33 @@ sub populate_globals {
             }
 
             $all_protocols{ $protocol } = 1;
+            push @services_doc_text, qq{=head3 $protocol\n};
 
             my $port_ref = $protocol_ref->{ $protocol };
             for  my $port  (keys $port_ref) {
                 my $p = quotemeta $port;
                 $all_ports{ $p } = 1;
+
+                my $info_ref = $port_ref->{ $port };
+                push @services_doc_text, qq{=head4 $port\n};
+                push @services_doc_text, (
+                    q{=over 4},
+                    q{},
+                    q{=item Name},
+                    q{},
+                    $info_ref->{name},
+                    q{},
+                    q{=item Description},
+                    q{},
+                    $info_ref->{desc},
+                    q{},
+                    q{=item Note},
+                    q{},
+                    $info_ref->{note},
+                    q{},
+                    q{=back},
+                    q{},
+                );
 
                 $ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
                 $services_for_port_proto{ $port        }{ $protocol }{ $name_lookup } = 1;
@@ -211,12 +249,14 @@ sub populate_globals {
         }
     }
 
+
     for  my $assembler_name  (keys %assembler_for) {
         for  my $type  (keys %{ $assembler_for{ $assembler_name } }) {
             $assembler_for{ $assembler_name }{ $type } =
                 $assembler_for{ $assembler_name }{ $type }->anchor_word( 1 )->re;
         }
     }
+
 
     for  my $name  (keys %ports_for_service_proto) {
         my %ports;
@@ -232,6 +272,10 @@ sub populate_globals {
         }
         $services_for_port{ $port } = [sort keys %names];
     }
+
+
+    open  my $fh_doc, '>:encoding(utf8)', $DOC_SERVICES_FULLNAME;
+    $fh_doc->say( join qq{\n}, @services_doc_text);
 }
 
 

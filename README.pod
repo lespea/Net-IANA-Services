@@ -56,10 +56,10 @@ version 0.000001
     iana_has_port   ( $port           );  # 1
 
     #  Demonstration of the service/port info subroutines
-    iana_info_for_service( $service        );  #  Returns a hash of the different protocol definitions
-    iana_info_for_service( $service, 'tcp' );  #  Returns a hash of the info for https over tcp
-    iana_info_for_port   ( $port           );  #  Returns a list all services that go over that port (regardless of the protocol)
-    iana_info_for_port   ( $port, 'tcp'    );  #  Returns a list all services that go over that port on tcp
+    iana_info_for_service( $service        );  # Returns a hash of the different protocol definitions
+    iana_info_for_service( $service, 'tcp' );  # Returns a hash of the info for https over tcp
+    iana_info_for_port   ( $port           );  # Returns a list all services that go over that port (regardless of the protocol)
+    iana_info_for_port   ( $port, 'tcp'    );  # Returns a list all services that go over that port on tcp
 
 =head1 DESCRIPTION
 
