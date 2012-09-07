@@ -36,14 +36,15 @@ my $twig = XML::Twig->new(
             my $twig = $_;
             if (all {$twig->has_child( $_ )} qw/ name  protocol  number /) {
                 my %info = (
+                    name => $twig->first_child_text( 'name'        ),
                     desc => $twig->first_child_text( 'description' ) =~ s/$CLEANER//xmsirg,
                     note => $twig->first_child_text( 'note'        ) =~ s/$CLEANER//xmsirg,
                 );
 
                 $info_for_service
-                    -> { $twig->first_child_text( 'name'     ) }
-                    -> { $twig->first_child_text( 'protocol' ) }
-                    -> { $twig->first_child_text( 'number'   ) }
+                    -> { lc $twig->first_child_text( 'name'     ) }
+                    -> { lc $twig->first_child_text( 'protocol' ) }
+                    -> {    $twig->first_child_text( 'number'   ) }
                         = \%info;
             }
         }
