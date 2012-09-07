@@ -12,7 +12,7 @@ use XML::Twig;
 use YAML::XS qw/ DumpFile /;
 
 const  my $xml_uri      => q{http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml};
-const  my $out_filename => 'service_mapping.yaml';
+const  my $out_filename => 'service_mapping.yml';
 
 const  my $CLEANER_PHRASE => quotemeta q{IANA assigned this well-formed service name as a replacement for };
 const  my $CLEANER => qr{
