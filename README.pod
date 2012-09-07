@@ -10,14 +10,133 @@ version 0.000001
 
 =head1 SYNOPSIS
 
-    #  Not much here for now
-    use Net::IANA::Services;
+    #  Load the module
+    use Net::IANA::Services (
+        #  Import the regular expressions to test for services/ports
+        ':regexes',
+
+        #  Import the hashes to test for services/ports or get info for a service/protocol
+        ':hashes',
+
+        #  Import the subroutines to test for services/ports or get info for a service/protocol
+        ':subs',
+
+        #  Alternatively this loads everything
+        #  ':all',
+    );
+
+
+    #  Declare some strings to test
+    my $service = 'https',
+    my $port    = 22,
+
+
+    #  How the regexes work
+    $service =~ $IANA_REGEX_SERVICES;       # 1
+    $service =~ $IANA_REGEX_SERVICES_TCP;   # 1
+    $port    =~ $IANA_REGEX_PORTS;          # 1
+    $port    =~ $IANA_REGEX_PORTS_TCP;      # 1
+
+
+    #  Demonstration of the service hashes
+    $IANA_HASH_SERVICES->{ $service }{ tcp };   # { name => 'HTTPS', desc => 'https description', note => 'note about https' }
+
+    #  Demonstration  of the port hashes
+    $IANA_HASH_PORTS{ $port };                  # [qw/ ssh /]         --  List of all the services that use that port
+    $IANA_HASH_PORTS_PROTO{ $port };            # {tcp => qw/ ssh /}  --  Hash of all the protocol/services that use that port
+
+
+    #  Demonstration of the service/port checker subroutines
+    iana_has_service( $service        );    # 1
+    iana_has_service( $service, 'tcp' );    # 1
+    iana_has_service( $service, 'bla' );    # 0
+    iana_has_port   ( $port           );    # 1
+
+    #  Demonstration of the service/port info subroutines
+    iana_info_for_service( $service        );   #  Returns a hash of the different protocol definitions
+    iana_info_for_service( $service, 'tcp' );   #  Returns a hash of the info for https over tcp
+    iana_info_for_port   ( $port           );   #  Returns a list all services that go over that port (regardless of the protocol)
+    iana_info_for_port   ( $port, 'tcp'    );   #  Returns a list all services that go over that port on tcp
 
 =head1 DESCRIPTION
 
 Working with named services can be a pain when you want to go back and forth between the port and
 its real name.  This module helps alleviate some of those pain points by defining some helping
 hashes, functions, and regular expressions.
+
+=head1 CONSTANTS
+
+=head2 $IANA_REGEX_PORTS_DCCP
+
+Regular expression to match any port that is known to work over dccp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+
+=head2 $IANA_REGEX_PORTS_SCTP
+
+Regular expression to match any port that is known to work over sctp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+
+=head2 $IANA_REGEX_PORTS_TCP
+
+Regular expression to match any port that is known to work over tcp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+
+=head2 $IANA_REGEX_PORTS_UDP
+
+Regular expression to match any port that is known to work over udp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+
+=head2 $IANA_REGEX_SERVICES_DCCP
+
+Regular expression to match any service that is known to work over dccp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+
+=head2 $IANA_REGEX_SERVICES_SCTP
+
+Regular expression to match any service that is known to work over sctp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+
+=head2 $IANA_REGEX_SERVICES_TCP
+
+Regular expression to match any service that is known to work over tcp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
+
+=head2 $IANA_REGEX_SERVICES_UDP
+
+Regular expression to match any service that is known to work over udp.
+
+While this is a highly optimized regex, you should consider using the hashes or subroutines instead
+as they are much better.  This is merely for your convenience.
+
+Case is ignored and the protocol must match on a word boundary!
 
 =encoding utf8
 
