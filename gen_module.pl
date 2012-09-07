@@ -139,7 +139,8 @@ sub populate_globals {
 
     for  my $assembler_name  (keys %assembler_for) {
         for  my $type  (keys %{ $assembler_for{ $assembler_name } }) {
-            $assembler_for{ $assembler_name }{ $type } = $assembler_for{ $assembler_name }{ $type }->anchor_word( 1 )->re;
+            $assembler_for{ $assembler_name }{ $type } =
+                $assembler_for{ $assembler_name }{ $type }->anchor_word( 1 )->re;
         }
     }
 }
