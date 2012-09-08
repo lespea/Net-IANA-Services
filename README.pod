@@ -419,10 +419,6 @@ Undefined if the searched was unsuccessful!
 
 =back
 
-=back
-
-=over 4
-
 The returned hash contains the following pieces of information:
 
 =over 4
@@ -451,8 +447,6 @@ Any additional information they wanted to provided that users should be aware of
 
 
 =end Pod::Coverage
-
-=end :list
 
 =head1 INSTALLATION
 
