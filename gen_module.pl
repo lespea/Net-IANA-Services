@@ -27,6 +27,7 @@ use YAML::XS            qw/ DumpFile  LoadFile /;
 
 #  Subroutine declaration
 sub escape_curly_quote;
+sub gen_consts;
 sub gen_exports;
 sub gen_hash_ref;
 sub gen_hash_refs;
@@ -40,6 +41,8 @@ sub indent_paragraph;
 sub make_const_name;
 sub make_sub_name;
 sub populate_globals;
+sub prepare_disk;
+sub trim;
 
 
 #  Constants
@@ -47,6 +50,7 @@ sub populate_globals;
 
 #  Control how our module works
 const  my $ZIP_YAML => 0;
+const  my $GEN_DOC  => 1;
 
 #  Used to parse the yml files
 const  my $IN_FILENAME      => 'service_mapping.yml';
@@ -192,7 +196,7 @@ sub prepare_disk {
 
     make_path $OUTPUT_MODULE_PATH;
     make_path $SHARE_DIR;
-    make_path $DOC_DIR;
+    make_path $DOC_DIR  if  $GEN_DOC;
 }
 
 
@@ -212,7 +216,7 @@ sub populate_globals {
         my $n = quotemeta $name_lookup;
         $assembler_for{ all }{ service }->add( quotemeta $n );
 
-        push @services_doc_text, qq{=head2 $name_lookup\n};
+        push @services_doc_text, qq{=head2 $name_lookup\n}  if  $GEN_DOC;
 
         my $protocol_ref = $INFO_FOR_SERVICE->{ $name_lookup };
         for  my $protocol  (keys %$protocol_ref) {
@@ -228,7 +232,7 @@ sub populate_globals {
                 q{},
                 q{=over 4},
                 q{},
-            );
+            )  if  $GEN_DOC;
 
             my $port_ref = $protocol_ref->{ $protocol };
             my $i = 1;
@@ -258,7 +262,7 @@ sub populate_globals {
                     q{},
                     q{=back},
                     q{},
-                );
+                )  if  $GEN_DOC;
                 $i++;
 
                 $ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
@@ -269,7 +273,7 @@ sub populate_globals {
                 $assembler_for{ $protocol }{ service }->add( $n );
             }
 
-            push @services_doc_text, qq{=back\n};
+            push @services_doc_text, qq{=back\n}  if  $GEN_DOC;
         }
     }
 
@@ -297,9 +301,10 @@ sub populate_globals {
         $services_for_port{ $port } = [sort keys %names];
     }
 
-
-    open  my $fh_doc, '>:encoding(utf8)', $DOC_SERVICES_FULLNAME;
-    $fh_doc->say( join qq{\n}, @services_doc_text);
+    if  ($GEN_DOC) {
+        open  my $fh_doc, '>:encoding(utf8)', $DOC_SERVICES_FULLNAME;
+        $fh_doc->say( join qq{\n}, @services_doc_text);
+    }
 }
 
 
@@ -325,7 +330,7 @@ sub gen_exports {
     die unless @regexes;
     die unless @subs;
 
-    return sprintf <<'__END_SPRINTF', @sprintf_args;
+    return sprintf <<'__END_SPRINTF', map {trim $_} @sprintf_args;
 use Exporter::Easy (
     TAGS => [
         hashes => [%1$s],
@@ -345,7 +350,7 @@ __END_SPRINTF
 
 sub gen_regex {
     my ($name, $regex_obj, $documentation) = @_;
-    my $regex_def = sprintf <<'__END_SPRINTF', uc $name, scalar( Dumper( $regex_obj ) ) =~ s/\v+//xmsgr, $documentation;
+    my $regex_def = sprintf <<'__END_SPRINTF', map {trim $_} uc $name, scalar( Dumper( $regex_obj ) ), $documentation;
 =const %1$s
 
 %3$s
@@ -367,7 +372,7 @@ sub gen_regexes {
         my $regex = $assembler_for{ $ALL }{ $sub_name };
         my $name  = $name_for{ regex }{ $ALL }{ $sub_name };
 
-        push @regex_defs, gen_regex $name, $regex, <<"__END_SPRINTF" =~ s/\v+\z//xmsgr;
+        push @regex_defs, map {trim $_} gen_regex $name, $regex, <<"__END_SPRINTF";
 Regular expression to match any ${sub_name}, irregardless of which protocol it goes over.
 
 While this is a highly optimized regex, you should consider using the hashes or subroutines instead
@@ -383,7 +388,7 @@ __END_SPRINTF
             my $regex = $assembler_for{ $protocol }{ $sub_name };
             my $name  = $name_for{ regex }{ $protocol }{ $sub_name };
 
-            push @regex_defs, gen_regex $name, $regex, <<"__END_SPRINTF" =~ s/\v+\z//xmsgr;
+            push @regex_defs, map {trim $_} gen_regex $name, $regex, <<"__END_SPRINTF";
 Regular expression to match any ${sub_name} that is known to work over ${protocol}.
 
 While this is a highly optimized regex, you should consider using the hashes or subroutines instead
@@ -403,7 +408,7 @@ sub gen_hash_ref {
     my ($name, $hash_name, $documentation) = @_;
     #my $hash_txt = Dumper( $hash_ref );
     #$hash_txt =~ s/\v+\z//xmsg;
-    my $hash_def = sprintf <<'__END_SPRINTF', uc $name, $DUMP_REF_NAME, $hash_name, $documentation =~ s/\v+\z//xmsgr;
+    my $hash_def = sprintf <<'__END_SPRINTF', map {trim $_} uc $name, $DUMP_REF_NAME, $hash_name, $documentation;
 =const %1$s
 
 %4$s
@@ -439,7 +444,7 @@ sub gen_hash_refs {
 
 sub gen_subroutine {
     my ($name, $body, $documentation) = @_;
-    my $sub_def = sprintf <<'__END_SPRINTF', $name, indent_paragraph( $body, 4 ), $documentation;
+    my $sub_def = sprintf <<'__END_SPRINTF', map {trim $_} $name, indent_paragraph( $body, 4 ), $documentation;
 =method %1$s
 
 %3$s
@@ -475,7 +480,7 @@ sub gen_consts {
 
 
 sub gen_module_text {
-    return sprintf <<'__END_SPRINTF', $PACKAGE_NAME, gen_exports, gen_consts, gen_regexes, gen_hash_refs, gen_subroutines;
+    return sprintf <<'__END_SPRINTF', map {trim $_} $PACKAGE_NAME, gen_exports, gen_consts, gen_regexes, gen_hash_refs, gen_subroutines;
 use strict;
 use warnings;
 use utf8;
@@ -632,6 +637,13 @@ sub make_const_name {
 sub make_sub_name {
     my (@parts) = @_;
     return lc join q{_}, @parts;
+}
+
+
+
+sub trim($) {
+    my ($txt) = @_;
+    return $txt =~ s/\v+ \z//xmsgr;
 }
 
 
