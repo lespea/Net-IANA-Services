@@ -212,11 +212,11 @@ Port
 
 =item *
 
-Required
+B<Required>
 
 =item *
 
-Port (int)
+C<Port (int)>
 
 =item *
 
@@ -232,11 +232,11 @@ Protocol
 
 =item *
 
-Optional
+I<Optional>
 
 =item *
 
-String
+C<String>
 
 =item *
 
@@ -258,7 +258,7 @@ Search results
 
 =item *
 
-Boolean
+C<Boolean>
 
 =item *
 
@@ -287,11 +287,11 @@ Service Name
 
 =item *
 
-Required
+B<Required>
 
 =item *
 
-String
+C<String>
 
 =item *
 
@@ -307,11 +307,11 @@ Protocol
 
 =item *
 
-Optional
+I<Optional>
 
 =item *
 
-String
+C<String>
 
 =item *
 
@@ -333,7 +333,7 @@ Search results
 
 =item *
 
-Boolean
+C<Boolean>
 
 =item *
 
