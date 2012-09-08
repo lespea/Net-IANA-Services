@@ -191,6 +191,134 @@ This lists all of the ports for the given service, irregardless of the protocol.
 
 For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
 
+=head1 METHODS
+
+=head2 iana_has_port
+
+Helper function to check if the given port (and optional protocol) is defined by IANA.
+
+If only the port is given, then it will be checked across all protocols while restricting the search
+to just the provided protocol if one is given.
+
+=head3 Arguments
+
+=over 4
+
+=item 1
+
+Port
+
+=over 4
+
+=item *
+
+Required
+
+=item *
+
+Port (int)
+
+=item *
+
+Service name you want looked up
+
+=back
+
+=item 2
+
+Protocol
+
+=over 4
+
+=item *
+
+Optional
+
+=item *
+
+String
+
+=item *
+
+Limit the search to only this protocol if specified
+
+=back
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item 1
+
+Search results
+
+=head2 iana_has_service
+
+Helper function to check if the given service (and optional protocol) is defined by IANA.
+
+If only the service name is given, then it will be checked across all protocols while restricting
+the search to just the provided protocol if one is given.
+
+=head3 Arguments
+
+=over 4
+
+=item 1
+
+Service Name
+
+=over 4
+
+=item *
+
+Required
+
+=item *
+
+String
+
+=item *
+
+Service name you want looked up
+
+=back
+
+=item 2
+
+Protocol
+
+=over 4
+
+=item *
+
+Optional
+
+=item *
+
+String
+
+=item *
+
+Limit the search to only this protocol if specified
+
+=back
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item 1
+
+Search results
+
+=head2 iana_info_for_port
+
+=head2 iana_info_for_service
+
 =encoding utf8
 
 =begin Pod::Coverage
@@ -199,6 +327,18 @@ For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will retu
 
 
 =end Pod::Coverage
+
+=for: list
+* Boolean
+* 1 if the match was found, 0 otherwise
+
+=back
+
+=for: list
+* Boolean
+* 1 if the match was found, 0 otherwise
+
+=back
 
 =head1 INSTALLATION
 
