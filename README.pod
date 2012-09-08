@@ -206,13 +206,13 @@ to just the provided protocol if one is given.
 
 =item 1
 
-Port
+B<Port>
 
 =over 4
 
 =item *
 
-B<Required>
+Required
 
 =item *
 
@@ -226,7 +226,7 @@ Port you want looked up
 
 =item 2
 
-Protocol
+B<Protocol>
 
 =over 4
 
@@ -252,7 +252,7 @@ Limit the search to only this protocol if specified
 
 =item 1
 
-Search results
+B<Search results>
 
 =over 4
 
