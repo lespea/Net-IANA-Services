@@ -61,13 +61,8 @@ const  my $NOT_YET_IMPL  => q{#This feature is not yet implemented!};
 const  my $DUMP_REF_NAME => q{_HASHES_REF};
 
 #  Folders we use
-const  my $DOC_DIR   => q{.};
 const  my $LIB_DIR   => q{lib};
 const  my $SHARE_DIR => q{share};
-
-#  Extra documentation
-const  my $DOC_SERVICES_FILENAME => q{Service_Descriptions.pod};
-const  my $DOC_SERVICES_FULLNAME => File::Spec->catfile( $DOC_DIR, $DOC_SERVICES_FILENAME );
 
 #  YAML filenames
 const  my $HASHES_YAML_FILENAME_YML => q{services_hashes_dump.yml};
@@ -89,6 +84,11 @@ const  my $DIST_NAME                => join q{-},  @OUTPUT_MODULE_NAMESPACES, $O
 const  my $OUTPUT_MODULE_PATH     => File::Spec->catdir( $LIB_DIR, @OUTPUT_MODULE_NAMESPACES );
 const  my $OUTPUT_MODULE_FILENAME => $OUTPUT_MODULE_NAME . q{.pm};
 const  my $OUTPUT_MODULE_FULLPATH => File::Spec->catfile( $OUTPUT_MODULE_PATH, $OUTPUT_MODULE_FILENAME );
+
+#  Extra documentation
+const  my $DOC_DIR               => File::Spec->catdir(q{doc});
+const  my $DOC_SERVICES_FILENAME => q{Service_Descriptions.pod};
+const  my $DOC_SERVICES_FULLNAME => File::Spec->catfile( $DOC_DIR, $DOC_SERVICES_FILENAME );
 
 
 
@@ -182,6 +182,18 @@ For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will retu
 __END_SPRINTF
     ],
 );
+
+
+
+sub prepare_disk {
+    remove_tree $LIB_DIR;
+    remove_tree $DOC_DIR;
+    remove_tree $SHARE_DIR;
+
+    make_path $OUTPUT_MODULE_PATH;
+    make_path $SHARE_DIR;
+    make_path $DOC_DIR;
+}
 
 
 
@@ -417,9 +429,6 @@ sub gen_hash_refs {
         $hash_dump{ $name_ref } = $hash;
     }
 
-    remove_tree $SHARE_DIR;
-    make_path  $SHARE_DIR;
-
     open  my $fh_out, '>:encoding(utf8)', $HASHES_YAML_FULLNAME;
     DumpFile $fh_out, \%hash_dump;
 
@@ -452,9 +461,6 @@ sub gen_subroutines {
 
 sub gen_module {
     my $txt = gen_module_text;
-
-    remove_tree $LIB_DIR;
-    make_path   $OUTPUT_MODULE_PATH;
 
     open  my $fh, '>:encoding(utf8)', $OUTPUT_MODULE_FULLPATH;
     $fh->say( $txt );
@@ -631,6 +637,7 @@ sub make_sub_name {
 
 
 sub go {
+    prepare_disk;
     populate_globals;
     gen_module;
 }
