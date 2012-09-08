@@ -421,6 +421,8 @@ Undefined if the searched was unsuccessful!
 
 =back
 
+=over 4
+
 The returned hash contains the following pieces of information:
 
 =over 4
@@ -436,6 +438,8 @@ A short synopsis of the service, usually a sentence or two long
 =item Note
 
 Any additional information they wanted to provided that users should be aware of
+
+=back
 
 =back
 
