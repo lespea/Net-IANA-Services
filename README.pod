@@ -220,7 +220,7 @@ Port (int)
 
 =item *
 
-Service name you want looked up
+Port you want looked up
 
 =back
 
@@ -253,6 +253,20 @@ Limit the search to only this protocol if specified
 =item 1
 
 Search results
+
+=over 4
+
+=item *
+
+Boolean
+
+=item *
+
+1 if the match was found, 0 otherwise
+
+=back
+
+=back
 
 =head2 iana_has_service
 
@@ -315,6 +329,20 @@ Limit the search to only this protocol if specified
 
 Search results
 
+=over 4
+
+=item *
+
+Boolean
+
+=item *
+
+1 if the match was found, 0 otherwise
+
+=back
+
+=back
+
 =head2 iana_info_for_port
 
 =head2 iana_info_for_service
@@ -327,18 +355,6 @@ Search results
 
 
 =end Pod::Coverage
-
-=for: list
-* Boolean
-* 1 if the match was found, 0 otherwise
-
-=back
-
-=for: list
-* Boolean
-* 1 if the match was found, 0 otherwise
-
-=back
 
 =head1 INSTALLATION
 
