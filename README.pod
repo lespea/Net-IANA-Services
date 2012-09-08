@@ -206,7 +206,7 @@ to just the provided protocol if one is given.
 
 =item 1
 
-B<Port>
+Port
 
 =over 4
 
@@ -226,7 +226,7 @@ Port you want looked up
 
 =item 2
 
-B<Protocol>
+Protocol
 
 =over 4
 
@@ -252,7 +252,7 @@ Limit the search to only this protocol if specified
 
 =item 1
 
-B<Search results>
+Search results
 
 =over 4
 
@@ -287,7 +287,7 @@ Service Name
 
 =item *
 
-B<Required>
+Required
 
 =item *
 
@@ -347,6 +347,98 @@ C<Boolean>
 
 =head2 iana_info_for_service
 
+Helper function to get the known information for the given service and optional protocol, as defined
+by IANA.
+
+If only the service is given, then you will get back a hash ref containing the normal return
+information hash for each defined protocol for that service.
+
+=head3 Arguments
+
+=over 4
+
+=item 1
+
+Service Name
+
+=over 4
+
+=item *
+
+Required
+
+=item *
+
+C<String>
+
+=item *
+
+Service name you want looked up
+
+=back
+
+=item 2
+
+Protocol
+
+=over 4
+
+=item *
+
+I<Optional>
+
+=item *
+
+C<String>
+
+=item *
+
+Limit the search to only this protocol if specified
+
+=back
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item 1
+
+Service information (for a provided protocol)
+
+=over 4
+
+=item *
+
+C<Hash>
+
+=item *
+
+Undefined if the searched was unsuccessful!
+
+=back
+
+=back
+
+The returned hash contains the following pieces of information:
+
+=over 4
+
+=item Name
+
+The full name (with proper capitilization) for the requested service
+
+=item Desc
+
+A short synopsis of the service, usually a sentence or two long
+
+=item Note
+
+Any additional information they wanted to provided that users should be aware of
+
+=back
+
 =encoding utf8
 
 =begin Pod::Coverage
@@ -355,6 +447,8 @@ C<Boolean>
 
 
 =end Pod::Coverage
+
+=end :list
 
 =head1 INSTALLATION
 
