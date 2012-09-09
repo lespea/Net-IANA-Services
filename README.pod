@@ -42,7 +42,6 @@ version 0.000001
     $IANA_HASH_INFO_FOR_SERVICE->{ $service }{ tcp }; # { name => 'HTTPS', desc => 'https description', note => 'note about https' }
 
     $IANA_HASH_PORTS_FOR_SERVICE      ->{ $service }; # [qw/ 443 /]              --  List of all the services that use that port
-    $IANA_HASH_PORTS_FOR_SERVICE_PROTO->{ $service }; # {tcp => qw/ 443 /, etc}  --  Hash of all the protocol/services that use that port
 
     #  Demonstration  of the port hashes
     $IANA_HASH_SERVICES_FOR_PORT      ->{ $port };    # [qw/ ssh /]         --  List of all the services that use that port
