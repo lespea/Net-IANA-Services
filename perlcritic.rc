@@ -46,3 +46,4 @@ short_subroutine_statements = 1
 [-Modules::RequireExplicitPackage]
 [-References::ProhibitDoubleSigils]
 [-Subroutines::ProhibitCallsToUndeclaredSubs]
+[-Miscellanea::RequireRcsKeywords]
