@@ -108,12 +108,12 @@ my %assembler_for = (
 );
 my %name_for = (
     'hash' => {
-        'service_info'  => make_const_name(qw/ IANA  hash  info  for  service /),
+        'service_info' => make_const_name(qw/ IANA  hash  info  for  service /),
 
         'port'         => make_const_name(qw/ IANA  hash  services  for  port        /),
         'port_proto'   => make_const_name(qw/ IANA  hash  services  for  port  proto /),
 
-        'service'       => make_const_name(qw/ IANA  hash  ports  for  service        /),
+        'service'      => make_const_name(qw/ IANA  hash  ports  for  service        /),
         #'service_proto' => make_const_name(qw/ IANA  hash  ports  for  service  proto /),
     },
     'regex' => {
@@ -446,7 +446,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $%1$s =~ %2$s;
@@ -471,7 +471,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $%1$s_%2$s =~ %3$s;
@@ -545,7 +545,7 @@ sub gen_subroutines {
     my %creation_info = (
         doc => {
             has => {
-                service => <<'__END_SPRINTF',
+                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ service } ),
 Helper function to check if the given service (and optional protocol) is defined by IANA.
 
 If only the service name is given, then it will be checked across all protocols while restricting
@@ -582,10 +582,18 @@ the search to just the provided protocol if one is given.
 * 1 if the match was found, 0 otherwise
 
 =end :list
+
+=head3 Examples
+
+    %1$s( 'ssh' );    # 1
+    %1$s( 'not-ss' ); # 0
+
+    %1$s( 'xmpp-server', 'tcp' );  # 1
+    %1$s( 'xmpp-server', 'udp' );  # 0
 __END_SPRINTF
 
 
-                port => <<'__END_SPRINTF',
+                port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ port } ),
 Helper function to check if the given port (and optional protocol) is defined by IANA.
 
 If only the port is given, then it will be checked across all protocols while restricting the search
@@ -622,13 +630,21 @@ to just the provided protocol if one is given.
 * 1 if the match was found, 0 otherwise
 
 =end :list
+
+=head3 Examples
+
+    %1$s( 22 );    # 1
+    %1$s( 34221 ); # 0
+
+    %1$s( 271, 'tcp' );  # 1
+    %1$s( 271, 'udp' );  # 0
 __END_SPRINTF
             },
 
 
 
             info => {
-                service => <<'__END_SPRINTF',
+                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ service } ),
 Helper function to get the known information for the given service and optional protocol, as defined
 by IANA.
 
@@ -676,10 +692,18 @@ A short synopsis of the service, usually a sentence or two long
 Any additional information they wanted to provided that users should be aware of
 
 =end :list
+
+=head3 Examples
+
+    %1$s( 'xribs' );  # { udp => { 2025 => { desc => '', name => 'xribs', note => '' } } }
+    %1$s( 'not-ss' ); # undef
+
+    %1$s( 'xribs', 'tcp' );  # undef
+    %1$s( 'xribs', 'udp' );  # { 2025 => { desc => '', name => 'xribs', note => '' } }
 __END_SPRINTF
 
 
-                port => <<'__END_SPRINTF',
+                port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ port } ),
 Helper function to get the known services for the given port and optional protocol, as defined by
 IANA.
 
@@ -718,6 +742,14 @@ those running over that type.
 * The list of protocols running over the specified info (arrayref if in scalar context)
 
 =end :list
+
+=head3 Examples
+
+    %1$s( 22 );    # [qw/ ssh]/]
+    %1$s( 34221 ); # []
+
+    %1$s( 271, 'tcp' );  # [qw/ pt-tls]/]
+    %1$s( 271, 'udp' );  # []
 __END_SPRINTF
             },
         },

@@ -133,7 +133,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $port =~ $IANA_REGEX_PORTS;
@@ -155,7 +155,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $service =~ $IANA_REGEX_SERVICES;
@@ -177,7 +177,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $port_dccp =~ $IANA_REGEX_PORTS_DCCP;
@@ -199,7 +199,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $port_sctp =~ $IANA_REGEX_PORTS_SCTP;
@@ -221,7 +221,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $port_tcp =~ $IANA_REGEX_PORTS_TCP;
@@ -243,7 +243,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $port_udp =~ $IANA_REGEX_PORTS_UDP;
@@ -265,7 +265,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $service_dccp =~ $IANA_REGEX_SERVICES_DCCP;
@@ -287,7 +287,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $service_sctp =~ $IANA_REGEX_SERVICES_SCTP;
@@ -309,7 +309,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $service_tcp =~ $IANA_REGEX_SERVICES_TCP;
@@ -331,7 +331,7 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
-=head3 Example
+=head3 Examples
 
     # Matches
     $service_udp =~ $IANA_REGEX_SERVICES_UDP;
@@ -507,6 +507,14 @@ to just the provided protocol if one is given.
 
 =end :list
 
+=head3 Examples
+
+    iana_has_port( 22 );    # 1
+    iana_has_port( 34221 ); # 0
+
+    iana_has_port( 271, 'tcp' );  # 1
+    iana_has_port( 271, 'udp' );  # 0
+
 =cut
 
 sub iana_has_port {
@@ -554,6 +562,14 @@ the search to just the provided protocol if one is given.
 * 1 if the match was found, 0 otherwise
 
 =end :list
+
+=head3 Examples
+
+    iana_has_service( 'ssh' );    # 1
+    iana_has_service( 'not-ss' ); # 0
+
+    iana_has_service( 'xmpp-server', 'tcp' );  # 1
+    iana_has_service( 'xmpp-server', 'udp' );  # 0
 
 =cut
 
@@ -604,6 +620,14 @@ those running over that type.
 * The list of protocols running over the specified info (arrayref if in scalar context)
 
 =end :list
+
+=head3 Examples
+
+    iana_info_for_port( 22 );    # [qw/ ssh]/]
+    iana_info_for_port( 34221 ); # []
+
+    iana_info_for_port( 271, 'tcp' );  # [qw/ pt-tls]/]
+    iana_info_for_port( 271, 'udp' );  # []
 
 =cut
 
@@ -674,6 +698,14 @@ A short synopsis of the service, usually a sentence or two long
 Any additional information they wanted to provided that users should be aware of
 
 =end :list
+
+=head3 Examples
+
+    iana_info_for_service( 'xribs' );  # { udp => { 2025 => { desc => '', name => 'xribs', note => '' } } }
+    iana_info_for_service( 'not-ss' ); # undef
+
+    iana_info_for_service( 'xribs', 'tcp' );  # undef
+    iana_info_for_service( 'xribs', 'udp' );  # { 2025 => { desc => '', name => 'xribs', note => '' } }
 
 =cut
 
