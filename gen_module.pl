@@ -110,8 +110,8 @@ my %name_for = (
     'hash' => {
         'service_info'  => make_const_name(qw/ IANA  hash  info  for  service /),
 
-        'ports'         => make_const_name(qw/ IANA  hash  services  for  port        /),
-        'ports_proto'   => make_const_name(qw/ IANA  hash  services  for  port  proto /),
+        'port'         => make_const_name(qw/ IANA  hash  services  for  port        /),
+        'port_proto'   => make_const_name(qw/ IANA  hash  services  for  port  proto /),
 
         'service'       => make_const_name(qw/ IANA  hash  ports  for  service        /),
         'service_proto' => make_const_name(qw/ IANA  hash  ports  for  service  proto /),
@@ -140,29 +140,86 @@ my @info_for_hash_type = (
         <<'__END_SPRINTF'
 This maps a service and a protocol to the information provided to us by IANA.
 
-For example, C<$IANA_HASH_INFO_FOR_SERVICE->{ ssh }{ tcp }>  will give you the name, description, and note for
-the ssh service over tcp.  The format of the information is a hash ref having the keys I<name>,
-I<desc>, and I<note>.
+=head3 Examples
+
+    #  Get info for ssh over tcp
+    $ssh_tcp_info = $IANA_HASH_INFO_FOR_SERVICE->{ ssh }{ tcp };
+
+    Dumper $ssh_tcp_info;
+    #   22 => {
+    #      desc => 'The Secure Shell (SSH) Protocol'
+    #      name => 'ssh'
+    #      note => 'Defined TXT keys: u=<username> p=<password>'
+    #   }
+
+
+    #  Get info for http over any protocol
+    $http_info = $IANA_HASH_INFO_FOR_SERVICE->{ http };
+
+    Dumper $http_info;
+    #   sctp => {
+    #       '80' => {
+    #           desc => 'HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys => 'u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
+    #   tcp => {
+    #       '80' => {
+    #           desc => 'World Wide Web HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys: u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
+    #   udp => {
+    #       '80' => {
+    #           desc => 'World Wide Web HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys: u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
 __END_SPRINTF
     ],
 
     [
-        'ports',
+        'port',
         \%services_for_port,
         <<'__END_SPRINTF'
 This lists all of the services for the given port, irregardless of the protocol.
 
-For example, C<$IANA_HASH_SERVICES_FOR_PORT->{ 22 }> will return C<['ssh']>.
+An empty list will be returned if nothing is found.  This respects wantarray>
+
+=head3 Examples
+
+    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 };
+    Dumper $port_22;
+    # [qw/ ssh /];
+
+    my $port_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 };
+    Dumper $port_1110;
+    # [qw/ nfsd-keepalive  webadmstart /]
 __END_SPRINTF
     ],
 
     [
-        'ports_proto',
+        'port_proto',
         \%services_for_port_proto,
         <<'__END_SPRINTF'
 This lists all of the services for the given port and protocol.
 
-For example, C<$IANA_HASH_SERVICES_FOR_PORT_PROTO->{ 22 }{ 'tcp' }> will return C<['ssh']>.
+=head3 Examples
+
+    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 }{ tcp };
+    Dumper $port_22;
+    # [qw/ ssh /];
+
+    my $port_tcp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ tcp };
+    Dumper $port_tcp_1110;
+    # [qw/ webadmstart /]
+
+    my $port_udp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ udp };
+    Dumper $port_udp_1110;
+    # [qw/ nfsd-keepalive /]
 __END_SPRINTF
     ],
 
@@ -172,19 +229,24 @@ __END_SPRINTF
         <<'__END_SPRINTF'
 This lists all of the ports for the given service, irregardless of the protocol.
 
-For example, C<$IANA_HASH_PORT_FOR_SERVICES->{ 'ssh' }> will return C<[22]>.
+=head3 Example
+
+    my $service_http_alt = $IANA_HASH_PORTS_FOR_SERVICE->{ 'http-alt' };
+    Dumper $service_http_alt;
+    # [qw/ 591  8008  8080 /];
 __END_SPRINTF
     ],
-
-    [
-        'service_proto',
-        \%ports_for_service_proto,
-        <<'__END_SPRINTF'
-This lists all of the ports for the given service, irregardless of the protocol.
-
-For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
-__END_SPRINTF
-    ],
+    #
+    #  Redundant since this is already in the main hash!
+    #    [
+    #        'service_proto',
+    #        \%ports_for_service_proto,
+    #        <<'__END_SPRINTF'
+    #This lists all of the ports for the given service, irregardless of the protocol.
+    #
+    #For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
+    #__END_SPRINTF
+    #    ],
 );
 
 
@@ -265,7 +327,7 @@ sub populate_globals {
                 )  if  $GEN_DOC;
                 $i++;
 
-                $ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
+                #$ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
                 $services_for_port_proto{ $port        }{ $protocol }{ $name_lookup } = 1;
 
                 $assembler_for{ $ALL      }{ port    }->add( $p );
@@ -286,13 +348,13 @@ sub populate_globals {
     }
 
 
-    for  my $name  (keys %ports_for_service_proto) {
-        my %ports;
-        for  my $ports_ref  (values %{ $ports_for_service_proto{ $name } }) {
-            $ports{ $_ } = 1  for  keys %$ports_ref;
-        }
-        $ports_for_service{ $name } = [sort keys %ports];
-    }
+    #for  my $name  (keys %ports_for_service_proto) {
+    #    my %ports;
+    #    for  my $ports_ref  (values %{ $ports_for_service_proto{ $name } }) {
+    #        $ports{ $_ } = 1  for  keys %$ports_ref;
+    #    }
+    #    $ports_for_service{ $name } = [sort keys %ports];
+    #}
     for  my $port  (keys %services_for_port_proto) {
         my %names;
         for  my $ports_ref  (values %{ $services_for_port_proto{ $port } }) {
@@ -372,13 +434,22 @@ sub gen_regexes {
         my $regex = $assembler_for{ $ALL }{ $sub_name };
         my $name  = $name_for{ regex }{ $ALL }{ $sub_name };
 
-        push @regex_defs, map {trim $_} gen_regex $name, $regex, <<"__END_SPRINTF";
-Regular expression to match any ${sub_name}, irregardless of which protocol it goes over.
+        push @regex_defs, map {trim $_} gen_regex $name, $regex,
+            sprintf <<'__END_SPRINTF', $sub_name, $name;
+Regular expression to match any %1$s, irregardless of which protocol it goes over.
 
 While this is a highly optimized regex, you should consider using the hashes or subroutines instead
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $%1$s =~ %2$s;
+
+    # Won't match
+    $non_%1$s =~ %2$s;
 __END_SPRINTF
     }
 
@@ -388,13 +459,22 @@ __END_SPRINTF
             my $regex = $assembler_for{ $protocol }{ $sub_name };
             my $name  = $name_for{ regex }{ $protocol }{ $sub_name };
 
-            push @regex_defs, map {trim $_} gen_regex $name, $regex, <<"__END_SPRINTF";
-Regular expression to match any ${sub_name} that is known to work over ${protocol}.
+            push @regex_defs, map {trim $_} gen_regex $name, $regex,
+                sprintf <<'__END_SPRINTF', $sub_name, $protocol, $name;
+Regular expression to match any %1$s that is known to work over %2$s.
 
 While this is a highly optimized regex, you should consider using the hashes or subroutines instead
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $%1$s_%2$s =~ %3$s;
+
+    # Won't match
+    $non_%1$s_%2$s =~ %3$s;
 __END_SPRINTF
         }
     }
@@ -459,7 +539,235 @@ __END_SPRINTF
     return $sub_def;
 }
 sub gen_subroutines {
-    return $NOT_YET_IMPL;
+    my %creation_info = (
+        doc => {
+            has => {
+                service => <<'__END_SPRINTF',
+Helper function to check if the given service (and optional protocol) is defined by IANA.
+
+If only the service name is given, then it will be checked across all protocols while restricting
+the search to just the provided protocol if one is given.
+
+=head3 Arguments
+
+=begin :list
+
+1. Service Name
+
+=for :list
+* Required
+* C<String>
+* Service name you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Search results
+
+=for :list
+* C<Boolean>
+* 1 if the match was found, 0 otherwise
+
+=end :list
+__END_SPRINTF
+
+
+                port => <<'__END_SPRINTF',
+Helper function to check if the given port (and optional protocol) is defined by IANA.
+
+If only the port is given, then it will be checked across all protocols while restricting the search
+to just the provided protocol if one is given.
+
+=head3 Arguments
+
+=begin :list
+
+1. Port
+
+=for :list
+* Required
+* C<Port (int)>
+* Port you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Search results
+
+=for :list
+* C<Boolean>
+* 1 if the match was found, 0 otherwise
+
+=end :list
+__END_SPRINTF
+            },
+
+
+
+            info => {
+                service => <<'__END_SPRINTF',
+Helper function to get the known information for the given service and optional protocol, as defined
+by IANA.
+
+If only the service is given, then you will get back a hash ref containing the normal return
+information hash for each defined protocol for that service.
+
+=head3 Arguments
+
+=begin :list
+
+1. Service Name
+
+=for :list
+* Required
+* C<String>
+* Service name you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Service information (for a provided protocol)
+
+=for :list
+* C<Hash>
+* Undefined if the searched was unsuccessful!
+
+The returned hash contains the following pieces of information (keys are lower case):
+
+=for :list
+= Name
+The full name (with proper capitilization) for the requested service
+= Desc
+A short synopsis of the service, usually a sentence or two long
+= Note
+Any additional information they wanted to provided that users should be aware of
+
+=end :list
+__END_SPRINTF
+
+
+                port => <<'__END_SPRINTF',
+Helper function to get the known services for the given port and optional protocol, as defined by
+IANA.
+
+If only the port is given, then you will get back an array ref containing all of the services that
+are defined by IANA.  If a protocol is specified, then the returned prtocols will be limited to
+those running over that type.
+
+=head3 Arguments
+
+=begin :list
+
+1. Port
+
+=for :list
+* Required
+* C<Port (int)>
+* Port you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Search results
+
+=for :list
+* C<Array>
+* The list of protocols running over the specified info (arrayref if in scalar context)
+
+=end :list
+__END_SPRINTF
+            },
+        },
+
+
+
+
+        body => {
+            has => {
+                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ service }, $name_for{ hash }{ service }),
+my ($service) = @_;
+return $%2$s->{ $service } ? 1 : 0;
+__END_SPRINTF
+
+
+                port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ port }, $name_for{ hash }{ port }),
+my ($port) = @_;
+return $%2$s->{ $port } ? 1 : 0;
+__END_SPRINTF
+            },
+
+
+
+            info => {
+                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ service }, $name_for{ hash }{ service } ),
+my ($service, $protocol) = @_;
+return  defined $protocol ? %2$s->{ $service }{ $protocol } : %2$s->{ $service };
+__END_SPRINTF
+
+
+                port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ port }, $name_for{ hash }{ port }, $name_for{ hash }{ port_proto } ),
+my ($port, $protocol) = @_;
+return  defined $protocol ? %3$s->{ $port }{ $protocol } : %2$s->{ $port };
+__END_SPRINTF
+            },
+        },
+    );
+
+
+    my @sub_defs;
+    for  my $action  (sort keys %{ $name_for{ sub } }) {
+        for  my $type  (sort keys %{ $name_for{ sub }{ $action } }) {
+            my $name = $name_for{ sub }{ $action }{ $type };
+            push @sub_defs,
+                gen_subroutine
+                    $name,
+                    $creation_info{ body }{ $action }{ $type },
+                    $creation_info{ doc  }{ $action }{ $type },
+            ;
+        }
+    }
+
+    return join qq{\n\n\n}, @sub_defs;
 }
 
 
@@ -620,7 +928,7 @@ sub escape_curly_quote {
 sub indent_paragraph {
     my ($txt, $spaces) = @_;
     my $indent_txt = q{ } x $spaces;
-    return $txt =~ s/ ^ /$indent_txt/xmsgr;
+    return defined $txt ? $txt =~ s/ ^ /$indent_txt/xmsgr : $txt;
 }
 
 
@@ -643,7 +951,7 @@ sub make_sub_name {
 
 sub trim($) {
     my ($txt) = @_;
-    return $txt =~ s/\v+ \z//xmsgr;
+    return defined $txt ? $txt =~ s/\v+ \z//xmsgr : $txt;
 }
 
 

@@ -135,6 +135,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $port =~ $IANA_REGEX_PORTS;
+
+    # Won't match
+    $non_port =~ $IANA_REGEX_PORTS;
+
 =cut
 
 our $IANA_REGEX_PORTS = qr/(?^:(?i:\b(?:1(?:1(?:1(?:[234589]|6[12345]?|7[12345]?|0[456]?|1[12]?)?|3(?:[034589]|2[01]?|19?|67?|71?)?|2(?:[23456789]|0[128]?|1?1)?|9(?:[01234578]|9[789]?|67?)?|7(?:[0134678]|20?|51?|96?)?|8(?:[012345689]|7[67]?)?|0(?:[12345678]|0[01]?)?|6(?:[123456789]|0?0)?|4(?:[012345679]|89?)|5\d?)?|0(?:1(?:0[012347]?|1[0134567]|6[012]|2[89])?|0(?:0[012345789]?|5[015]|8[01]|10)|8(?:[2345789]|0[059]?|10?|60?)?|5(?:[12356789]|4[01234]?|0?0)?|2(?:[1279]|0[01]|52?|60?|88)?|3(?:[013456789]|21?)?|6(?:[012456789]|31?)?|9(?:[012345678]|90?)?|4\d?|7\d?)|8(?:1(?:[1245679]|8[1234567]?|04?|36?)?|2(?:[01235789]|4[123]?|62?)?|6(?:[012456789]|3[45]?)?|8(?:[012345679]|8[18]?)?|0(?:[123456789]|0?0)?|4(?:[012345789]|63?)?|7(?:[012345789]|69?)?|9[012346789]?|3\d?|5\d?)?|9(?:5(?:[01256789]|4[01]?|39?)?|4(?:[023456789]|1[012]?)?|0(?:[13456789]|0?0|20?)?|1(?:[012345678]|9[14]?)?|3(?:[02345678]|15?|98?)?|9(?:[012345678]|9[89]?)?|2(?:[012345679]|83?)?|6\d?|7\d?|8\d?)?|3(?:7(?:[01345679]|2[0124]?|8[2356]?)?|8(?:[03456789]|2[0123]?|1[89]?)?|2(?:[03456789]|1[678]?|2[34]?)?|9(?:[01456789]|29?|30?)?|1(?:[012345789]|60?)?|4(?:[123456789]|0?0)?|0\d?|3\d?|5\d?|6\d?)?|5(?:3(?:[01235789]|45?|63?)?|9(?:[012345678]|9[89]?)?|0(?:[123456789]|0?0)?|1(?:[023456789]|18?)?|5(?:[012346789]|5?5)?|6(?:[012345789]|60?)?|7(?:[012356789]|40?)?|2[012345679]?|4\d?|8\d?)|6(?:3(?:[234579]|6[0178]?|1[01]?|09?|84?)?|9(?:[1234678]|9[12345]?|0?0|50?)?|0(?:[13456789]|0[0123]?|2[01]?)?|1(?:[012345789]|6[12]?)?|6(?:[02345789]|19?|6?6)?|2\d?|4\d?|5\d?|7\d?|8\d?)|7(?:2(?:[0456789]|2[12]?|3[45]?|19?)?|7(?:[0134689]|5[456]|29?|7?7)?|0(?:[123456789]|07?)?|1(?:[012345679]|85?)?|5(?:[123456789]|0?0)?|8[012456789]?|3\d?|4\d?|6\d?|9\d?)?|4(?:1(?:[01236789]|4[1259]?|5[04]?)?|0(?:[12456789]|0[01]?|3[34]?)?|9(?:[02456789]|3[67]?)?|2(?:[012346789]|50?)?|4(?:[023456789]|14?)?|3\d?|5\d?|6\d?|7\d?|8\d?)|2(?:3(?:[1356789]|0[02]?|2[12]|45?)?|1(?:[134589]|09?|21?|68?|72?)?|0(?:[23456789]|1[023]?|0\d?)?|7(?:[012346789]|53?)?|2\d?|4\d?|5\d?|6\d?|8\d?|9\d?))?|2(?:4(?:0(?:[123456789]|0[0123456]?)|6(?:[01234569]|7[678]?|80?)?|3(?:[01345679]|21?|86?)?|2(?:[01235789]|4[29]?)?|4(?:[012345789]|65?)?|5(?:[012346789]|54?)?|7(?:[012346789]|54?)?|8(?:[012346789]|50?)?|9(?:[013456789]|2?2)|1\d)|2(?:3(?:[1236789]|4[37]?|05?|50?)?|0(?:[123456789]|0[012345]?)?|1(?:[013456789]|2[58]?)?|5(?:[0124678]|37?|5?5)|2(?:[012345689]|73?)?|7(?:[012345789]|63?)|8(?:[123456789]|0?0)|9(?:[012346789]|51?)|4\d?|6\d)?|0(?:0(?:[256789]|0[01235]?|1[234]?|4[689]?|34?)?|2(?:[13456789]|02?|2?2)?|1(?:[012345789]|67?)?|4(?:[012345679]|80?)?|6(?:[012345689]|70?)?|9(?:[012345678]|9?9)?|3\d?|5\d?|7\d?|8\d?)?|3(?:0(?:[12346789]|0[012345]?|53?)|4(?:[12346789]|0[012]?|5[67]?)|2(?:[012345689]|72?)|3(?:[012456789]|3?3)|5(?:[012356789]|46?)|6[012345678]|8[123456789]|7[01234]|1\d|9\d)?|5(?:9(?:[12346789]|0[0123]?|5[45]?)?|0(?:[123456789]|0\d?)|6(?:[123456789]|04?)?|7(?:[012345678]|93?)?|4(?:[012345689]|71?)|5(?:[012345689]|76?)|1\d|2\d|3\d|8\d)?|6(?:2(?:[12345789]|6[0123]?|08?)?|4(?:[012345679]|8[679]?)?|0(?:[123456789]|0?0)?|1(?:[012456789]|3?3)?|8[013456789]?|9[012456789]?|3\d?|5\d?|6\d?|7\d?)|7(?:3(?:[012356789]|45?)|4(?:[012356789]|42?)|5(?:[123456789]|04?)|7(?:[012345679]|82?)|9(?:[01235678]|9?9)|0\d?|1\d?|2\d|6\d|8\d)?|1(?:8(?:[12356789]|4[56789]?|0?0)?|5(?:[01234678]|5[34]?|90?)?|0(?:[123456789]|0?0)?|9[0123789]?|1\d?|2\d?|3\d?|4\d?|6\d?|7\d?)?|8(?:0(?:[123456789]|0[01]?)?|1(?:[023456789]|19?)?|2(?:[01236789]|40?)?|7[012456789]?|3\d?|4\d?|6\d?|5\d|8\d|9\d)|9(?:1(?:[02345789]|6[789]?|18?)|2[012346789]|0\d|3\d|4\d|5\d|6\d|7\d|8\d|9\d)?)?|3(?:2(?:7(?:[01234589]|7[01234567]?|6[789]?)|8(?:[2345678]|01?|1?1|96?)|6(?:[012456789]|3[56]?)|0(?:[012456789]|34?)?|2(?:[012356789]|49?)?|4(?:[012345679]|83?)?|1\d?|3\d?|5\d|9\d)|1(?:0(?:[013456789]|2[09]?)?|4(?:[02346789]|16?|57?)?|6(?:[01345679]|20?|85?)?|9(?:[012356789]|4[89]?)?|7(?:[012345789]|65?)?|2[02345789]?|1\d?|3\d?|5\d?|8\d?)?|6(?:4(?:[0356789]|4[34]?|12?|2?2)?|0(?:[123456789]|01?)?|5(?:[013456789]|24?)?|8(?:[012345789]|65?)?|9[01256789]?|1\d?|2\d?|3\d?|6\d?|7\d?)|3(?:3(?:[012456789]|3[134]?)?|1(?:[013456789]|23?)|4(?:[012456789]|34?)|6(?:[012346]|56?)|0[23456789]|7[23456789]|2[016789]|5\d|8\d|9\d)?|4(?:9(?:[01234579]|6[234]?|80?)?|3(?:[012345689]|7[89]?)|5(?:[012345789]|67?)?|2(?:[012356789]|49?)|0[01256789]|4\d?|6\d?|7\d?|8\d?|1\d)|0(?:0(?:[23456789]|0[12]?)|2(?:[012345789]|60?)|9(?:[01345678]|9?9)?|8\d?|1\d|3\d|4\d|5\d|6\d|7\d)|8(?:2(?:[123456789]|0[123]?)?|8(?:[12345789]|0?0|65?)?|0\d?|1\d?|3\d?|4\d?|5\d?|6\d?|7\d?|9\d?)?|7(?:4(?:[012345689]|75?)?|6(?:[01234789]|54?)?|0\d?|1\d?|2\d?|3\d?|5\d?|7\d?|8\d?|9\d?)?|5(?:3(?:[012346789]|5[4567]?)?|4[012345789]?|0\d?|1\d?|2\d?|5\d?|6\d?|7\d?|8\d?|9\d?)|9(?:6(?:[012345679]|81?)?|9[012356789]?|0\d?|1\d?|2\d?|3\d?|4\d?|5\d?|7\d?|8\d?)?)?|4(?:3(?:4(?:[01256789]|4[01]?|39?)?|1(?:[0123]|8[89]|9[01])?|2(?:[023456789]|10?)?|9[0123456]?|6[01289]?|0\d?|5\d?|7\d?|89?|3)?|4(?:[79]|5(?:[0123678]|4?4|53?)?|4(?:[12356789]|4?4)?|3(?:[013]|2[123]?)?|8(?:[4567]|1?8)?|2[56789]?|6(?:00)?|1[01]?|0\d?)?|1(?:7(?:[012345678]|9[4567]?)?|1(?:[03456789]|1?1|21?)?|2[123456789]?|4[012356789]?|9[01239]?|0\d?|3\d?|5\d?|6\d?|8\d?)?|8(?:0(?:[123]|0[012345]?|49?)?|6(?:[78]|1?9)?|5(?:[01]|56)?|1(?:2[89])?|7[016789]?|8[012345]?|3[789]?|9[49]?|4\d?|27?)?|7(?:[179]|0(?:[1234]|0[01]?)?|8(?:[45678]|0[68])?|5(?:[0123]|57)?|3[0123789]?|4[0123459]?|2[56789]?|6(?:24)?)?|0(?:8(?:[01236789]|4[123]?|53?)?|0(?:[123456789]|0?0)?|4[012345679]?|1\d?|2\d?|3\d?|5\d?|6\d?|7\d?|9\d?)|5(?:[127]|9(?:[012345789]|6?6)?|0(?:0[01]?|54|2)?|6(?:[689]|78?)?|8(?:2[45])?|4[56789]?|3[5678]?|5\d?)?|9(?:0(?:[12]|0?0)?|8[456789]?|1[2345]?|4[0129]?|5[0123]?|9[019]?|37?|69?|70?|2)?|6(?:[1234]|9(?:[012]|9[89])?|0[0123]?|5[89]?|6\d?|7\d?|8\d?)?|2(?:[012346789]|5(?:0[89]|10)?)?)|5(?:0(?:4[23456789]?|7[0123459]?|8[0123456]?|1[012345]?|9[012349]?|3[012]?|0\d?|2\d?|5\d?|6\d?)?|2(?:2[12345678]?|3[234567]?|0[01239]?|4[56789]?|5[0123]?|6[459]?|7[012]?|8[012]?|9[89]?|1)?|1(?:[278]|5[01234567]?|6[12345678]?|9[0123456]?|0[012345]?|1[124567]?|3[34567]?|4[56]?)?|7(?:4[12345678]?|8[01234567]?|1[3456789]?|6[6789]?|5[057]?|7[017]?|9[34]?|2\d?|30?|0)|5(?:[1234]|0[0123456]?|8[012345]?|5[34567]?|6[6789]?|7[3459]?|9[789]?)?|6(?:[156]|7[123456789]?|0[012345]?|8[012389]?|2[789]?|9[36]?|3\d?|46?)?|3(?:[378]|1[02345678]?|6[0123]?|4[349]?|9[789]?|2[01]?|0\d?|5\d?)?|4(?:[789]|3[01234567]?|6[12345]?|5[3456]?|4[35]?|0\d?|1\d?|2\d?)?|9(?:[23457]|8[456789]?|1[0123]?|9[0129]?|6[389]?|0?0)|8(?:[0237]|1[34]?|6[38]?|42?|5?9|83?)?)?|6(?:6(?:2[012345678]?|6(?:5-6669)?|7[012389]?|0[012]?|5[567]?|8[789]?|3[23]?|19?|96?|4)?|5(?:[23]|0[012356789]?|1[01345]?|4[34789]?|8[0123]?|5[018]?|6[68]?|79?)?|3(?:2[01245]?|0[016]?|4[367]?|1[56]?|5[05]?|8[29]?|60?|70?|90?|3)?|0(?:[12345]|0(?:0-6063)?|7[0123456]?|8[2345678]?|6[45689]?|9?9)|7(?:[2345]|0[123456]?|8[56789]?|6[789]?|1[45]?|7[01]?|9[01]?)?|1(?:[789]|1[012345678]?|2[1234]?|6[0123]?|0\d?|4\d?|3?3|59?)?|4(?:[069]|4[3456]?|1[789]?|2[01]?|5[56]?|8\d?|32?|71?)?|9(?:[1278]|6[1234569]?|9[789]?|3[56]?|01?|46?|51?)?|2(?:[13789]|4[1234]?|5[123]?|6[789]?|0[01]?|2?2)?|8(?:[279]|4[12]?|01?|17?|31?|50?|68?|8?8)?)|7(?:7(?:[156]|2[04567]?|4[12347]?|0[078]?|7[789]?|8[1679]|9[4789]|3[48]?)|0(?:[56]|1[01234589]?|2[012345]?|7[01]?|[38]0|0\d?|40?|9?9)?|5(?:[239]|4[23456789]?|0[0189]?|6[0369]|1[01]?|[57]0|8?8)|6(?:[015]|7[234567]?|2[46789]?|3[013]?|8[09]|48?|97?)?|1(?:[1345]|6[123456789]?|0[017]?|2[189]?|7[0134])?|2(?:7[23456789]|8[0123]|2[789]|0[01]|3[67]|62|9)?|4(?:2[16789]?|0[012]|3[017]|10?|43?|73?|91?|8)?|9(?:0[0123]|8[012]|9[789]|3[23]|13|67|79)?|8(?:0[01]?|7[012]|4[56]|8[07]|10|69)?|3(?:[01]|9[123457]|65)?)?|8(?:0(?:5[123456789]|0[012358]?|8[0123678]|2[01256]|4[0234]|3[234]|9[17]|19?|60|74)?|1(?:2[1289]|8[1234]|9[2459]|0[01]?|1[568]|3[012]|4[89]|6[01])|4(?:0[012345]|7[01234]?|4[234]|1[67]|50|8)?|3(?:7[6789]|0[01]?|2[01]?|8[03]|13?|51|3)?|2(?:0[01245678]|9[234]?|80?|30|43|76)?|9(?:1[0123]|9[019]|0[01]|5[34]|37|89)?|8(?:8[01389]?|9[012349]|0[04]|73?|6)?|6(?:1[012345]?|0[09]?|75|86|99|2)?|7(?:3[23]?|6[345]|8[67]|70|93)|5(?:0[01]|5[45]|67)?)|9(?:0(?:8[023456789]|2[0123456]?|0[012789]?|9[0123]|5[01]|10?|3)?|2(?:1[01234567]|8[01234567]|9[2345]|7[89]|0\d|22|55)?|9(?:[237]|5[0123456]?|0[01239]?|8[78]?|9\d?|1?1|6?6)?|3(?:8[0789]|4[346]|9[067]|0[06]|1[28]|21|74)?|6(?:1[24678]|3[012]|2[89]|6[78]|9[45]|[04]0)?|1(?:0[01234567]?|6[01234]|19?|31?|91|2)?|5(?:9[23456789]|3[56]|00|22|55)?|8(?:0[012]|7[568]|9[89]?|8[89])?|4(?:0[012]|4[345]|18|50)?|7(?:5[03]|00|47|62)?)?)\b))/;  ## no critic(RegularExpressions)
@@ -148,6 +156,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $service =~ $IANA_REGEX_SERVICES;
+
+    # Won't match
+    $non_service =~ $IANA_REGEX_SERVICES;
 
 =cut
 
@@ -163,6 +179,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $port_dccp =~ $IANA_REGEX_PORTS_DCCP;
+
+    # Won't match
+    $non_port_dccp =~ $IANA_REGEX_PORTS_DCCP;
+
 =cut
 
 our $IANA_REGEX_PORTS_DCCP = qr/(?^:(?i:\b(?:102[12]|500[45]|6514|9)\b))/;  ## no critic(RegularExpressions)
@@ -176,6 +200,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $port_sctp =~ $IANA_REGEX_PORTS_SCTP;
+
+    # Won't match
+    $non_port_sctp =~ $IANA_REGEX_PORTS_SCTP;
 
 =cut
 
@@ -191,6 +223,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $port_tcp =~ $IANA_REGEX_PORTS_TCP;
+
+    # Won't match
+    $non_port_tcp =~ $IANA_REGEX_PORTS_TCP;
+
 =cut
 
 our $IANA_REGEX_PORTS_TCP = qr/(?^:(?i:\b(?:1(?:1(?:1(?:[234589]|6[12345]?|7[2345]?|0[456]?|1[12]?)?|3(?:[034589]|2[01]?|19?|67?|71?)?|2(?:[23456789]|0[128]?|1?1)?|7(?:[0134678]|20?|51?|96?)?|0(?:[12345678]|0[01]?)?|6(?:[123456789]|0?0)?|8(?:[012345689]|76?)?|9(?:[012345789]|67?)?|4(?:[012345679]|89?)|5\d?)?|0(?:1(?:0[012347]?|1[034567]|6[012]|2[89])?|0(?:0[012345789]?|5[015]|8[01]|10)|2(?:[129]|0[01]|52?|60?|88)?|8(?:[12345789]|0[059]?|60?)?|5(?:[012356789]|4[01234]?)?|3(?:[013456789]|21?)?|6(?:[012456789]|31?)?|9(?:[012345678]|90?)?|4\d?|7\d?)|8(?:1(?:[1245679]|8[1234567]?|04?|36?)?|2(?:[01235789]|4[123]?|62?)?|6(?:[012456789]|3[45]?)?|8(?:[012345679]|8[18]?)?|0(?:[123456789]|0?0)?|4(?:[012345789]|63?)?|7(?:[012345789]|69?)?|9[012346789]?|3\d?|5\d?)?|9(?:5(?:[01256789]|4[01]?|39?)?|4(?:[023456789]|1[012]?)?|0(?:[13456789]|0?0|20?)?|1(?:[012345678]|9[14]?)?|3(?:[02345678]|15?|98?)?|9(?:[012345678]|9[89]?)?|2(?:[012345679]|83?)?|6\d?|7\d?|8\d?)?|3(?:7(?:[01345679]|2[0124]?|8[2356]?)?|8(?:[03456789]|2[0123]?|1[89]?)?|2(?:[03456789]|1[678]?|2[34]?)?|9(?:[01456789]|29?|30?)?|1(?:[012345789]|60?)?|4(?:[123456789]|0?0)?|0\d?|3\d?|5\d?|6\d?)?|6(?:3(?:[234579]|6[0178]?|1[01]?|09?|84?)?|9(?:[1234678]|9[12345]?|0?0|50?)?|0(?:[13456789]|0[012]?|2[01]?)?|1(?:[012345789]|6[12]?)?|6(?:[023456789]|19?)?|2\d?|4\d?|5\d?|7\d?|8\d?)|5(?:3(?:[01235789]|45?|63?)?|0(?:[123456789]|0?0)?|5(?:[012346789]|5?5)?|6(?:[012345789]|60?)?|7(?:[012356789]|40?)?|9(?:[012345678]|9?9)?|2[012345679]?|1\d?|4\d?|8\d?)|7(?:2(?:[0456789]|3[45]?|19?|21?)?|7(?:[0134689]|5[456]|29?|7?7)?|0(?:[123456789]|07?)?|1(?:[012345679]|85?)?|5(?:[123456789]|0?0)?|8[012456789]?|3\d?|4\d?|6\d?|9\d?)?|4(?:1(?:[01236789]|4[1259]?|5[04]?)?|0(?:[12456789]|0[01]?|3[34]?)?|9(?:[02456789]|3[67]?)?|2(?:[012346789]|50?)?|4(?:[023456789]|14?)?|3\d?|5\d?|6\d?|7\d?|8\d?)|2(?:0(?:[23456789]|0[012345678]?|1[023]?)?|3(?:[1356789]|0[02]?|2[12]|45?)?|1(?:[134589]|09?|21?|68?|72?)?|7(?:[012346789]|53?)?|2\d?|4\d?|5\d?|6\d?|8\d?|9\d?))?|2(?:2(?:3(?:[1236789]|4[37]?|05?|50?)?|0(?:[123456789]|0[012345]?)?|1(?:[013456789]|2[58]?)?|5(?:[0124678]|37?|5?5)|2(?:[012345689]|73?)?|7(?:[012345789]|63?)|8(?:[123456789]|0?0)|9(?:[012346789]|51?)|4\d?|6\d)?|4(?:0(?:[123456789]|0[0123456]?)|6(?:[01234569]|7[678]?|80?)?|3(?:[01345679]|21?|86?)?|2(?:[01235789]|4[29]?)?|4(?:[012345789]|65?)?|5(?:[012346789]|54?)?|7(?:[012346789]|54?)?|9(?:[013456789]|2?2)|8\d?|1\d)|0(?:0(?:[256789]|0[01235]?|4[689]?|1[34]?|34?)?|2(?:[13456789]|02?|2?2)?|1(?:[012345789]|67?)?|4(?:[012345679]|80?)?|6(?:[012345689]|70?)?|9(?:[012345678]|9?9)?|3\d?|5\d?|7\d?|8\d?)?|3(?:0(?:[12346789]|0[012345]?|53?)|4(?:[12346789]|0[012]?|5[67]?)|3(?:[012456789]|3?3)|5(?:[012356789]|46?)|6[012345678]|8[123456789]|7[01234]|1\d|2\d|9\d)?|6(?:2(?:[12345789]|6[0123]?|08?)?|4(?:[012345679]|8[679]?)?|0(?:[123456789]|0?0)?|1(?:[012456789]|3?3)?|8[013456789]?|9[012456789]?|3\d?|5\d?|6\d?|7\d?)|5(?:9(?:[123456789]|0[0123]?)?|0(?:[123456789]|0\d?)|6(?:[123456789]|04?)?|7(?:[012345678]|93?)?|5(?:[012345689]|76?)|1\d|2\d|3\d|4\d|8\d)?|7(?:3(?:[012356789]|45?)|4(?:[012356789]|42?)|5(?:[123456789]|04?)|7(?:[012345679]|82?)|9(?:[01235678]|9?9)|1\d?|0\d|2\d|6\d|8\d)?|1(?:8(?:[12356789]|4[56789]?|0?0)?|5(?:[01234678]|5[34]?|90?)?|0(?:[123456789]|0?0)?|9[0123789]?|1\d?|2\d?|3\d?|4\d?|6\d?|7\d?)?|8(?:0(?:[123456789]|0[01]?)?|2(?:[01236789]|40?)?|7[012456789]?|1\d?|3\d?|4\d?|6\d?|5\d|8\d|9\d)|9(?:1(?:[012345789]|67?)|2[012346789]|0\d|3\d|4\d|5\d|6\d|7\d|8\d|9\d)?)?|3(?:2(?:7(?:[01234589]|7[01234567]?|6[789]?)|8(?:[2345678]|01?|1?1|96?)|6(?:[012456789]|3[56]?)|0(?:[012456789]|34?)?|2(?:[012356789]|49?)?|4(?:[012345679]|83?)?|1\d?|3\d?|5\d|9\d)|1(?:4(?:[02346789]|16?|57?)?|6(?:[01345679]|20?|85?)?|9(?:[012356789]|4[89]?)?|0(?:[013456789]|20?)?|7(?:[012345789]|65?)?|2[02345789]?|1\d?|3\d?|5\d?|8\d?)?|3(?:3(?:[012456789]|3[134]?)?|1(?:[013456789]|23?)|4(?:[012456789]|34?)|6(?:[012346]|56?)|0[23456789]|7[23456789]|2[016789]|5\d|8\d|9\d)?|4(?:9(?:[01234579]|6[234]?|80?)?|3(?:[012345689]|7[89]?)|5(?:[012345789]|67?)?|2(?:[012356789]|49?)|0[01256789]|4\d?|6\d?|7\d?|8\d?|1\d)|6(?:0(?:[123456789]|01?)?|5(?:[013456789]|24?)?|8(?:[012345789]|65?)?|9[01256789]?|1\d?|2\d?|3\d?|4\d?|6\d?|7\d?)|0(?:0(?:[23456789]|0[12]?)|2(?:[012345789]|60?)|9(?:[0134568]|9?9)?|8\d?|1\d|3\d|4\d|5\d|6\d|7\d)|8(?:2(?:[123456789]|0[123]?)?|8(?:[12345789]|0?0|65?)?|0\d?|1\d?|3\d?|4\d?|5\d?|6\d?|7\d?|9\d?)?|7(?:4(?:[012345689]|75?)?|6(?:[01234789]|54?)?|0\d?|1\d?|2\d?|3\d?|5\d?|7\d?|8\d?|9\d?)?|5(?:3(?:[012346789]|5[4567]?)?|4[012345789]?|0\d?|1\d?|2\d?|5\d?|6\d?|7\d?|8\d?|9\d?)|9(?:6(?:[012345679]|81?)?|9[012356789]?|0\d?|1\d?|2\d?|3\d?|4\d?|5\d?|7\d?|8\d?)?)?|4(?:3(?:4(?:[01256789]|4[01]?|39?)?|1(?:[0123]|8[89]|9[01])?|2(?:[023456789]|10?)?|9[012356]?|6[089]?|0\d?|5\d?|7\d?|89?|3)?|1(?:7(?:[01245678]|9[4567]?)?|1(?:[03456789]|1?1|21?)?|2[123456789]?|4[012356789]?|9[0239]?|0\d?|3\d?|5\d?|6\d?|8\d?)?|8(?:0(?:[123]|0[012345]?|49)?|6(?:[78]|1?9)?|5(?:[01]|56)?|1(?:2[89])?|7[01679]?|8[0345]?|3[789]?|9[49]?|4\d?|27?)?|4(?:[679]|5(?:[01234678]|53?)?|4(?:[2356789]|4?4)?|3(?:[013]|2[12]?)?|8(?:[4567]|1?8)?|2[56789]?|1[01]?|0\d?)?|0(?:8(?:[01235789]|4[123])?|0(?:[123456789]|0?0)?|4[012345679]?|7[012345689]?|1\d?|2\d?|3\d?|5\d?|6\d?|9\d?)|5(?:[127]|9(?:[01345789]|6?6)?|0(?:0[01]?|54)?|6(?:[689]|78?)?|5[01234569]?|8(?:2[45])?|4[56789]?|3[5678]?)?|7(?:[179]|0(?:[1234]|0[01]?)?|8(?:[4678]|0[68])?|5(?:[0123]|57)?|4[0123459]?|3[013789]?|6(?:24)?|2[578]?)?|9(?:[23]|0(?:[12]|0?0)?|8[456789]?|1[2345]?|4[0129]?|5[0123]?|9[019]?|69?|70?)?|6(?:[1234]|9(?:[012]|9[89])?|0[0123]?|5[89]?|6\d?|7\d?|8\d?)?|2(?:[012346789]|5(?:0[89]|10)?)?)|5(?:0(?:5[012345679]?|8[0123456]?|4[234589]?|7[012345]?|1[01235]?|9[349]?|3[02]?|0\d?|2\d?|6\d?)?|2(?:2[12345678]?|3[234567]?|0[01239]?|5[0123]?|4[589]?|6[459]?|7[012]?|8[012]?|9[89]?|1)?|1(?:[278]|5[01234567]?|6[12345678]?|9[0123456]?|1[12457]?|0[0123]?|3[3457]?|4[56]?)?|7(?:4[12345678]?|1[3456789]?|8[01235]?|6[6789]?|5[057]?|7[017]?|2\d?|30?|93?|0)|5(?:[1234]|0[0123456]?|8[012345]?|5[34567]?|6[6789]?|7[3459]?|9[789]?)?|6(?:[156]|7[123456789]?|0[012345]?|8[0189]?|2[789]?|9[36]?|3\d?|46?)?|3(?:[378]|1[02345678]?|6[0123]?|4[349]?|9[789]?|2[01]?|0\d?|5\d?)?|4(?:[789]|3[012345]?|6[12345]?|5[3456]?|4[35]?|0\d?|1\d?|2\d?)?|9(?:[23457]|8[456789]?|1[0123]?|9[0129]?|6[389]?|0?0)|8(?:[0237]|1[34]?|6[38]?|42?|5?9|83?)?)?|6(?:6(?:[49]|2[012345678]?|6(?:5-6669)?|7[012389]?|0[012]?|8[789]?|5[56]?|19?|32?)?|5(?:[23]|0[012356789]?|4[34789]?|1[0345]?|8[0123]?|5[018]?|6[68]?|79?)?|3(?:2[01245]?|0[016]?|4[367]?|1[56]?|5[05]?|8[29]?|60?|70?|90?|3)?|0(?:[12345]|0(?:0-6063)?|7[0123456]?|6[45689]?|8[45678]?|9?9)|1(?:[789]|1[01234567]?|2[1234]?|6[0123]?|0\d?|4\d?|3?3|59?)?|7(?:[2345]|8[56789]?|0[123]?|6[789]?|1[45]?|7[01]?|9[01]?)?|4(?:[069]|4[3456]?|1[789]?|2[01]?|5[56]?|8\d?|32?|71?)?|9(?:[1278]|6[1234569]?|9[789]?|3[56]?|01?|46?|51?)?|2(?:[13789]|4[1234]?|5[123]?|6[789]?|0?0|2?2)?|8(?:[279]|4[12]?|01?|17?|31?|50?|68?|8?8)?)|7(?:7(?:[156]|2[04567]?|4[12347]?|0[078]?|7[789]?|8[1679]|9[4789]|3[48]?)|0(?:[456]|1[01234589]?|2[012345]?|7[01]?|[38]0|0\d?|9?9)?|5(?:[239]|4[23456789]?|0[0189]?|6[0369]|1[01]?|8?8|70)|6(?:[015]|7[234567]?|2[46789]?|3[013]?|8[09]|48?|97?)?|2(?:7[23456789]|8[0123]|2[789]|0[01]|3[67]|62|9)?|1(?:[1345]|6[123456789]|2[189]?|7[0134]|0[01]?)?|4(?:2[16789]?|0[012]|3[017]|10?|43?|73?|91?|8)?|9(?:0[0123]|8[012]|3[23]|9[79]|13|67|79)?|8(?:0[01]?|4[56]|7[01]|8[07]|10|69)?|3(?:[01]|9[123457]|65)?)?|8(?:0(?:5[123456789]|0[012358]?|8[0123678]|2[01256]|4[0234]|3[234]|9[17]|19?|74)?|1(?:2[1289]|8[1234]|9[2459]|0[01]?|1[568]|3[012]|6[01]|48)|4(?:0[012345]|7[01234]?|4[234]|1[67]|50|8)?|3(?:7[6789]|0[01]?|2[01]?|8[03]|13?|51|3)?|9(?:1[0123]|9[019]|0[01]|5[34]|37|89)?|2(?:0[0145678]|9[234]?|80?|30|43|76)?|8(?:8[01389]?|9[012349]|0[04]|73?|6)?|6(?:1[012345]?|0?0|75|86|99|2)?|7(?:(?:3?|9)3|6[345]|8[67]|70)|5(?:0[01]|5[45]|67)?)|9(?:0(?:2[0123456]?|8[03456789]|0[01289]?|9[0123]|5[01]|10?|3)?|2(?:1[01234567]|8[0123457]|9[2345]|7[89]|0\d|22|55)?|9(?:[237]|5[012345]?|0[09]?|8[78]?|9\d?|1?1|6?6)?|3(?:8[0789]|4[346]|9[067]|0[06]|1[28]|21|74)?|6(?:1[24678]|2[89]|3[01]|6[78]|9[45]|[04]0)?|1(?:0[01234567]?|6[01234]|19?|31?|91|2)?|8(?:0[012]|9[89]?|7[56]|8[89])?|5(?:9[23456789]|3[56]|00|55)?|4(?:0[012]|4[345]|18|50)?|7(?:5[03]|00|47|62)?)?)\b))/;  ## no critic(RegularExpressions)
@@ -204,6 +244,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $port_udp =~ $IANA_REGEX_PORTS_UDP;
+
+    # Won't match
+    $non_port_udp =~ $IANA_REGEX_PORTS_UDP;
 
 =cut
 
@@ -219,6 +267,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $service_dccp =~ $IANA_REGEX_SERVICES_DCCP;
+
+    # Won't match
+    $non_service_dccp =~ $IANA_REGEX_SERVICES_DCCP;
+
 =cut
 
 our $IANA_REGEX_SERVICES_DCCP = qr/(?^:(?i:\b(?:avt-profile-[12]|syslog-tls|discard|exp[12])\b))/;  ## no critic(RegularExpressions)
@@ -232,6 +288,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $service_sctp =~ $IANA_REGEX_SERVICES_SCTP;
+
+    # Won't match
+    $non_service_sctp =~ $IANA_REGEX_SERVICES_SCTP;
 
 =cut
 
@@ -247,6 +311,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $service_tcp =~ $IANA_REGEX_SERVICES_TCP;
+
+    # Won't match
+    $non_service_tcp =~ $IANA_REGEX_SERVICES_TCP;
+
 =cut
 
 our $IANA_REGEX_SERVICES_TCP = qr/(?^:(?i:\b(?:s(?:e(?:[pt]|r(?:v(?:e(?:r(?:view(?:-(?:asn?|icc|gf|rm)|dbms)|-find|graph|start|wsd2)|xec)|i(?:ce(?:-ctrl|meter|tags)|staitsm)|stat)|comm-(?:scadmin|wlink)|ialgateway|aph)|c(?:-(?:t4net-(?:clt|srv)|pc2fax-srv|ntb-clnt)|ur(?:e-(?:cfg-svr|mqtt|ts)|itychase)|layer-t(?:cp|ls)|rmmsafecopya)|n(?:t(?:inel(?:-(?:ent|lm)|srm)?|lm-srv2srv|-lm)|omix0[12345678]|ip|d)|a(?:gull(?:-ai|lm)s|rch(?:-agent)?|odbc|view)|ma(?:phore|ntix)|ispoc|si-lm)|u(?:[am]|n(?:-(?:s(?:r-(?:iiop(?:-aut|s)?|https?|jm[sx]|admin)|ea-port)|as-(?:j(?:mxrmi|pda)|iiops(?:-ca)?|nodeagt)|user-https|mc-grp|dr|lm)|c(?:acao-(?:(?:jmx|sn)mp|websvc|csa|rmi)|luster(?:geo|mgr))|scalar-(?:dns|svc)|proxyadmin|webadmins?|lps-http|fm-port|vts-rmi|rpc)|r(?:f(?:controlcpa|pass)?|veyinst|-meas|ebox)|b(?:mi(?:t(?:server)?|ssion)|ntbcst[-_]tftp)|p(?:er(?:cell|mon)|dup)|it(?:case|jd)|(?:uc|g)p|-mit-tg)|i(?:m(?:p(?:l(?:e(?:-(?:push(?:-s)?|tx-rx)|ment-tie)|ifymedia)|-all)|ba(?:service|expres|-c)s|c(?:tlp|o)|-control|slink|on)|l(?:verp(?:eak(?:comm|peer)|latter)|k(?:p[1234]|meter)|houette|c)|g(?:n(?:a(?:cert-agent|l)|et-ctf)|ma-port|htline)|t(?:ara(?:(?:serve|di)r|mgmt)|ewatch)|x(?:-degrees|xsconfig|netudr|trak)|(?:ft-uf|s-em|ipa|cc)t|e(?:mensgsm|bel-ns|ve)|a(?:-ctrl-plane|m)|p(?:-tls)?)|y(?:n(?:c(?:hro(?:n(?:et-(?:rtc|upd|db)|ite)|mesh)|server(?:ssl)?|-em7)|o(?:tics-(?:broker|relay)|ptics-trap)|aps(?:e(?:-nhttps?)?|is-edge)|el-data)|s(?:t(?:em(?:-monitor|ics-sox)|at)|log-(?:conn|tls)|erverremote|o(?:pt|rb)|info-sp|scanner|comlan|rqd)|base(?:anywhere|-sqlany|dbsynch|srvmon)|m(?:antec-s(?:fdb|im)|b-sb-port|plex)|am-(?:webserver|agent|smc)|pe-transport|chrond)|t(?:[tx]|a(?:r(?:t(?:-network|ron)|(?:quiz-por|bo)t|s(?:chool)?|gatealerts|fish)|t(?:-(?:results|scanner|cc)|s(?:ci[12]-lm|rv)|usd)|nag-5066)|r(?:e(?:et(?:-stream|perfect|talk)|amcomm-ds|sstester|xec-[ds])|yker-com)|o(?:ne(?:-design-1|falls)|r(?:view|man))|un(?:-(?:p(?:[123]|ort)|behaviors?)|s)?|m(?:[-_]pproc|f)|(?:e-sms|dpt)c|(?:gxfw|s)s|i-envision|vp)|a(?:n(?:t(?:ak-up|ool)s|avigator|e-port|ity)|g(?:e(?:-best-com[12]|ctlpanel)|xtsds)|s(?:(?:-remote-hl)?p|g(?:gprs)?)|i(?:s(?:c?m|eh)?|[-_]sentlm)|lient-(?:dtasrv|usrmgr|mux)|b(?:a(?:rsd|ms)|p-signal)|m(?:sung-unidex|d)|p(?:hostctrls?|v1)|(?:-msg-por|van)t|f(?:etynetp|t)|r(?:atoga|is)|uterdongle|c(?:red)?|h-lm)|c(?:o(?:-(?:(?:(?:ine|d)t|sys)mgr|websrvrmg[3r]|peer-tta|aip)|i2odialog|tty-ft|remgr|help|l)|i(?:entia-s?sdb|pticslsrvr|net)|p(?:i-(?:telnet|raw)|-config)?|t(?:e(?:104|30)|p-tunneling)|r(?:eencast|iptview|abble)|c(?:-security|ip-media)|e(?:n(?:ccs|idm)|anics)|an(?:-change|stat-1)|(?:s(?:erv|c)|u)p|x-proxy)|o(?:l(?:id-(?:e-engine|mux)|era-(?:epmap|lpn)|aris-audit|ve)|n(?:us(?:(?:-loggin|callsi)g)?|ar(?:data)?|iqsync)|s(?:s(?:d-(?:collec|agen)t|ecollector))?|ft(?:rack-meter|dataphone|audit|cm|pc)|c(?:(?:orf|k)s|ial-alarm|alia)|a(?:p-(?:bee|htt)p|gateway)|p(?:hia-lm|s)|undsvirtual|r-update)|m(?:a(?:r(?:t(?:-(?:diagnose|install|lm)|card-(?:port|tls)|packets|sdp)|-se-port[12])|(?:uth-por|kyne)t|clmgr|p)|s(?:-(?:r(?:emctrl|cinfo)|chat|xfer)|q?p|d)|c(?:-(?:https?|admin|jmx)|luster)|p(?:p(?:pd)?|nameres|te)|(?:ntubootstra|t)p|-pas-[12345]|i(?:le|p)|bdirect|wan|ux)|p(?:e(?:ct(?:ard(?:ata|b)|raport)|edtrace|arway)|s(?:s(?:-lm)?|-tunnel|c)|w-d(?:nspreload|ialer)|a(?:ndataport|mtrap)|i(?:ral-admin|[ck]e)|litlock(?:-gw)?|hinx(?:api|ql)|-remotetablet|c(?:sdlobby)?|rams(?:ca|d)|t-automation|ytechphone|oc[kp]|ugna|dy|mp)|n(?:s-(?:a(?:dmin|gent)|qu(?:ery|ote)|dispatcher|channels|protocol|gateway)|mp(?:t(?:ls(?:-trap)?|rap)|ssh(?:-trap)?|-tcp-port)?|a(?:p(?:[dp]|enetio)?|(?:resecu)?re|(?:-c|ga)s|c)|i(?:ffer(?:client|server|data)|p-slave)|t(?:p-heartbeat|lkeyssrvr)|[cp]p)|s(?:o(?:-(?:control|service)|watch)|m(?:-(?:c(?:ssp|v)|el)s|pp|c)|t(?:p-[12]|sys-lm)?|r(?:-servermgr|ip)|d(?:ispatch|t?p)|h(?:-mgmt|ell)?|sl(?:ic|og)-mgr|c(?:-agent|an)|p(?:-client)?|e-app-config|-idi|7ns|ad|lp|ql)|d(?:p(?:-(?:portmapper|id-port)|roxy)|s(?:-admin|erver|c-lm)?|-(?:request|data|elmd)|(?:(?:nsk|m)m|hel|d)p|(?:e-discover|bprox)y|o(?:-(?:ssh|tls))?|t(?:-lmd)?|client|l-ets|func|r)?|w(?:i(?:s(?:mgr[12]|trap|pol)|ft(?:-rvf|net))|(?:eetware-app|ldy-sia)s|x(?:-gate|admin)|r(?:-port|mi)|dtp(?:-sv)?|tp-port[12]|a-[1234]|-orion)|h(?:i(?:va(?:[-_]confsrvr|discovery|hose)|lp)|a(?:r(?:p-server|eapp)|dowserver|perai)|o(?:ckwave2?|far)|rinkwrap|ell)|g(?:i-(?:e(?:ventmond|sphttp)|storman|arrayd|lk)|e(?:-(?:qmaster|execd)|_(?:qmaster|execd))|mp(?:-traps)?|ci?p|-lm)|l(?:i(?:n(?:kysearch|terbase|gshot)|m-devices)|c-(?:ctrlrloops|systemlog)|s(?:lavemon|cc)|p(?:-notify)?|m-api|ush)|f(?:t(?:[pu]|dst-port|srv)|s-(?:smp-net|config)|m(?:-db-server|sso)|l(?:ow|m)|-lm)|k(?:ip-(?:cert-(?:recv|send)|mc-gikreq)|y(?:-transpor|telne)t|ronk)|v(?:n(?:et(?:works)?)?|(?:backu|dr)p|s-omagent|cloud|rloc)|r(?:vc[-_]registry|p-feedback|[dm]p|ssend|cp?|uth)|q(?:l(?:exec(?:-ssl)?|[-*]net|se?rv)|dr)|b(?:i-agent|ackup|ook|l)|-(?:openmail|net)|8-client-port|x(?:upt|m)p|3db)|c(?:o(?:m(?:m(?:plex-(?:link|main)|(?:onspa|er)ce|tact-https?|linx-avl|andport|unity)|p(?:aq-(?:[sw]cp|https|evm)|osit-server|x-lockview|ressnet)|otion(?:master|back)|box-web-acc|cam(?:-io)?|-bardac-dw|scm)|n(?:n(?:e(?:ct(?:-(?:client|server)|ion|ed)?|ndp)|lcli)|t(?:(?:clientm|inuu)s|amac[-_]icm|entserver)|f(?:(?:ig-por|luen)t|erence(?:talk)?)?|c(?:urrent-lm|lave-cpp|omp1)|s(?:ul-insight|piracy)|dor)?|r(?:e(?:l(?:[-_]vncadmin|video|ccam)|rjd)|ba(?:-iiop(?:-ssl)?|loc))|g(?:n(?:ex-(?:dataman|insight)|ima)|sys-lm|itate)|d(?:a(?:srv(?:-se)?|auth2)|ima-rtp|emeter)|l(?:lab(?:orato|e)r|ubris)|p(?:(?:s-tl)?s|ycat)|(?:ord-sv|autho)r|s(?:mocall|ir)|u(?:chdb|rier)|via)|a(?:n(?:o(?:n-(?:bjnp[1234]|capt|mfnp)|central[01])|-(?:ferret(?:-ssl)?|nds(?:-ssl)?|dch)|d(?:itv|r?p)|it[-_]store|ex-watch)|d(?:key-(?:licman|tablet)|(?:abra|si)-lm|encecontrol|is-[12]|view-3d|lock2?)|l(?:l(?:-(?:sig-trans|logging)|waveiam|trax|er9)|dsoft-backup)?|r(?:t(?:ographerxmp|-o-rama)|d(?:box(?:-http)?|ax)|rius-rshell)|s(?:(?:answmgm|rmagen)t|p(?:ssl)?|torproxy|-mapi)?|i(?:(?:storagemg|ds-senso)r|cci(?:pc)?|lic)|-(?:[12]|audit-d[as]|web-update|idms)|b(?:-protocol|leport-ax|sm-comm)|p(?:fast-lmd|ioverlan|s-lm|mux)?|c(?:sambroker|i-lm)|u(?:pc-remote|tcpd)|m(?:bertx-lm|ac|p)|t(?:chpole|alyst)|ac(?:lang2|ws)|e(?:rpc|vms)|jo-discovery|was)|s(?:o(?:ft(?:-p(?:lusclnt|rev)|ragent|1))?|-(?:remote-db|auth-svr|services|live)|d(?:-m(?:gmt-port|onitor)|m(?:base)?)|p(?:m(?:lockmgr|ulti)|(?:clmult|un)i)|c(?:c(?:firewall|redir)|[-_]proxy|p)|vr(?:-(?:ssl)?proxy)?|n(?:et-ns|otify)|r(?:egagent|pc)|i-(?:lfa|sgw)p|l(?:istener|g)|bphonemaster|edaemon|t-port|s[cp]|ms2?)|i(?:s(?:co(?:-(?:s(?:ccp|nat|ys)|(?:ipsl|fn)a|t(?:dp|na)|net-mgmt|wafs|avp)|csdb)|-secure)?|t(?:rix(?:ima(?:client)?|-rtmp|admin|uppg?)|y(?:search|nl)|adel)|n(?:egrfx-(?:elmd|lm)|dycollab)|phire-(?:data|serv)|ch(?:ild-lm|lid)|3-software-[12]|m(?:plex|trak)|rcle-x|fs)|l(?:e(?:a(?:r(?:case|visn)|nerliverc)|ver-(?:ctrace|tcpip))|-(?:db-(?:re(?:quest|mote)|attach)|1)|o(?:anto-(?:net-1|lm)|se-combat)|u(?:ster(?:-disc|xl)|tild)|a(?:riion-evr01|ssic)|ient-(?:wakeup|ctrl)|vm-cfg|\/1|p)|p(?:q(?:rpm-(?:server|agent)|-(?:tasksmart|wbem))|-(?:spx(?:dpy|svr)|cluster)|lscrambler-(?:al|in|lg)|d(?:i-pidas-cm|lc)|(?:udpenca|pd)p|s(?:comm)?)|r(?:e(?:ative(?:partn|serve)r|stron-c(?:ips?|tps?))|uise-(?:(?:swrou|upda)te|config|diags|enum)|(?:-websystem|msbit)?s|i(?:nis-hb|p)|yptoadmin)|h(?:i(?:ldkey-(?:notif|ctrl)|p(?:-lm|per)|mera-hwm)|e(?:ck(?:(?:point-rt|su)m|outdb)|vinservices)|ar(?:setmgr|gen)|romagrafx|shell|md)|t(?:i(?:(?:programloa|-redwoo)d|systemmsg)|d(?:[bp]|hercules)|x(?:-bridge|lic)|echlicensing|p(?:-state)?|t-broker|2nmcs|[cs]d|lptc|f)|e(?:r(?:t-(?:initiato|responde)r|nsysmgmtagt|a-bcm)|sd(?:cd(?:ma|tr)n|inv)|nt(?:erline|ra)|quint-cityid|dros[-_]fds|latalk|csvc)|c(?:m(?:a(?:il|d)|-port|comm|rmi)|s(?:-software|s-q[ms]m)|u-comm-[123]|-tracking|tv-port|ag-pib|owcmr|nx|p)|y(?:b(?:(?:org-system|ro-a-bu)s|ercash)|press(?:-stat)?|c(?:leserv2?)?|mtec-port|link-c|tel-lm|aserv)|d(?:[ns]|(?:l-serv|brok)er|dbp(?:-alt)?|3o-protocol|(?:fun)?c|id)|m(?:(?:c-por|tp-mg)t|ip-(?:agent|man)|a(?:dmin)?|mdriver)?|u(?:mulus(?:-admin)?|s(?:eeme|tix)|illamartin|elink)|n(?:rp(?:rotocol)?|ckadserver|s-srv-port|(?:hr|a)p)|v(?:c(?:[-_]hostd)?|s(?:pserver|up)|m?mon|d)|f(?:[sw]|t-[01234567]|engine|dptkt)|g(?:n-(?:config|stat)|i-starapi|ms)|b(?:(?:os-ip-por)?t|server|a8)|qg-netlan(?:-1)?|-h-it-port|1222-acse|wmp|xws|3)|a(?:p(?:p(?:l(?:e(?: remote desktop \(net assistant\)|-(?:vpns-rp|licman|sasl)|qtc(?:srvr)?|ugcontrol)|us(?:service)?|iance-cfg)|s(?:erv-https?|witch-emp|s-lm)|arenet-(?:(?:tp?|a)s|ui)|man-server|iq-mgmt|worxsrv)|c(?:-(?:2(?:16[01]|260)|3(?:052|506)|545[456]|654[789]|995[012]|784[56]|necmp)|upsd)|o(?:llo-(?:(?:statu|gm)s|admin|relay|data|cc)|geex-port|cd)|w(?:i-(?:rxs(?:pool|erv)|imserv)er|-registry)|e(?:x-(?:edge|mesh)|rtus-ldp)|ri(?:go-cs|-lm)|x500api-[12]|ani[12345]|m-link|dap|lx)?|c(?:c(?:e(?:ss(?:builder|network)|l(?:enet)?)|u(?:racer(?:-dbms)?|-lmgr)|(?:topus-c|ord-mg)c|-raid)|p(?:-(?:p(?:o(?:licy|rt)|roto)|discovery|conduit)|tsys|lt)?|t(?:i(?:ve(?:memory|sync)|fio-c2c)|net|er)|e-(?:s(?:vr-prop|erver)|client|proxy)|-(?:cluster|tech)|m(?:s(?:oda)?|e)|l-manager|r-nema|a[ps]|d-pm|is?|net)|s(?:p(?:e(?:n(?:-services|tec-lm)|clmd)|rovatalk)|t(?:er(?:gate(?:fax)?|ix)|romed-main)|a(?:p-tcp(?:-tls)?|-appl-proto|m)?|i(?:p(?:-webadmin|registry)|a)?|s(?:uria-(?:ins|slm)|yst-dr)|c(?:trl-agent|-slmd|i-val)|-(?:servermap|debug)|g(?:cypresstcps|enf)|naacceler8db|oki-sma|mps?|dis|r)|r(?:e(?:pa-(?:raft|cas)|aguard-neo|na-server)|m(?:centerhttps?|techdaemon|i-server|adp)|d(?:us(?:-(?:m?trns|cntl)|mul|uni)|t)|i(?:e(?:s-kfinder|l[123])|liamulti|a)|(?:ray-manag|uba-serv)er|s-(?:master|vista)|c(?:isdms|pd?)|gis-(?:ds|te)|bortext-lm|tifact-msg|kivio|ns)|m(?:[cs]|t(?:-(?:(?:(?:cnf|esd)-pro|blc-por)t|redir-t(?:cp|ls)|soap-https?))?|p(?:r-(?:in(?:ter|fo)|rcmd)|l-(?:tableproxy|lic)|ify)?|x-(?:web(?:admin|linx)|axbnet|icsp|rms)|i(?:ganetfs|net)|b(?:it-lm|eron)|dsched|anda|qps?)|l(?:t(?:a(?:v-(?:remmgt|tunnel)|-ana-lm|link)|ova(?:central|-lm)|serviceboot|(?:bsd|c)p)|ar(?:m(?:-clock-[cs])?|is-disc)|l(?:(?:storcn|peer)s|joyn-stm)|p(?:ha(?:tech-lm|-sms)|es)|(?:esquer|chem)y|mobile-system|ias)|u(?:t(?:o(?:cue(?:log|smi|ds)|(?:no|pa)c|desk-n?lm|trac-acp|build)|h(?:entx)?)|r(?:[ap]|ora(?:-(?:balaena|cmgr))?|i(?:ga-router|s))|di(?:o(?:-activmail|juggler)|t(?:-transfer|d)?))|t(?:m(?:-(?:zip-office|uhas)|(?:tc)?p)|-(?:[3578]|(?:rtm|nb)p|echo|zis)|tachmate-(?:(?:s2|ut)s|g32)|c-(?:appserver|lm)|i-ip-to-ncpe|(?:link)?s|ex[-_]elmd|hand-mmp|ul)|v(?:a(?:nt(?:i[-_]cdp|ageb2b)|uthsrvprtcl|ilant-mgr)|i(?:nstalldisc|va-sna|an)|ocent-(?:adsap|proxy)|t-profile-[12]|-emb-config|en(?:ue|yo)|securemgmt|decc)|n(?:s(?:ys(?:l(?:md|i)|-lm)|a(?:notify|trader)|oft-lm-[12]|wersoft-lm|-console)|t(?:idotemgrsvr|hony-data)|et(?:-[bhlm])?|oto-rendezv|-pcp|d-lm)|d(?:(?:te(?:mpusclien|ch-tes)|i-gxp-srvpr)t|a(?:p(?:t(?:ecmgr|-sna))?|-cip)|obeserver-[12345]|min(?:s-lms|d)|(?:re|c)p|s(?:-c)?|vant-lm|ws)|f(?:s(?:3-(?:(?:(?:file|ka|pr)serv|v(?:lserv|ols))er|(?:error|rmtsy|bo)s|callback|update))?|povertcp|filiate|esc-mc|tmux|rog)?|i(?:r(?:s(?:hot|ync)?|onetddp)|c(?:-(?:oncrpc|np)|c-cmi)|mpp-(?:port-req|hello)|pn-(?:auth|reg)|agent|bkup|ses)|b(?:a(?:t(?:emgr|jss)|cus-remote|rsd)|c(?:voice-port|software)|b(?:accuray|-escp|s)|r-(?:secure|api))|g(?:ent(?:sease-db|view|x)|ri(?:-gateway|server)|p(?:s-port|olicy)|cat|slb)|e(?:roflight-(?:ads|ret)|quus(?:-alt)?|s-discovery|d-512|gate)|1(?:[45]|(?:[67]-an|3)-an|-(?:msc|bs))|a(?:irnet-[12]|l-lm|m?p|s)|w(?:acs-ice|g-proxy|s-brf)|o(?:l(?:-[123])?|cp|dv)|x(?:is-wimp-port|on-lm)|(?:h-esp-enca|ker-cd)p|[34]-sdunode|z(?:eti|tec)|21-an-1xbs|yiya)|m(?:s(?:-(?:s(?:na-(?:server|base)|(?:-s)?ideshow|treaming|ql-[ms]|huttle|mlbiz)|(?:(?:aler|thea)t|wbt-serv)er|r(?:ule-engin|om)e|l(?:icensing|a)|ilm(?:-sts)?|cluster-net|olap[1234]|v-worlds)|f(?:w-(?:(?:s-)?storage|control|replica|array)|t-(?:gc(?:-ssl)?|dpm-cert)|rs)|g(?:-(?:auth|icp)|s(?:rvr|ys)|clnt)|i(?:-(?:selectplay|cps-rm)|ccp|ms)|r(?:-plugin-port|p)|(?:tmg-sst|n)p|d(?:fsr|ts1|p)|exch-routing|h(?:net|vlm)|olap-ptp2|p(?:-os)?|l[-_]lmd|ync|mq|ss)|e(?:d(?:i(?:a(?:(?:-agen)?t|cntrlnfsd|vault-gui|space|box)|mageportal)|-(?:(?:sup|lt)p|fsp-[rt]x|net-svc|ovw|ci)|evolve)|t(?:a(?:edit-(?:mu|se|ws)|s(?:torm|age|ys)|tude-mds|console|-corp|agent|gram|5)|ric(?:s-pas|adbc)|er)|n(?:andmice(?:-(?:dns|lpm|mon|noh|upg)|_noh)|ta(?:client|server))|ga(?:r(?:dsvr-|egsvr)port|co-h248)|s(?:sage(?:service|asap)|avistaco)|r(?:c(?:ury-disc|antile)|egister)|mcache|comm|vent)|a(?:g(?:ic(?:control|notes|om)|aya-network|enta-logic|bind)|i(?:l(?:box(?:-lm)?|prox|q)|n(?:control|soft-lm)|trd)|c(?:-srvr-admin|romedia-fcs|on-tcp|bak)|pper-(?:(?:ws[-_]|map)ethd|nodemgr)|t(?:ip-type-[ab]|rix[-_]vnet|ahari)|n(?:yone-(?:http|xml)|age-exec|et)|r(?:kem-dcp|cam-lm)|x(?:im-asics|umsp)?|d(?:ge-ltd|cap)|s(?:qdialer|c)|ytagshuffle|o)|i(?:c(?:ro(?:muse-(?:ncp[sw]|lm)|talon-(?:com|dis)|s(?:oft-ds|an)|com-sbp)|om-pfs|e)|n(?:d(?:array-ca|filesys|print)|i(?:-sql|lock|vend|pay)|ger)|t(?:-(?:ml-de|do)v|eksys-lm)|l(?:-2045-47001|es-apart)|r(?:oconnect|rtex|a)|b-streaming|dnight-tech|va-mqs|key|mer)|c(?:s-(?:m(?:essaging|ailsvr)|calypsoicf|fastmail)|t(?:et-(?:gateway|master|jserv)|feed|p)|-(?:(?:brk|gt)-srv|appserver|client)|(?:(?:(?:cwebsv|e)r-|re)por|agen)t|n(?:s-(?:tel-ret|sec)|tp)|(?:2studio|ida|3s)s|(?:k-ivpi|ft)p|p(?:-port)?)|o(?:b(?:il(?:e(?:-(?:file-dl|p2p)|analyzer|ip-agent)|i(?:tysrv|p-mn))|rien-chat)|s(?:-(?:(?:low|upp)er|soap(?:-opt)?|aux)|ai(?:csyssvc1|xcc)|hebeeri)|n(?:(?:tage-l|keyco)m|itor|dex|p)?|l(?:dflow-lm|ly)|rtgageware|vaz-ssc|y-corp|untd)|p(?:s(?:(?:ysrmsv|serve)r|-raft|hrsv)|njs(?:o(?:m[bg]|cl|sv)|c)|(?:l-gprs-por|c-lifene)t|p(?:olicy-(?:mgr|v5))?|m(?:-(?:flags|snd))?|f(?:oncl|wsas)|idc(?:agt|mgr)|hlpdmc|tn)|u(?:s(?:t-(?:backplane|p2p)|(?:iconlin)?e)|lti(?:p(?:-msg|lex)|ling-http)|r(?:ray|x)|pdate|mps|nin)|y(?:sql(?:-(?:c(?:m-agent|luster)|proxy|im))?|(?:nahautostar|blas)t|l(?:ex-mapd|xamport)|rtle)|t(?:p(?:ort(?:-regist|mon))?|(?:-scale|s)server|l8000-matrix|i-tcs-comm|rgtrans|qp|n)|g(?:c(?:p-(?:callagent|gateway)|s-mfp-port)|e(?:supervision|management)|xswitch)|d(?:ns(?:responder)?|(?:-cg-ht)?tp|bs[-_]daemon|c-portmapper|ap-port|qs|m)|n(?:(?:p-exchang|gsuit)e|et-discovery|i-prot-rout|s-mail)|x(?:o(?:dbc-connect|mss)|xrlogin|it?)|m(?:a(?:comm|eds)|c(?:als?|c)|pft)|v(?:(?:el|x)-lm|s-capacity)|b(?:l-battd|g-ctrl|us)|r(?:ssrendezvous|ip|m)|2(?:mservices|[pu]a)|f(?:server|cobol|tp)|l(?:-svnet|oadd|sn)|qe-(?:broker|agent)|z(?:ca-action|ap)|-(?:oap|wnn)|4-network-as|km-discovery|3ua)|i(?:n(?:t(?:e(?:r(?:s(?:ys-cache|erver|an)|act(?:ionweb)?|w(?:orld|ise)|hdl[-_]elmd|pathpanel|intelli|mapper|base)|l(?:-rci(?:-mp)?|listor-lm|_rci|sync)|gr(?:a(?:-sme|l)|ius-stp)|co(?:m-ps[12]|urier))|u(?:-ec-(?:svcdisc|client)|itive-edge)|r(?:a(?:intra|star)|epid-ssl|insa)|-rcv-cntrl|v)|f(?:o(?:rm(?:atik-lm|er)|(?:brigh|cryp)t|m(?:over|an)|libria|exch|seek|wave|tos)|iniswitchcl|luence)|d(?:i(?:go-(?:v(?:bcp|rmi)|server))?|ex-(?:pc-wb|net)|x-dds|ura|y)|s(?:t(?:l(?:-boot[cs]|_boot[cs])|antia)|i(?:tu-conf|s)|pect)|i(?:nmessaging|serve-port|tlsmsad)|ova(?:port[123456]|-ip-disco)|v(?:ision(?:-ag)?|okator)|gres(?:-net|lock)|c(?:ognitorv|p)|nosys(?:-acl)?|business)|s(?:o(?:-(?:t(?:sap(?:-c2)?|p0s?)|i(?:ll|p))|ipsigport-[12]|de-dua|ft-p2p|mair)|i(?:s(?:-(?:am(?:bc)?|bcast))?|-(?:irp|gl))|m(?:aeasdaq(?:live|test)|server|c)|c(?:si(?:-target)?|hat)|s(?:-mgmt-ssl|d)|bconference[12]|p(?:ipes|mmgr)|n(?:etserv|s)|g-uda-server|rp-port|99[cs]|ysg-lm|d[cd]|akmp|lc)|c(?:l(?:pv-(?:(?:[dp]|ws)m|s(?:as|c)|nl[cs])|cnet(?:-(?:locate|svinfo)|_svinfo)|-twobase(?:[23456789]|10?)|id)|e(?:-(?:s(?:location|router)|location|router)|edcp[-_][rt]x)|g-(?:iprelay|bridge|swp)|a(?:browser|d-el|p)?|on(?:-discover|p)|s(?:hostsvc|lap)?|p(?:v2|p)?|crushmore|m(?:pd|s)|i)|b(?:m(?:-(?:d(?:i(?:radm(?:-ssl)?|al-out)|(?:t-|b)2)|m(?:q(?:series2?|isdp)|gr)|r(?:syscon|es)|a(?:btact|pp)|(?:cic|pp)s|wrless-lan|ssd)|_wrless_lan|3494)|ridge-(?:data|mgmt)|(?:eriagame|u)s|p(?:rotocol)?)|p(?:[px]|c(?:s(?:-command|erver)|d3?|ore)|d(?:tp-port|cesgbs|r-sp|d)|-(?:provision|qsig|blf)|(?:ether232por|r-dgl)t|h-policy-(?:adm|cli)|se(?:c-nat-t|ndmsg)|f(?:ltbcst|ixs?)|(?:ulse-ic|as)s|t-anri-anri)|d(?:e(?:afarm-(?:panic|door)|n(?:t(?:ify)?|-ralp)|esrv)|o(?:nix-metane|tdis)t|a(?:-discover[12]|c)|p(?:-infotrieve|s)?|m(?:gratm|aps)|ware-router|ig[-_]mux|[cftx]p|rs)|m(?:q(?:tunnels?|brokerd|stomps?)|a(?:ge(?:query|pump)|p[3s]?)|i(?:p(?:-channels)?|nk)|tc-m(?:ap|cs)|medianet-bcn|p(?:era|rs)|s(?:ldoc|p)|oguia-port|docsvc|games|yx)|a(?:s(?:-(?:a(?:dmind|uth)|(?:pagin|re)g|neighbor|session)|control(?:-oms)?|d)|d(?:[123]|t(?:-tls)?)|tp-(?:normal|high)pri|f(?:server|dbase)|nywhere-dbns|pp|x)|t(?:a(?:c(?:tionserver[12]|h)|-(?:manager|agent)|p-ddtp|lk)|m-(?:mc(?:ell-[su]|cs)|lm)|e(?:lserverport|m)|o(?:-e-gui|se)|v-control|wo-server|internet|scomm-ns)|r(?:is(?:-(?:xpcs?|beep|lwz)|a)|a(?:cinghelper|pp)|d(?:g-post|mi2?)|on(?:storm|mail)|c(?:-serv|u)?|trans)|v(?:(?:collecto|manage)r|s(?:-video|d)|econ-port|ocalize)|e(?:e(?:e-m(?:ms(?:-ssl)?|ih)|-qfx)|c-104(?:-sec)?|s-lm)|f(?:s(?:f-hb-port|p)|or-protocol|e[-_]icorp|cp-port)|w(?:(?:listen|serv)er|b-whiteboard|-mmogame|ec|g1)|o(?:-dist-data|nixnetmon|c-sea-lm|p)|q(?:(?:net-por|objec)t|server|rm|ue)|g(?:o-incognito|r(?:id|s)|i-lm|cp)|i(?:-admin|w-port|ms|op)|-(?:net-2000-npr|zipqd)|3-sessionmgr|l(?:[dl]|ss)|ua|zm)|n(?:e(?:t(?:c(?:o(?:nf(?:-(?:beep|ssh|tls)|soap(?:bee|htt)p)|mm1)|h(?:eque|at)|abinet-com|(?:li)?p|elera)|b(?:i(?:ll-(?:(?:cre|pro)d|keyrep|trans|auth)|os-(?:dgm|ssn|ns))|oo(?:kmark|t-pxe))|s(?:c(?:-(?:prod|dev)|ript)|peak-(?:(?:cp?|i)s|acd)|erialext[1234]|upport2?|teward)|o(?:p(?:-(?:school|rc)|ia-vo[12345]|s-broker)|-(?:wol-server|dcs)|bjects[12])|w(?:a(?:tcher-(?:mon|db)|re-(?:cs|i)p|ve-ap-mgmt|ll)|kpathengine|orklens?s)|i(?:q(?:-(?:endp(?:oin)?t|qcheck|voipa|ncap|mc))?|nfo-local)|a(?:pp-ic(?:data|mgmt)|ttachsdmp|dmin|gent|ngel|spi|rx)|m(?:o(?:-(?:default|http)|unt|n)|a(?:p[-_]lm|gic)|pi|l)|x(?:ms-(?:(?:agen|mgm)t|sync)|-(?:server|agent))|view(?:-aix-(?:[23456789]|1[012]?)|dm[123])|r(?:i(?:x-sftm|sk)|js-[1234]|ockey6|cs|ek)|-(?:projection|steward|device)|p(?:la(?:y-port[12]|n)|ort-id)|t(?:gain-nms|est)|eh(?:-ext)?|db-export|2display|labs-lm|8-cman|uitive|news|gw)|w(?:lix(?:(?:confi|re)g|engine)|(?:height)?s|bay-snc-mc|wavesearch|genpay|-rwho|oak)|x(?:storindltd|us-portal|tstep|gen)|s(?:t-protocol|h-broker|sus)|o(?:d[12]|iface|n24x7)|c(?:-raidplus|kar|p)|i-management|veroffline|rv)|a(?:t(?:i-(?:vi-server|svrloc|logos|dstp)|-pmp(?:-status)?|dataservice|tyserver|uslink)|v(?:(?:egaweb)?-port|isphere(?:-sec)?|buddy)|m(?:e(?:server|munge)?|p)|s(?:-metering|manager)?|-(?:localise|er-tip)|cagent|ap|ni)|i(?:m(?:-(?:vdrshell|wan)|r(?:od-agent|eg)|busdb(?:ctrl)?|s(?:pooler|h)|controller|aux|gtw|hub)?|c(?:e(?:tec-(?:nmsvc|mgmt)|link)|name)|-(?:visa-remote|mail|ftp)|linkanalyst|p(?:robe)?|observer|fty-hmi|trogen|naf|rp)|o(?:v(?:a(?:r-(?:global|alarm|dbase)|storbakcup|tion)|ell-(?:lu6[-.]2|ipx-cmd|zen))|(?:(?:it-transpo|rton-lambe)r|wcontac)t|t(?:e(?:share|it)|ify[-_]srvr|ateit)|a(?:(?:apor|gen)t|dmin)|kia-ann-ch[12]|m(?:ad|db))|s(?:s(?:a(?:gen|ler)tmgr|ocketport|-routing|tp)?|(?:(?:-cfg)?-serve|esrv)r|jtp-(?:ctrl|data)|c-(?:posa|ccs)|deepfreezectl|w(?:-fe|s)|(?:rm?)?p|iiops|t)?|m(?:s(?:[dp]|-(?:topo-serv|dpnss)|_topo_serv|igport|server)?|-(?:game-(?:server|admin)|asses(?:-admin|sor))|(?:a(?:soveri)?|m)p|ea-0183)|c(?:(?:a(?:cn-ip-tc|dg-ip-ud)|xc)p|d(?:loadbalance|mirroring)|p(?:m-(?:hip|ft|pm))?|u(?:-[12]|be-lm)|r[-_]ccl|config|ld?|ed)|d(?:m(?:-(?:(?:request|serv)er|agent-port)|p)|l-(?:a(?:[alp]s|hp-svc)|tcp-ois-gw)|s(?:[-_]sso|connect|auth|p)|[nt]p)|p(?:mp(?:-(?:local|trap|gui))?|d(?:s-tracke|bgmng)r|(?:(?:pm)?|s)p|ep-messaging|qes-test)|u(?:t(?:s(?:-(?:bootp|dem)|_(?:bootp|dem)))?|cleus(?:-sand)?|paper-ss|auth|xsl|fw)|b(?:x-(?:(?:di|se)r|au|cc)|t-(?:wol|pc)|urn[-_]id|db?)|v(?:(?:msg)?d|-video|cnet)|f(?:s(?:rdma)?|oldman|a)|2(?:h2server|nremote)|l(?:g-data|ogin|s-tl)|t(?:a(?:-[du]s|lk)|p)|1-(?:rmgmt|fwp)|h(?:server|ci)|n(?:tps?|s?p)|x(?:edit|lmd)|(?:g-umd|q)s|jenet-ssl|w-license|rcabq-lm|kd)|p(?:r(?:o(?:s(?:hare(?:[12]|(?:audi|vide)o|-mc-[12]|request|notify|data)|pero(?:-np)?)|fi(?:net-(?:rtm?|cm)|le(?:mac)?)|a(?:ctiv(?:esrvr|ate)|xess)|x(?:i(?:ma-l)?m|y-gateway)|d(?:igy-intrnet|uctinfo)|g(?:istics|rammar)|(?:-e|of)d|pel-msgsys|cos-lm|remote|link)|i(?:v(?:ate(?:chat|wire|ark)|ilege|oxy)|nt(?:er(?:[-_]agent)?|-srv|opia)|sm(?:iq-plugin|-deploy)|ority-e-com|maserver|zma)|e(?:cise-(?:comm|sft|vip|i3)|datar-comms|s(?:ence|s)|x-tcp|lude)|(?:chat-(?:serv|us)|regist)er|m-(?:nm(?:-np)?|sm(?:-np)?)|n(?:request|status)|a(?:[-_]elmd|t)|(?:sv|g)?p)|a(?:r(?:a(?:(?:dym-31por|gen)t|llel)|sec-(?:(?:mast|pe)er|game)|(?:k-age|lia)nt|timage)|n(?:a(?:golin-ident|sas)|do-(?:pub|sec)|golin-laser)|trol(?:-(?:(?:mq-[gn]|is)m|coll|snmp)|view)?|ss(?:w(?:rd-policy|ord-chg)|go(?:-tivoli)?)|y(?:cash-(?:online|wbp)|-per-view|router)|g(?:o-services[12]|ing-port)|c(?:(?:erforu|o)m|mand)|lace-[123456]|d(?:l2sim|s)|mmr(?:at|p)c|fec-lm|wserv)|c(?:s(?:-(?:sf-ui-man|pcw)|ync-https?)|-(?:mta-addrmap|telecommute)|i(?:a(?:-rxp-b|rray)|hreq)|le(?:multimedia|-infex)|anywhere(?:data|stat)|c-(?:image-port|mfp)|t(?:tunnell|rader)|o(?:nnectmgr|ip)|ptcpservice|mail-srv|ep)|e(?:r(?:son(?:a(?:l(?:-(?:agent|link)|os-001))?|nel)|i(?:scope|mlan)|f(?:-port|d)|mabit-cs|rla)|g(?:asus(?:-ctl)?|board)|er(?:book-port|wire)|(?:arldoc-xac|por)t|oc(?:oll|tlr)|ntbox-sim|-mike|help)|o(?:w(?:er(?:g(?:uardian|emplus)|alert-nsa|clientcsf|exchange|school|burst|onnud)|wow-(?:client|server))|p(?:up-reminders|3s?|2)|l(?:icyserve|esta)r|rtgate-auth|stgresql|v-ray)|l(?:a(?:ysta2-(?:app|lob)|to(?:-lm)?)|(?:cy-net-svc|uribu)s|bserve-port|ysrv-https?|ethora|gproxy)|i(?:c(?:trography|colo|knfs|odbc|hat)|m-(?:rp-disc|port)|r(?:anha[12]|p)|p(?:es)?|nghgl|t-vpn)|d(?:a(?:-(?:data|gate|sys)|(?:p-n)?p)|(?:[ru]nc|efmn)?s|l-datastream|-admin|net|ps?|tp|b)|k(?:t(?:cable(?:mm|-)cops|-krb-ipsec)|ix-(?:timestamp|3-ca-ra|cmc)|-electronics|agent)?|s(?:(?:(?:(?:d?b|pr?|r)s)?erv|l(?:serv|ics))er|c(?:l-mgt|ribe|upd)|i-ptt|-ams|mond|sc?)|h(?:o(?:ne(?:x-port|book)|enix-rpc|turis)|ar(?:masoft|os)|relay(?:dbg)?|ilips-vc)?|n(?:et-(?:conn|enc)|-requester2?|aconsult-lm|bs(?:cada)?|rp-port|s)|t(?:p(?:-(?:general|event))?|cnameservice|2-discover|k-alink|-tls)|xc-(?:s(?:p(?:lr(?:-ft)?|vr(?:-ft)?)|apxom)|epmap|ntfy|roid|pin)|m(?:c(?:[ps]|d(?:proxy)?)|d(?:fmgt|mgr)?|sm-webrctl|-cmdsvr|as)|p(?:t(?:conference|p)|s(?:uitemsg|ms)|activation|control)|u(?:(?:lsonixnl|shn)s|bliqare-sync|prouter|renoise|mp)|v(?:xplus(?:cs|io)|sw(?:-inet)?|uniwien|access)|w(?:g(?:ippfax|wims|psi)|d(?:gen|is)|rsevent)|2p(?:(?:grou|-si)p|community|q)|q(?:s(?:flows|p)|-lic-mgmt)|-net-(?:remote|local)|f(?:u-prcallback|tp)|g(?:bouncer|ps)|4p-portal|6ssmc|jlink|yrrho)|d(?:i(?:r(?:ec(?:t(?:v(?:-(?:catlg|soft|tick|web)|data)|play(?:srvr|8)?|net)?|pc-(?:video|dll|si))|gis)|a(?:l(?:og(?:ic-elmd|-port)|pad-voice[12])|g(?:nose-proc|mond)|m(?:ondport|eters?))|s(?:c(?:p-(?:client|server)|overy-port|lose|ard)|t(?:inct(?:32)?|-upgrade|cc)|play)|c(?:om(?:-(?:iscl|tls))?|t(?:-lookup)?|-aida)|gi(?:tal-(?:notary|vrc)|vote|man)|-(?:(?:tracewar|as)e|drm|msg)|f-port|xie)|e(?:c(?:-(?:mbadmin(?:-h)?|notes|dlm)|a(?:uth|p)|vms-sysmgt|ladebug|_dlm|bsrv|talk)|l(?:l(?:-(?:eql-asm|rm-port)|webadmin-[12]|pwrappks)|os-dms|ta-mcp|ibo)|-(?:s(?:erver|pot)|cache-query|noc)|s(?:k(?:top-dna|share|view)|cent3)|v(?:shr-nts|basic|ice2?)|nali-server|rby-repli|i-icda|os)|s(?:m(?:cc-(?:c(?:onfig|cp)|download|passthru|session)|eter[-_]iatc|-scm-target)|-(?:s(?:rvr?|lp)|admin|clnt|mail|user)|x(?:-(?:monitor|agent)|_monitor)|e(?:rver|tos)|lremote-mgmt|p(?:3270)?|om-server|f(?:gw)?|siapi|atp|dn|c)|a(?:t(?:a(?:s(?:caler-(?:ctl|db)|urfsrv(?:sec)?)|-(?:insurance|port)|captor|lens)|ex-asn|usorb)|y(?:lite(?:server|touch)|time)|n(?:dv-tester|f-ak2)|s(?:hpas-port|p)|i(?:-shell|shi)|rcorp-lm|b-sti-c|li-port|vsrcs?|ap|wn)|b(?:control(?:-(?:agent|oms)|_agent)|s(?:(?:yncarbite|ta)r|a-lm)|(?:a(?:bbl|s)|brows)e|isamserver[12]|re(?:porter|f)|eregister|-lsp|db|m)|o(?:c(?:umentum(?:[-_]s)?|(?:-serve|sto)r|e(?:ri-ctl|nt)|1lm)|main(?:time)?|wn(?:tools)?|nnyworld|ip-data|ssier|glms|om)|t(?:a(?:-systems|g-ste-sb)|s(?:erver-port|pcd)?|n(?:-bundle-tcp|1)|p(?:-dia|t)?|v-chan-req|-mgmtsvc|k)|2(?:k-(?:datamover[12]|tapestry[12])|000(?:webserver|kernel)|d(?:datatrans|config))|h(?:c(?:p(?:v6-(?:client|server)|-failover2?)|t-(?:alert|statu)s)|analakshmi|e)|n(?:6-(?:nlm-au|smm-re)d|s(?:-llq|2go|ix)|a(?:-cml|p)?|p(?:-sec)?|c-port|o?x)|p(?:s(?:erve(?:admin)?|i)|m(?:-a(?:gent|cm))?|(?:i-p)?roxy|keyserv|[ac]p)|r(?:m(?:-production|s(?:fsd|mc))|i(?:veappserver|zzle|p)|agonfly|wcs|p)|v(?:t-(?:system|data)|l-activemail|cprov-port|bservdsc|r-esm|apps)|l(?:s(?:-mon(?:itor)?|r(?:ap|pn)|wpn)?|[-_]agent|ms-cosem|ip)|d(?:m-(?:dfm|rdb|ssl)|i-tcp-[1234567]|ns-v3|repl|dp|gn|t)|c(?:s(?:l-backup|-config|oftware)?|utility|ap?|t?p|cm)?|m(?:(?:af-serv|docbrok)er|od-workspace|express|idi)|yn(?:a(?:-(?:access|lm)|mi(?:c3)?d)|iplookup|-site)|-(?:cinema-(?:cs|rr)p|data(?:-control)?|fence|s-n)|x(?:messagebase[12]|-instrument|admind|spider)|w(?:(?:msgserve)?r|nmshttp|f)|z(?:oglserver|daemon)|f(?:(?:ox)?server|n)|g(?:pf-exchg|i-serv)|k(?:messenger|a)|j-i(?:ce|lm)|3winosfi)|t(?:r(?:i(?:m(?:-(?:event|ice))?|(?:tium-ca|omotio)n|s(?:pen-sra|oap)|p(?:(?:wir)?e)?|dent-data|quest-lm|vnet[12]|butary)|a(?:p(?:-(?:port(?:-mom)?|daemon))?|v(?:soft-ipx-t|ersal)|ns(?:mit-por|ac)t|c(?:eroute|k)|gic|m)|u(?:ste(?:stablish|d-web)|ckstar|ecm)|e(?:ndchip-dcp|ehopper)|-rsrb-p(?:[123]|ort)|nsprntproxy|c-netpoll|off|p)|a(?:l(?:arian-(?:m(?:cast[12345]|qs)|tcp)|on-(?:webserver|engine|disc)|i(?:kaserver|gent-lm)|-pod|net|k)|s(?:kma(?:ster2000|n-port)|erver|p-net)|c(?:(?:ac(?:s-d)?|new)s|ticalauth)|r(?:gus-getdata[123]?|antella)|p(?:e(?:stry|ware)|pi-boxnet)|g-(?:ups-1|pm)|m(?:bora|s)|ep-as-svc|urus-wh|iclock|bula)|e(?:l(?:e(?:(?:niumdaemo|sis-licma)n|lpath(?:attack|start)|finder)|l(?:umat-nms)?|net(?:cpcd|s)?|aconsole|ops-lmd|indus)|r(?:a(?:dataordbms|base)|minaldb|edo)|(?:c5-sdct|edta)p|mp(?:est-port|o)|n(?:tacle|fold)|amcoherence|sla-sys-msg|trinet|xa[ir]|kpls)|i(?:m(?:e(?:stenbroker|flies|lot|d)?|buktu(?:-srv[1234])?)|vo(?:connect|li-npm)|c(?:f-[12]|k-port)|p(?:-app-server|2)|g(?:v2)?|dp|nc)|t(?:c(?:-(?:etap(?:-[dn]s)?|ssl)|mremotectrl)?|l(?:-publisher|priceproxy)|n(?:repository|tspauto)|g-protocol|at3lb|yinfo)|c(?:p(?:dataserver|nethaspsrv|-id-port|mux)|o(?:(?:flash|reg)agent|addressbook)|lprodebugger|im-control|c-http)|n(?:-t(?:l-(?:fd[12]|[rw]1)|iming)|p(?:-discover|1-port)?|s-(?:server|adv|cml)|os-(?:dps?|sp)|etos|mpv2)|o(?:(?:mato-spring|uchnetplu|nidod)s|p(?:flow(?:-ssl)?|ovista-data|x)|l(?:teces|fab)|ruxserver|ad)|u(?:n(?:a(?:lyzer|tic)|gsten-https?|stall-pnc|nel)|r(?:bonote-[12]|ns?))|l(?:1(?:-(?:raw(?:-ssl)?|telnet|ssh|lv))?|-ipcproxy|isrv)|s(?:(?:ccha|rmag)t|(?:spma)?p|dos390|erver|af?|b2?|ilb)|d(?:-(?:postman|replica|service)|p-suite|access|moip)|m(?:o(?:-icon-sync|phl7mts|sms[01])|esis-upshot|i)|v(?:dumtray-port|networkvideo|e-announce|bus|pm)|w(?:(?:(?:sd|c)s|d)s|amp-control|-auth-key|rpc)|1(?:distproc(?:60)?|-e1-over-ip|28-gateway)|h(?:t-treasure|r(?:tx|p)|eta-lm)|p(?:csrvr|du|ip|md)|ftp(?:-mcast|s)?|g(?:cconnect|p)|5-straton|2-[bd]rm|ksocket|qdata|brpf)|e(?:m(?:c(?:-(?:pp-mgmtsvc|vcas-tcp|gateway)|rmir(?:cc)?d|symapiport|ads)|p(?:rise-l(?:ls|sc)|-server[12]|ire-empuma|owerid|erion)|b(?:race-dp-[cs]|l-ndt)|(?:a-sent-l|7-seco)m|fis-(?:cntl|data)|w(?:avemsg|in)|s(?:d-port)?|gmsg)|s(?:p(?:-(?:encap|lm)|eech(?:-rtp)?|s-portal)|c(?:ale \(newton dock\)|vpnet|p-ip)|r(?:o-(?:emsdp|gen)|i[-_]sde)|i(?:nstall|mport|p)|m(?:manager|agent)|s(?:web-gw|base|p)|(?:erver-pa|tam)p|nm-zoning|broker|-elmd|l-lm)|n(?:t(?:rust(?:-(?:a(?:a[am]s|sh)|kmsh|sps)|time)|ext(?:(?:me|xi)d|netwk|high|low)|-engine|omb|p)|c(?:rypted(?:-(?:admin|llrp)|_admin)|ore)|l(?:-name)?|p[cp]|fs)|l(?:vin(?:-(?:client|server)|_(?:client|server))|(?:pro[-_]tunne|fiq-rep)l|a(?:n(?:lm)?|telink|d)|i(?:pse-rec)?|ektron-admin|m-momentum|c(?:sd|n)|lpack|xmgmt|s)|x(?:o(?:line-tcp|config|net)|a(?:softport1|pt-lmgr)|c(?:e(?:rpts?)?|w)|p(?:[12]|resspay)|bit-escp|lm-agent|tensis|ec)|d(?:m-(?:m(?:gr-(?:cntrl|sync)|anager)|st(?:d-notify|ager)|adm-notify)|b(?:-server[12]|srvr)|i(?:tbench|x)|tools)|t(?:h(?:er(?:net(?:\/ip-[12]|-ip-[12])|cat)|oscan)|lservicemgr|c-control|(?:ft)?p|ebac5|b4j|s)|p(?:(?:-(?:ns|pc)|l-sl)p|ortcomm(?:data)?|n(?:cdp2|sdp)|m(?:ap|d)|t-machine|icon|pc?|c)|v(?:e(?:nt(?:-(?:listener|port)|_listener)|rydayrc)|tp(?:-data)?|(?:b-el)?m|-services)|r(?:unbook(?:-(?:server|agent)|_(?:server|agent))|p(?:-scale|c)|istwoguns|golight)|c(?:o(?:lor-imager|visiong6-1|mm)|ho(?:net)?|mp(?:ort)?|sqdmn|wcfg|n?p)|i(?:con-(?:s(?:erver|lp)|x25)|s(?:p(?:ort)?)?|ms-admin)|-(?:d(?:esign-(?:net|web)|pnet)|builder|mdu|net|woa)|z(?:me(?:eting(?:-2)?|ssagesrv)|proxy(?:-2)?|relay)|f(?:i(?:-(?:lm|mg)|diningport)|orward|b-aci|cp|s)|w(?:c(?:appsrv|tsp)|installer|-mgmt|all|dgs|nn)|q(?:-office-494[012]|uationbuilder|3-update)|h(?:(?:p-backu|t)p|s(?:-ssl)?|ome-ms)|a(?:sy-soft-mux|psp|1)?|(?:3consultant|os)s|ye(?:2eye|link|tv)|(?:udora-s|en)et|b(?:insite|a)|g(?:ptlm|s))|r(?:e(?:m(?:o(?:te(?:-(?:(?:ki|a)s|winsock|collab)|ware-(?:srv|cl|un)|deploy|fs)|graphlm)|c(?:ap|tl))|d(?:sto(?:rm(?:-(?:diag|find|info|join)|_(?:diag|find|info|join))|ne-cpss)|wood-chat)|s(?:o(?:urce[-_]mgr|rcs)|ponse(?:logic|net)|(?:-s|c)ap|acommunity)?|a(?:l(?:m-rusd|secure)|chout)|p(?:s(?:cmd|vc)|liweb|cmd)|t(?:s(?:-ssl)?|rospect|p)|-(?:conn-proto|mail-ck)|gistrar|version|cipe|ftek|lief|xecj|101|bol)|a(?:d(?:i(?:us(?:-(?:dynauth|acct))?|o(?:-sm)?|x)|w(?:are-rpm(?:-s)?|iz-nms-srv)|(?:an-htt|ec-cor)p|min(?:-port|d)|clientport|s(?:ec)?|pdf)|p(?:i(?:d(?:mq-(?:center|reg)|base|o-ip))?|-(?:service|listen|ip))?|ve(?:n(?:t(?:bs|dm)|-r[dm]p)|hd)|i(?:lgun-webaccl|d-(?:am|cc))|t(?:io-adp|l)|qmon-pdu|w-serial|xa-mgmt|admin|sadv|zor|cf|mp)|t(?:s(?:p(?:-alt|s)?|client|serv)|ps-d(?:iscovery|d-[mu]t)|c(?:-pm-port|m-sc104)|(?:mp-por|elne)t|-event(?:-s)?|raceroute|nt-[12]|ip)|s(?:v(?:p(?:-(?:encap-[12]|tunnel)|_tunnel)|d)|i(?:sysaccess|p)|-(?:pias|rmi)|c(?:-robot|d)|m(?:tp|s)|qlserver|h-spx|f-1|ync|ap|om)|m(?:i(?:a(?:ctivation|ux)|registry)|o(?:nitor(?:[-_]secure)?|pagt)|t(?:server)?|lnk|pp|c)|o(?:b(?:oe(?:da|r)|cad-lm|ix)|c(?:kwell-csp[12]|rail)|utematch|verlog|ketz|otd)|d(?:m(?:net-ctrl|-tfs)|(?:b-dbs-dis|la)p|s(?:-i[bp]|2)?|c-wh-eos|rmshc|a)|i(?:c(?:ardo-lm|h-cp)|d(?:geway[12])?|m(?:f-ps|sl)|s(?:-cm|e)?|b-slm|png)|b(?:r-d(?:iscovery|ebug)|t-(?:wanopt|smc)|akcup[12]|lcheckd|system)|p(?:ki-rtr(?:-tls)?|c2portmap|asswd|rt|i)|r(?:i(?:(?:[lm]w|fm)m|rtr|sat)|d?p|ac|h)|f(?:[abe]|i(?:d-rp1|le|o)|x-lm|mp)|u(?:s(?:b-sys-port|hd)|gameonline)|c(?:(?:c-ho)?st|ip-itu|ts|p)|l(?:m(?:-admin)?|zdbase|p)|(?:vs-isdn-dc|hp-iib|gt)p|j(?:cdb-vcards|e)|(?:kb-osc|whoi)s|n(?:m(?:ap)?|rp)|x(?:api|mon|e))|b(?:m(?:c(?:-(?:p(?:erf-(?:(?:mgr|s)d|agent)|atroldb)|(?:messag|report)ing|net-(?:adm|svc)|g(?:ms|rx)|data-coll|ctd-ldap|jmx-port|onekey|ar|ea)|_(?:ctd_ldap|patroldb)|patrol(?:agent|rnvu))|[ap]p|dss)|o(?:ks(?:-(?:serv[cm]|clntd)|_(?:serv[cm]|clntd))?|o(?:t(?:server|p[cs])|sterware|merang)|x(?:backupstore|p)|ard-(?:roar|voip)|inc-client|ldsoft-lm|rland-dsj|unzza|scap|nes)|a(?:c(?:k(?:up(?:-express|edge)|roomnet|burner)|ula-(?:[fs]d|dir)|net)|n(?:yan-(?:net|rpc|vip)|dwiz-system)|dm(?:-p(?:riv|ub)|_p(?:riv|ub))|lour|tman|se)|i(?:n(?:tec-(?:[ct]api|admin)|derysupport|kp)|o(?:link-auth|server)|t(?:forestsrv|speer)|s-(?:sync|web)|(?:ap-m)?p|imenu|m-pem)|e(?:a(?:con-port(?:-2)?|rs-0[12])|s(?:erver-msg-q|api|s)|x-(?:webadmin|xr)|eyond(?:-media)?|yond-remote|rknet|orl)|l(?:ue(?:ctrlproxy|berry-lm|lance)|a(?:ck(?:board|jack)|ze)|ock(?:ade(?:-bpsp)?|s)|wnkl-port|p[12345]|izwow|-idm)|r(?:(?:idgecontro|-channe)l|(?:oker[-_]servic)?e|c(?:m-comm-port|d)|u(?:tus|ce)|lp-[0123]|vread|dptc|f-gw|ain|p)|v(?:-(?:queryengine|smcsrv|[di]s|agent)|c(?:daemon-port|ontrol)|tsonar)|c(?:s(?:-(?:lmserv|brok)er|logc)?|tp(?:-server)?|inameservice|cp)|t(?:p(?:p2(?:sectrans|audctr1)|rjctrl)|s-(?:appserver|x73)|rieve)|u(?:s(?:iness|ycal|boy)|es[-_]service|llant-s?rap|ddy-draw)|s(?:fs(?:vr-zn-ssl|erver-zn)|quare-voip|pne-pcc)|p(?:c(?:p-(?:poll|trap)|d)|java-msvc|[mr]d|dbm)|f(?:d-(?:(?:multi-ct|contro)l|echo)|lckmgr|tp)|h(?:oe(?:dap4|tty)|(?:fh|md)s|event|611)|d(?:ir(?:-p(?:riv|ub)|_p(?:riv|ub))|p)|n(?:et(?:(?:fil|gam)e)?|t-manager)|2(?:-(?:licens|runtim)e|n)|b(?:n-mm[cx]|ars)?|g(?:s-nsi|m?p)|-novative-ls|z(?:flag|r)|ytex|xp)|o(?:p(?:e(?:n(?:ma(?:il(?:pxy|ns|g)?|th)|v(?:ms-sysipc|pn)|(?:stack-|hp)id|(?:webne|por)t|nl(?:-voice)?|t(?:able|rac)|c(?:ore|m)|deploy|queue)|quus-server)|s(?:e(?:c-(?:(?:el|le)a|u(?:aa|fp)|cvp|omi|sam)|ssion-(?:clnt|prxy|srvr))|w(?:manager|agent)|view-envoy|mgr)|t(?:i(?:ka-emedia|ma-vnet|wave-lm|logic)|o(?:host00[234]|control)|ech-port1-lm)|c(?:-job-(?:start|track)|ua-t(?:cp|ls)|on-xps)|alis-r(?:bt-ipc|obot|dv)|us-services|net-smp|-probe|i-sock)|r(?:a(?:cle(?:-(?:em[12]|vp[12]|oms)|n(?:et8cman|ames)|as-https)|-(?:oap|lm)|srv)|b(?:i(?:x(?:-(?:c(?:fg-ssl|onfig)|loc(?:-ssl|ator))|d)|ter)|plus-iiop)|dinox-(?:server|dbase)|ion(?:-rmi-reg)?)|m(?:a(?:-(?:ilp(?:-s)?|mlp(?:-s)?|rlp(?:-s)?|dcdocbs|ulp)|bcastltkm|sgport)|s(?:-nonsecure|topology|contact|erv|dk)?|ni(?:vision(?:esx)?|link-port|sky)|(?:ginitialref|h)s|vi(?:server|agent))|v(?:s(?:am-(?:d-agen|mgm)t|essionmgr)|alarmsrv(?:-cmd)?|(?:hpa|bu|ob)s|-nnm-websrv|rimosdbman|[el]admgr|topmd|wdb)|s(?:m(?:-(?:appsrvr|oev)|osis-aeea)|p(?:f-lite)?|-licman|u-nms|b-sd|aut|dcp)|n(?:e(?:home-(?:remote|help)|saf)|t(?:obroker|ime)|base-dds|screen|mux)|d(?:e(?:umservlink|tte-ftps?)|n(?:-castraq|sp)|bcpathway|i-port|mr|si)|c(?:e(?:-snmp-trap|ansoft-lm)|s(?:[-_][ac]mu|erver)|binder|topus|-lm)|b(?:j(?:ect(?:ive-dbc|manager)|call)|rpd|ex)|em(?:cacao-(?:websvc|jmxmp|rmi)|-agent)|a(?:p(?:-(?:admin|s))?|-system)|f(?:fice(?:link2000|-tools)|sd)|i(?:d(?:ocsvc|sr)|rtgsvc|-2000)|t(?:p(?:atch)?|[lm]p|tp?|v)|w(?:amp-control|server)|l(?:s[rv]|host)|h(?:imsrv|sc)|2server-port|ob-ws-https?|gs-server|utlaws)|f(?:i(?:le(?:net-(?:p(?:owsrm|eior|ch|a)|r(?:mi|pc|e)|obrok|nch|tms|cm)|(?:x-lpor|cas)t|sphere)|n(?:(?:isa|ge)r|d(?:viatv)?|le-lm|trx)|r(?:e(?:monrcc|power|fox)|stcall42)|o(?:rano-(?:msg|rtr)svc|-cmgmt)|botrader-com|s(?:a-svc)?|veacross)|a(?:c(?:sys-(?:router|ntp)|ilityview|-restore|elink)|x(?:(?:portwin|stfx-)port|comservice|imum)|st(?:-rem-serv|lynx)|zzt-(?:admin|ptp)|t(?:pipe|serv)|(?:gordn|md)c|irview|renet)|j(?:i(?:ppol-(?:po(?:rt[12]|lsvr)|swrly|cnsl)|(?:tsuapp|nv)mgr|cl-tep-[abc])|s(?:v(?:-gssagt|mpor)|wapsnp)|mp(?:(?:jp|s)s|cm)|d(?:ocdist|mimgr)|(?:hpj|c)p|appmgrbulk|-hdnet)|c(?:p(?:-(?:addr-srvr[12]|srvr-inst[12]|cics-gw1|udp))?|-(?:faultnotify|cli|ser)|i(?:p-port|s)|opys?-server|msys)|u(?:nk(?:-(?:l(?:icense|ogger)|dialout)|proxy)|jitsu-(?:d(?:tc(?:ns)?|ev)|mmpdc|neat)|script|trix)|l(?:a(?:sh(?:filer|msg)|menco-proxy)|(?:irtmitmi|ukeserve)r|r[-_]agent|orence|n-spx|exlm|crs|y)|t(?:p(?:-(?:agent|data)|s(?:-data)?)?|ra(?:pid-[12]|nhc)|-role|srv)|o(?:resyte-(?:clear|sec)|(?:togca|un)d|nt-service|liocorp|dms)|s(?:[er]|-(?:(?:agen|mgm)t|rh-srv|server|qos)|portmap|c-port)|m(?:p(?:ro-(?:(?:intern|fd)al|v6))?|sas(?:con)?|[tw]p)|e(?:itianrockey|rrari-foam|booti-aw|mis)|r(?:ee(?:zexservice|civ)|yeserv|onet|cs)|f(?:-(?:lr-port|annunc|fms|sm)|server)|x(?:aengine-net|(?:upt)?p)|5-(?:globalsite|iquery)|g-(?:sysupdate|fps|gip)|p(?:(?:o-fn|ram)s|itp)|dt(?:-rcatp|racks)|net-remote-ui|yre-messanger|h(?:sp|c)|ksp-audit)|l(?:i(?:s(?:p(?:-(?:cons|data)|works-orb)|t(?:crt-port(?:-2)?|mgr-port))|n(?:k(?:test(?:-s)?|name)?|ogridengine|x)|ebdevmgmt(?:-(?:[ac]|dm)|_(?:[ac]|dm))|ve(?:stats|lan)|censedaemon|berty-lm|psinc1?|onhead|ght)|a(?:n(?:s(?:urveyor(?:xml)?|chool|erver|ource)|rev(?:server|agent)|900[-_]remote|yon-lantern|messenger|dmarks|ner-lm)|(?:(?:unchbird|venir)-l)?m|(?:-main|bra)t|zy-ptop|es-bf|plink)|o(?:n(?:talk-(?:urgnt|norm)|ewolf-lm|works2?)|c(?:us-(?:con|map)|alinfosrvr|kstep)|rica-(?:out(?:-sec)?|in(?:-sec)?)|t(?:us(?:mtap|note)|105-ds-upd)|aprobe|fr-lm|gin)|m(?:-(?:(?:(?:webwatch|sserv)e|instmg)r|perfworks|dta|mon|x)|s(?:ocialserver)?|d?p|cs)|d(?:s(?:-d(?:istrib|ump)|s)|oms-m(?:gmt|igr)|ap(?:-admin|s)?|gateway|x?p)|v(?:-(?:f(?:rontpanel|fx)|auth|pici|not|jc)|ision-lm)|nv(?:ma(?:ilmon|ps)|console|poller|status|alarm)|s(?:i-(?:raid-mgm|bobca)t|3(?:bcast)?|p-ping|tp)|b(?:[fm]|c-(?:watchdog|control|measure|sync))|3(?:-(?:h(?:bmon|awk)|ranger|exprt)|t-at-an)|e(?:(?:croy-vic|oi)p|ecoposserver|gent-[12])|l(?:m(?:-(?:pass|csv)|nr)|surfup-https?|rp)|2(?:c-(?:control|data)|tp|f)|t(?:p(?:-deepspace)?|ctcp)|(?:5nas-parcha|jk-logi)n|p(?:srecommender|cp|dg)|u(?:mimgrd|t[ac]p|pa)|(?:cm-|kcm)server|r(?:s-paging|p)|-acoustics|xi-evntsvc|yskom|htp)|h(?:p(?:-(?:s(?:e(?:ssmon|rver)|an-mgmt|c[aio]|tatus)|d(?:ataprotect|evice-disc)|p(?:dl-datastr|xpib)|web(?:admin|qosdb)|c(?:ollector|lic)|hcip(?:-gwy)?|managed-node|3000-telnet|alarm-mgr|nnm-data)|v(?:mm(?:control|agent|data)|irt(?:ctrl|grp)|room)|s(?:s(?:-ndapi|mgmt|d)|tgmgr2?)|o(?:ms-(?:dps|ci)-lstn|cbus)|i(?:dsa(?:dmin|gent)|od)|p(?:ronetman|pssvr)|(?:blade|dev)ms)|a(?:cl-(?:p(?:robe|oll)|monitor|[gq]s|local|test|cfg|hb)|(?:r(?:t-i)?|gel-dum)?p|ipe-(?:discover|otnk)|-cluster|ssle|wk|o)|e(?:a(?:lth(?:-(?:polling|trap)|d)|rtbeat)|r(?:odotus-net|e-lm|mes)|l(?:lo(?:-port)?|ix)|cmtl-db|xarc|ms)|y(?:per(?:(?:wave-is|i)p|scsi-port|cube-lm|-g)|brid(?:-pop)?|d(?:ap|ra)|lafax)|t(?:tp(?:-(?:(?:rpc-ep|w)map|(?:mgm|al)t)|s(?:-wmap)?|x)?|uilsrv|rust|cp)|i(?:p(?:erscan-i|pa)d|(?:[cn]|sli)p|ve(?:stor|p)|gh-criteria|llrserv|q)|o(?:me(?:portal-web|steadglory)|u(?:dini-lm|ston)|tu-chat|stname|nyaku)|323(?:gate(?:disc|stat)|hostcall(?:sc)?|callsigalt)|2(?:250-annex-g|48-binary|63-video|gf-w-2m)|d(?:e-lcesrvr-[12]|l-srv|ap)|s(?:rp(?:v6)?|l-storm|-port)|hb-(?:handheld|gateway)|l(?:(?:serve|ibmg)r|7)|u(?:b-open-net|sky)|r(?:i-port|d-ncs)|fcs(?:-manager)?|b(?:-engine|ci)|mmp-(?:ind|op)|k(?:s-lm|p)|cp-wismar|nmp?)|v(?:i(?:s(?:i(?:on(?:-(?:server|elmd)|_(?:server|elmd)|pyramid)|cron-vs|net-gui|tview)|t(?:ium-share|a-4gl)|d)|d(?:e(?:o(?:-activmail|beans|tex)|te-cipc)|s-avtp|igo)?|r(?:tual(?:-(?:places|time)|tape|user)|prot-lm)|p(?:era(?:-ssl)?|remoteagent)|ziblebrowser|talanalysis|nainstall|eo-fe)|e(?:r(?:i(?:tas(?:-(?:vis[12]|tcp1|pbx|ucl)|_pbx)|smart)|s(?:a(?:-te|tal)k|iera)|gencecm|acity|onica)|nus(?:-se)?|ttcp|mmi)|r(?:t(?:s(?:-(?:a(?:uth|t)-port|ipcserver|registry|tdd)|trapserver)|l-vmf-(?:ds|sa)|p)?|(?:xpservma|p)n|(?:commer|a)ce)|s(?:a(?:mredirector|t-control|iport)|i(?:-omega|admin|net|xml)|(?:econnecto|-serve)r|(?:nm-agen|ta)t|(?:lm|c)p|pread)|a(?:t(?:-control|ata|p)?|(?:-pac|ult)base|(?:lisys-l|prt)m|cdsm-(?:app|sws)|ntronix-mgmt|radero-[012]|d)|o(?:caltec-(?:admin|wconf|gold|hos)|(?:fr-gatewa|lle)y|ispeed-port|p(?:ied)?)|p(?:p(?:s-(?:qu|vi)a)?|sipport|a[cd]?|[2j]p|v[cd]|nz)|c(?:s(?:-app|cmd)|net-link-v10|om-tunnel|hat|rp|e)|m(?:(?:ware-fd|ode)m|svc(?:-2)?|pwscs|net|rdp)|t(?:s(?:-rpc|as)|r-emulator|u-comms|-ssl)|ytalvault(?:(?:brt|vsm)p|pipe)|n(?:wk-prapi|sstr|etd|as|yx)|x(?:-auth-|crnbu)port|vr-(?:control|data)|f(?:mobile|bp|o)|(?:-one-sp|q)p|dmplay|lsi-lm|ulture|5ua|hd)|w(?:a(?:p-(?:vca(?:rd(?:-s)?|l(?:-s)?)|wsp(?:-(?:wtp(?:-s)?|s))?|push(?:-https?|secure)?)|t(?:c(?:h(?:do(?:c(?:-pod)?|g-nt)|me-7272)|omdebug)|ershed-lm|ilapp)|g(?:o-(?:io-system|service)|-service)|r(?:m(?:spotmgmt|ux)|ehouse(?:-sss)?)|nscaler|cp|fs)|i(?:n(?:p(?:o(?:planmess|rt)|haraoh|cs)|d(?:(?:rea|l)m|d(?:lb|x)|b)|s(?:hadow(?:-hd)?)?|install-ipc|jaserver|qedit|fs|rm)|l(?:kenlistener|ly)|m(?:axasncp|sic|d)|(?:egan|re)d|p-port|bukey|free)|e(?:b(?:m(?:a(?:chine|il-2)|ethods-b2b)|s(?:phere-snmp|ter|m)|a(?:dmstart|ccess)|(?:2ho|ya)st|(?:phon|ti)e|emshttp|objects|login|data)|ste(?:c-connect|ll-stats)|llo)|s(?:m(?:-server(?:-ssl)?|ans?|lb)|d(?:api(?:-s)?|l-event)|(?:o2esb-consol|pip)e|s(?:comfrmwk|authsvc)|(?:-discover|icop)y|ynch)|h(?:o(?:s(?:ockami|ells)|is(?:\+\+|pp)|ami)|erehoo|isker)|or(?:ld(?:fusion[12]|scores|wire|-lm)|kflow)|w(?:w(?:-(?:ldap-gw|http|dev))?|iotalk)|m(?:(?:s-messeng|lserv)er|c-log-svc)|r(?:s(?:[-_]registry|pice)|itesrv)|(?:ta-ws(?:p-wt)?p-|p(?:age|g))s|v-csp-(?:sms(?:-cir)?|udp-cir)|bem-(?:exp-https|https?|rmi)|c(?:(?:backu|p)p|r-remlib)|f(?:(?:remotert)?m|c)|(?:g-netforc|usag)e|k(?:stn-mon|ars)|l(?:anauth|bs)|nn6(?:-ds)?|ysdm[ac]|xbrief)|g(?:a(?:l(?:axy(?:-(?:network|server)|7-data|4d)|ileolog)|m(?:e(?:smith-port|lobby|gen1)|mafetchsvr)|d(?:getgate[12]way|ugadu)|ndalf-lm|t-lmd|rcon|c?p|ia)|e(?:n(?:i(?:e(?:-lm)?|sar-port|uslm)|rad-mux|eous|stat)|o(?:gnosis(?:man)?|locate)|mini-lm|arman|rhcs)|r(?:i(?:d(?:gen-elmd|-alt)?|ffin|s)|o(?:ove(?:-dpp)?|upwise)|a(?:decam|phics)|f-port|ubd)|l(?:o(?:b(?:al-(?:cd-port|dtserv|wlink)|e(?:cast-id)?|msgsvc)|gger)|(?:ish)?d|rpc|bp)|t(?:p-(?:control|user)|rack-(?:server|ne)|e(?:gsc-lm|-samp)|-proxy|aua)|s(?:i(?:(?:dca|ft)p|gatekeeper)?|s-(?:xlicen|http)|m(?:p-ancp|s)|akmp)|o(?:(?:ldleaf-licma|-logi)n|ahead-fldup|todevice|pher)|d(?:s(?:(?:-adppiw)?-|_)db|o(?:map|i)|bremote|p-port)|i(?:(?:ga-pocke)?t|latskysurfer|op(?:-ssl)?|nad)|w(?:-(?:call-port|asv|log)|(?:en-sony|h)a)?|n(?:u(?:tella-(?:rtr|svc)|net)|tp)|p(?:rs-(?:cube|data)|pitnp|fs|sd)|c(?:m(?:onitor|-app)|-config|sp)|b(?:mt-stars|s-s[mt]p|jd816)|x(?:s-data-port|telmd)|m(?:rupdateserv|mp)|u(?:ttersnex|ibase)|v(?:-(?:pf|us)|cp)|g(?:f-ncp|z)|-talk|2tag|5m|f)|u(?:n(?:i(?:s(?:ys-(?:eportal|lm)|ql(?:-java)?)|v(?:erse[-_]suite|-appserver|ision)|fy(?:-(?:adapter|debug)|admin)?|(?:c(?:ontro|al)|mobilectr)l|(?:x-stat|zens)us|hub-server|data-ldm|keypro|port|eng|te)|bind-cluster|[eo]t|do-lm|glue)|p(?:s(?:-(?:onlinet|engine)|notifyprot|triggervsw)?|notifyps?|grade)|l(?:t(?:r(?:a(?:seek-http|bac)|ex)|imad)|p(?:net)?|istproc)|d(?:p(?:-sr-port|radio)|r(?:awgraph|ive)|t[-_]os)|a(?:(?:-secureagen|iac)t|(?:dt|a)c|(?:rp|c)s)|s(?:-(?:(?:sr|g)v|cli)|er-manager)|u(?:cp(?:-(?:rlogin|path))?|idgen)|r(?:[dm]|(?:ld-por|bisne)t)|t(?:(?:mp[cs]|c)d|sftp|ime)|b(?:-dns-control|roker|xd)|f(?:astro-instr|mp)|m(?:m-port|sp?|a)|(?:centric-d|i)s|o(?:host|rb)|-dbap)|x(?:m(?:l(?:i(?:nk-connect|pcregsvc)|tec-xmlmail|rpc-beep|blaster)|p(?:p-(?:client|server|bosh)|cr-interface|v7)|query|api|ms2|cp|sg)|n(?:s-(?:c(?:ourier|h)|auth|mail|time)|m(?:-(?:clear-text|ssl)|p)|ds)|i(?:n(?:u(?:expansion[34]|pageserver)|g(?:mpeg|csm))|ostatus|ip|c)|s(?:s(?:-srv)?-port|-openstorage|(?:msv|yn)c|ip-network|erveraid)|p(?:r(?:int-server|tld)|(?:ane)?l|ilot)|a(?:ct-backup|ndros-cms|dmin|p-ha|api)|t(?:r(?:eamx|ms?)|lserv|gui)|d(?:(?:mc|t)p|s(?:xdm)?|as)|(?:ecp-nod|9-icu)e|(?:xnetserve|fe?)r|o(?:-wave|raya|ms)|r(?:pc-registry|l)|-bone-(?:api|ctl)|(?:kotodrc|vtt)p|(?:yplex-mu|bo)x|(?:gri|qos)d|25-svc-port|500ms|11)|j(?:a(?:u(?:gsremotec-[12]|s)|m(?:serverport|link)|xer-(?:manager|web)|cobus-lm|leosnd|rgon)|e(?:t(?:form(?:preview)?|cmeserver|stream)|ol-nsdtp-[1234]|diserver|rand-lm|smsjc)|o(?:(?:ajewelsuit|urne)e|mamqmonitor|ltid|ost)|m(?:q-daemon-[12]|b-cds[12]|act[356]|evt2|s)|w(?:(?:alk)?server|pc(?:-bin)?|client)|d(?:l-dbkitchen|atastore|mn-port)|b(?:oss-iiop(?:-ssl)?|roker)|t(?:400(?:-ssl)?|ag-server)|i(?:ni-discovery|be-eb)|-(?:l(?:an-p|ink)|ac)|p(?:egmpeg|rinter|s)|v(?:client|server)|u(?:xml-port|te)|licelmd|stel|cp)|k(?:e(?:ys(?:(?:erve|rv)r|hadow)|r(?:beros(?:-adm)?|mit)|ntrox-prot)|a(?:sten(?:chasepad|xpipe)|(?:za|n)a|r2ouche|0wuc|li)|o(?:ns(?:hus-lm|pire2b)|pek-httphead|fax-svr)|i(?:n(?:g(?:domsonline|fisher)|k)|osk|tim|s)|f(?:tp(?:-data)?|xaclicensing|server)|r(?:b5(?:gatekeeper|24)|yptolan)|v(?:-(?:server|agent)|m-via-ip)|m(?:e-trap-port|scontrol|ip)|t(?:i-icad-srvr|elnet)|3software-(?:cli|svr)|p(?:asswd|n-icw|dp)|s(?:ysguard|hell)|w(?:db-commn|tc)|jtsiteserver|l(?:ogin|io)|yoceranetdev|net-cmp|-block|dm)|q(?:u(?:e(?:st(?:-(?:data-hub|agent|vista)|db2-lnchr|notify)|ueadm)|a(?:sar-server|rtus-tcl|ilnet|ddb|ke)|ick(?:booksrds|suite)|o(?:tad|sa)|bes)|s(?:net-(?:(?:assi|work)st|trans|cond|nucl)|m-(?:remote|proxy|gui)|oft)|t(?:(?:ms-bootstra)?p|-serveradmin)|ip-(?:(?:audu|qdhc)p|login|msgd)|b(?:-db-server|ikgdp|db)|f(?:t(?:est-lookup)?|p)|(?:db2servic|3ad|wav)e|o(?:t(?:ps|d)|-secure)|admif(?:event|oper)|n(?:xnetman|ts-orb)|p(?:asa-agent|tlmd)|m(?:[qt]p|video)|(?:en)?cp|ke-llc-v3|55-pcc|rh|vr)|z(?:e(?:n(?:ginkyo-[12]|-pawn|ted)|p(?:hyr-(?:clt|srv|hm))?)|a(?:bbix-(?:trapper|agent)|nnet|rkov)|i(?:(?:on-l|co)m|gbee-ips?|eto-sock)|(?:ymed-zp|m)p|firm-shiprush3|se(?:cure|rv)|39[-.]50|-wave)|3(?:com(?:-(?:n(?:jack-[12]|et-mgmt|sd)|webview|tsmux|amp3)|faxrpc|netman)|par-(?:mgmt(?:-ssl)?|rcopy|evts)|(?:gpp-cbs|exm)p|d(?:-nfsd|s-lm)|l(?:-l1|ink)|m-image-lm)|4(?:-tieropm(?:cli|gw)|talk)|9(?:14c(?:\/|-)g|pfs)|802-11-iapp|1ci-smcs|yo-main)\b))/;  ## no critic(RegularExpressions)
@@ -260,6 +332,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $service_udp =~ $IANA_REGEX_SERVICES_UDP;
+
+    # Won't match
+    $non_service_udp =~ $IANA_REGEX_SERVICES_UDP;
 
 =cut
 
@@ -277,9 +357,44 @@ our $IANA_REGEX_SERVICES_UDP = qr/(?^:(?i:\b(?:s(?:u(?:[am]|n(?:-(?:s(?:r-(?:iio
 
 This maps a service and a protocol to the information provided to us by IANA.
 
-For example, C<$IANA_HASH_INFO_FOR_SERVICE->{ ssh }{ tcp }>  will give you the name, description, and note for
-the ssh service over tcp.  The format of the information is a hash ref having the keys I<name>,
-I<desc>, and I<note>.
+=head3 Examples
+
+    #  Get info for ssh over tcp
+    $ssh_tcp_info = $IANA_HASH_INFO_FOR_SERVICE->{ ssh }{ tcp };
+
+    Dumper $ssh_tcp_info;
+    #   22 => {
+    #      desc => 'The Secure Shell (SSH) Protocol'
+    #      name => 'ssh'
+    #      note => 'Defined TXT keys: u=<username> p=<password>'
+    #   }
+
+
+    #  Get info for http over any protocol
+    $http_info = $IANA_HASH_INFO_FOR_SERVICE->{ http };
+
+    Dumper $http_info;
+    #   sctp => {
+    #       '80' => {
+    #           desc => 'HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys => 'u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
+    #   tcp => {
+    #       '80' => {
+    #           desc => 'World Wide Web HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys: u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
+    #   udp => {
+    #       '80' => {
+    #           desc => 'World Wide Web HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys: u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
 
 =cut
 
@@ -291,11 +406,21 @@ our $IANA_HASH_INFO_FOR_SERVICE = $_HASHES_REF->{ q{service_info} };
 
 This lists all of the services for the given port, irregardless of the protocol.
 
-For example, C<$IANA_HASH_SERVICES_FOR_PORT->{ 22 }> will return C<['ssh']>.
+An empty list will be returned if nothing is found.  This respects wantarray>
+
+=head3 Examples
+
+    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 };
+    Dumper $port_22;
+    # [qw/ ssh /];
+
+    my $port_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 };
+    Dumper $port_1110;
+    # [qw/ nfsd-keepalive  webadmstart /]
 
 =cut
 
-our $IANA_HASH_SERVICES_FOR_PORT = $_HASHES_REF->{ q{ports} };
+our $IANA_HASH_SERVICES_FOR_PORT = $_HASHES_REF->{ q{port} };
 
 
 
@@ -303,11 +428,23 @@ our $IANA_HASH_SERVICES_FOR_PORT = $_HASHES_REF->{ q{ports} };
 
 This lists all of the services for the given port and protocol.
 
-For example, C<$IANA_HASH_SERVICES_FOR_PORT_PROTO->{ 22 }{ 'tcp' }> will return C<['ssh']>.
+=head3 Examples
+
+    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 }{ tcp };
+    Dumper $port_22;
+    # [qw/ ssh /];
+
+    my $port_tcp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ tcp };
+    Dumper $port_tcp_1110;
+    # [qw/ webadmstart /]
+
+    my $port_udp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ udp };
+    Dumper $port_udp_1110;
+    # [qw/ nfsd-keepalive /]
 
 =cut
 
-our $IANA_HASH_SERVICES_FOR_PORT_PROTO = $_HASHES_REF->{ q{ports_proto} };
+our $IANA_HASH_SERVICES_FOR_PORT_PROTO = $_HASHES_REF->{ q{port_proto} };
 
 
 
@@ -315,23 +452,15 @@ our $IANA_HASH_SERVICES_FOR_PORT_PROTO = $_HASHES_REF->{ q{ports_proto} };
 
 This lists all of the ports for the given service, irregardless of the protocol.
 
-For example, C<$IANA_HASH_PORT_FOR_SERVICES->{ 'ssh' }> will return C<[22]>.
+=head3 Example
+
+    my $service_http_alt = $IANA_HASH_PORTS_FOR_SERVICE->{ 'http-alt' };
+    Dumper $service_http_alt;
+    # [qw/ 591  8008  8080 /];
 
 =cut
 
 our $IANA_HASH_PORTS_FOR_SERVICE = $_HASHES_REF->{ q{service} };
-
-
-
-=const $IANA_HASH_PORTS_FOR_SERVICE_PROTO
-
-This lists all of the ports for the given service, irregardless of the protocol.
-
-For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
-
-=cut
-
-our $IANA_HASH_PORTS_FOR_SERVICE_PROTO = $_HASHES_REF->{ q{service_proto} };
 
 
 
@@ -341,7 +470,208 @@ our $IANA_HASH_PORTS_FOR_SERVICE_PROTO = $_HASHES_REF->{ q{service_proto} };
 ##########################
 
 
-#This feature is not yet implemented!
+=method iana_has_port
+
+Helper function to check if the given port (and optional protocol) is defined by IANA.
+
+If only the port is given, then it will be checked across all protocols while restricting the search
+to just the provided protocol if one is given.
+
+=head3 Arguments
+
+=begin :list
+
+1. Port
+
+=for :list
+* Required
+* C<Port (int)>
+* Port you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Search results
+
+=for :list
+* C<Boolean>
+* 1 if the match was found, 0 otherwise
+
+=end :list
+
+=cut
+
+sub iana_has_port {
+    my ($port) = @_;
+    return $$IANA_HASH_SERVICES_FOR_PORT->{ $port } ? 1 : 0;
+}
+
+
+
+=method iana_has_service
+
+Helper function to check if the given service (and optional protocol) is defined by IANA.
+
+If only the service name is given, then it will be checked across all protocols while restricting
+the search to just the provided protocol if one is given.
+
+=head3 Arguments
+
+=begin :list
+
+1. Service Name
+
+=for :list
+* Required
+* C<String>
+* Service name you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Search results
+
+=for :list
+* C<Boolean>
+* 1 if the match was found, 0 otherwise
+
+=end :list
+
+=cut
+
+sub iana_has_service {
+    my ($service) = @_;
+    return $$IANA_HASH_PORTS_FOR_SERVICE->{ $service } ? 1 : 0;
+}
+
+
+
+=method iana_info_for_port
+
+Helper function to get the known services for the given port and optional protocol, as defined by
+IANA.
+
+If only the port is given, then you will get back an array ref containing all of the services that
+are defined by IANA.  If a protocol is specified, then the returned prtocols will be limited to
+those running over that type.
+
+=head3 Arguments
+
+=begin :list
+
+1. Port
+
+=for :list
+* Required
+* C<Port (int)>
+* Port you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Search results
+
+=for :list
+* C<Array>
+* The list of protocols running over the specified info (arrayref if in scalar context)
+
+=end :list
+
+=cut
+
+sub iana_info_for_port {
+    my ($port, $protocol) = @_;
+    return  defined $protocol ? $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ $port }{ $protocol } : $IANA_HASH_SERVICES_FOR_PORT->{ $port };
+}
+
+
+
+=method iana_info_for_service
+
+Helper function to get the known information for the given service and optional protocol, as defined
+by IANA.
+
+If only the service is given, then you will get back a hash ref containing the normal return
+information hash for each defined protocol for that service.
+
+=head3 Arguments
+
+=begin :list
+
+1. Service Name
+
+=for :list
+* Required
+* C<String>
+* Service name you want looked up
+
+2. Protocol
+
+=for :list
+* I<Optional>
+* C<String>
+* Limit the search to only this protocol if specified
+
+=end :list
+
+=head3 Returns
+
+=begin :list
+
+1. Service information (for a provided protocol)
+
+=for :list
+* C<Hash>
+* Undefined if the searched was unsuccessful!
+
+The returned hash contains the following pieces of information (keys are lower case):
+
+=for :list
+= Name
+The full name (with proper capitilization) for the requested service
+= Desc
+A short synopsis of the service, usually a sentence or two long
+= Note
+Any additional information they wanted to provided that users should be aware of
+
+=end :list
+
+=cut
+
+sub iana_info_for_service {
+    my ($service, $protocol) = @_;
+    return  defined $protocol ? $IANA_HASH_PORTS_FOR_SERVICE->{ $service }{ $protocol } : $IANA_HASH_PORTS_FOR_SERVICE->{ $service };
+}
 
 
 

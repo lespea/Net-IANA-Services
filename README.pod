@@ -78,6 +78,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $port =~ $IANA_REGEX_PORTS;
+
+    # Won't match
+    $non_port =~ $IANA_REGEX_PORTS;
+
 =head2 $IANA_REGEX_SERVICES
 
 Regular expression to match any service, irregardless of which protocol it goes over.
@@ -86,6 +94,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $service =~ $IANA_REGEX_SERVICES;
+
+    # Won't match
+    $non_service =~ $IANA_REGEX_SERVICES;
 
 =head2 $IANA_REGEX_PORTS_DCCP
 
@@ -96,6 +112,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $port_dccp =~ $IANA_REGEX_PORTS_DCCP;
+
+    # Won't match
+    $non_port_dccp =~ $IANA_REGEX_PORTS_DCCP;
+
 =head2 $IANA_REGEX_PORTS_SCTP
 
 Regular expression to match any port that is known to work over sctp.
@@ -104,6 +128,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $port_sctp =~ $IANA_REGEX_PORTS_SCTP;
+
+    # Won't match
+    $non_port_sctp =~ $IANA_REGEX_PORTS_SCTP;
 
 =head2 $IANA_REGEX_PORTS_TCP
 
@@ -114,6 +146,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $port_tcp =~ $IANA_REGEX_PORTS_TCP;
+
+    # Won't match
+    $non_port_tcp =~ $IANA_REGEX_PORTS_TCP;
+
 =head2 $IANA_REGEX_PORTS_UDP
 
 Regular expression to match any port that is known to work over udp.
@@ -122,6 +162,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $port_udp =~ $IANA_REGEX_PORTS_UDP;
+
+    # Won't match
+    $non_port_udp =~ $IANA_REGEX_PORTS_UDP;
 
 =head2 $IANA_REGEX_SERVICES_DCCP
 
@@ -132,6 +180,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $service_dccp =~ $IANA_REGEX_SERVICES_DCCP;
+
+    # Won't match
+    $non_service_dccp =~ $IANA_REGEX_SERVICES_DCCP;
+
 =head2 $IANA_REGEX_SERVICES_SCTP
 
 Regular expression to match any service that is known to work over sctp.
@@ -140,6 +196,14 @@ While this is a highly optimized regex, you should consider using the hashes or 
 as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
+
+=head3 Example
+
+    # Matches
+    $service_sctp =~ $IANA_REGEX_SERVICES_SCTP;
+
+    # Won't match
+    $non_service_sctp =~ $IANA_REGEX_SERVICES_SCTP;
 
 =head2 $IANA_REGEX_SERVICES_TCP
 
@@ -150,6 +214,14 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $service_tcp =~ $IANA_REGEX_SERVICES_TCP;
+
+    # Won't match
+    $non_service_tcp =~ $IANA_REGEX_SERVICES_TCP;
+
 =head2 $IANA_REGEX_SERVICES_UDP
 
 Regular expression to match any service that is known to work over udp.
@@ -159,37 +231,100 @@ as they are much better.  This is merely for your convenience.
 
 Case is ignored and the protocol must match on a word boundary!
 
+=head3 Example
+
+    # Matches
+    $service_udp =~ $IANA_REGEX_SERVICES_UDP;
+
+    # Won't match
+    $non_service_udp =~ $IANA_REGEX_SERVICES_UDP;
+
 =head2 $IANA_HASH_INFO_FOR_SERVICE
 
 This maps a service and a protocol to the information provided to us by IANA.
 
-For example, C<$IANA_HASH_INFO_FOR_SERVICE->{ ssh }{ tcp }>  will give you the name, description, and note for
-the ssh service over tcp.  The format of the information is a hash ref having the keys I<name>,
-I<desc>, and I<note>.
+=head3 Examples
+
+    #  Get info for ssh over tcp
+    $ssh_tcp_info = $IANA_HASH_INFO_FOR_SERVICE->{ ssh }{ tcp };
+
+    Dumper $ssh_tcp_info;
+    #   22 => {
+    #      desc => 'The Secure Shell (SSH) Protocol'
+    #      name => 'ssh'
+    #      note => 'Defined TXT keys: u=<username> p=<password>'
+    #   }
+
+
+    #  Get info for http over any protocol
+    $http_info = $IANA_HASH_INFO_FOR_SERVICE->{ http };
+
+    Dumper $http_info;
+    #   sctp => {
+    #       '80' => {
+    #           desc => 'HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys => 'u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
+    #   tcp => {
+    #       '80' => {
+    #           desc => 'World Wide Web HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys: u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
+    #   udp => {
+    #       '80' => {
+    #           desc => 'World Wide Web HTTP',
+    #           name => 'http',
+    #           note => 'Defined TXT keys: u=<username> p=<password> path=<path to document>',
+    #       },
+    #   },
 
 =head2 $IANA_HASH_SERVICES_FOR_PORT
 
 This lists all of the services for the given port, irregardless of the protocol.
 
-For example, C<$IANA_HASH_SERVICES_FOR_PORT->{ 22 }> will return C<['ssh']>.
+An empty list will be returned if nothing is found.  This respects wantarray>
+
+=head3 Examples
+
+    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 };
+    Dumper $port_22;
+    # [qw/ ssh /];
+
+    my $port_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 };
+    Dumper $port_1110;
+    # [qw/ nfsd-keepalive  webadmstart /]
 
 =head2 $IANA_HASH_SERVICES_FOR_PORT_PROTO
 
 This lists all of the services for the given port and protocol.
 
-For example, C<$IANA_HASH_SERVICES_FOR_PORT_PROTO->{ 22 }{ 'tcp' }> will return C<['ssh']>.
+=head3 Examples
+
+    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 }{ tcp };
+    Dumper $port_22;
+    # [qw/ ssh /];
+
+    my $port_tcp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ tcp };
+    Dumper $port_tcp_1110;
+    # [qw/ webadmstart /]
+
+    my $port_udp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ udp };
+    Dumper $port_udp_1110;
+    # [qw/ nfsd-keepalive /]
 
 =head2 $IANA_HASH_PORTS_FOR_SERVICE
 
 This lists all of the ports for the given service, irregardless of the protocol.
 
-For example, C<$IANA_HASH_PORT_FOR_SERVICES->{ 'ssh' }> will return C<[22]>.
+=head3 Example
 
-=head2 $IANA_HASH_PORTS_FOR_SERVICE_PROTO
-
-This lists all of the ports for the given service, irregardless of the protocol.
-
-For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
+    my $service_http_alt = $IANA_HASH_PORTS_FOR_SERVICE->{ 'http-alt' };
+    Dumper $service_http_alt;
+    # [qw/ 591  8008  8080 /];
 
 =head1 METHODS
 
@@ -345,6 +480,81 @@ C<Boolean>
 
 =head2 iana_info_for_port
 
+Helper function to get the known services for the given port and optional protocol, as defined by
+IANA.
+
+If only the port is given, then you will get back an array ref containing all of the services that
+are defined by IANA.  If a protocol is specified, then the returned prtocols will be limited to
+those running over that type.
+
+=head3 Arguments
+
+=over 4
+
+=item 1
+
+Port
+
+=over 4
+
+=item *
+
+Required
+
+=item *
+
+C<Port (int)>
+
+=item *
+
+Port you want looked up
+
+=back
+
+=item 2
+
+Protocol
+
+=over 4
+
+=item *
+
+I<Optional>
+
+=item *
+
+C<String>
+
+=item *
+
+Limit the search to only this protocol if specified
+
+=back
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item 1
+
+Search results
+
+=over 4
+
+=item *
+
+C<Array>
+
+=item *
+
+The list of protocols running over the specified info (arrayref if in scalar context)
+
+=back
+
+=back
+
 =head2 iana_info_for_service
 
 Helper function to get the known information for the given service and optional protocol, as defined
@@ -419,7 +629,7 @@ Undefined if the searched was unsuccessful!
 
 =back
 
-The returned hash contains the following pieces of information:
+The returned hash contains the following pieces of information (keys are lower case):
 
 =over 4
 
