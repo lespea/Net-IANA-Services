@@ -18,7 +18,6 @@ use Exporter::Easy (
         hashes => [qw(
             $IANA_HASH_INFO_FOR_SERVICE
             $IANA_HASH_PORTS_FOR_SERVICE
-            $IANA_HASH_PORTS_FOR_SERVICE_PROTO
             $IANA_HASH_SERVICES_FOR_PORT
             $IANA_HASH_SERVICES_FOR_PORT_PROTO
         )],
@@ -513,7 +512,7 @@ to just the provided protocol if one is given.
 
 sub iana_has_port {
     my ($port) = @_;
-    return $$IANA_HASH_SERVICES_FOR_PORT->{ $port } ? 1 : 0;
+    return $IANA_HASH_SERVICES_FOR_PORT->{ $port } ? 1 : 0;
 }
 
 
@@ -561,7 +560,7 @@ the search to just the provided protocol if one is given.
 
 sub iana_has_service {
     my ($service) = @_;
-    return $$IANA_HASH_PORTS_FOR_SERVICE->{ $service } ? 1 : 0;
+    return $IANA_HASH_PORTS_FOR_SERVICE->{ $service } ? 1 : 0;
 }
 
 
@@ -611,7 +610,18 @@ those running over that type.
 
 sub iana_info_for_port {
     my ($port, $protocol) = @_;
-    return  defined $protocol ? $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ $port }{ $protocol } : $IANA_HASH_SERVICES_FOR_PORT->{ $port };
+    if  (defined $protocol) {
+        my $port_ref = $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ $port };
+        if  (defined $port_ref) {
+            return  $port_ref->{ $protocol };
+        }
+        else {
+            return;
+        }
+    }
+    else {
+        return $IANA_HASH_SERVICES_FOR_PORT->{ $port };
+    }
 }
 
 
@@ -658,7 +668,7 @@ The returned hash contains the following pieces of information (keys are lower c
 
 =for :list
 = Name
-The full name (with proper capitilization) for the requested service
+The full name (with proper capitalization) for the requested service
 = Desc
 A short synopsis of the service, usually a sentence or two long
 = Note
@@ -670,7 +680,13 @@ Any additional information they wanted to provided that users should be aware of
 
 sub iana_info_for_service {
     my ($service, $protocol) = @_;
-    return  defined $protocol ? $IANA_HASH_PORTS_FOR_SERVICE->{ $service }{ $protocol } : $IANA_HASH_PORTS_FOR_SERVICE->{ $service };
+    my $serv_ref = $IANA_HASH_INFO_FOR_SERVICE->{ $service };
+    if  (defined $serv_ref) {
+        return  defined $protocol ? $serv_ref->{ $protocol } : $serv_ref;
+    }
+    else {
+        return;
+    }
 }
 
 

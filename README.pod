@@ -635,7 +635,7 @@ The returned hash contains the following pieces of information (keys are lower c
 
 =item Name
 
-The full name (with proper capitilization) for the requested service
+The full name (with proper capitalization) for the requested service
 
 =item Desc
 

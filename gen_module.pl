@@ -114,7 +114,7 @@ my %name_for = (
         'port_proto'   => make_const_name(qw/ IANA  hash  services  for  port  proto /),
 
         'service'       => make_const_name(qw/ IANA  hash  ports  for  service        /),
-        'service_proto' => make_const_name(qw/ IANA  hash  ports  for  service  proto /),
+        #'service_proto' => make_const_name(qw/ IANA  hash  ports  for  service  proto /),
     },
     'regex' => {
         $ALL => {
@@ -236,17 +236,16 @@ This lists all of the ports for the given service, irregardless of the protocol.
     # [qw/ 591  8008  8080 /];
 __END_SPRINTF
     ],
-    #
-    #  Redundant since this is already in the main hash!
-    #    [
-    #        'service_proto',
-    #        \%ports_for_service_proto,
-    #        <<'__END_SPRINTF'
-    #This lists all of the ports for the given service, irregardless of the protocol.
-    #
-    #For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
-    #__END_SPRINTF
-    #    ],
+
+#    [
+#        'service_proto',
+#        \%ports_for_service_proto,
+#        <<'__END_SPRINTF'
+#This lists all of the ports for the given service, irregardless of the protocol.
+#
+#For example, C<$IANA_HASH_PORT_FOR_SERVICES_PROTO->{ 'ssh' }{ 'tcp' }> will return C<[22]>.
+#__END_SPRINTF
+#    ],
 );
 
 
@@ -327,7 +326,7 @@ sub populate_globals {
                 )  if  $GEN_DOC;
                 $i++;
 
-                #$ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
+                $ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
                 $services_for_port_proto{ $port        }{ $protocol }{ $name_lookup } = 1;
 
                 $assembler_for{ $ALL      }{ port    }->add( $p );
@@ -348,17 +347,21 @@ sub populate_globals {
     }
 
 
-    #for  my $name  (keys %ports_for_service_proto) {
-    #    my %ports;
-    #    for  my $ports_ref  (values %{ $ports_for_service_proto{ $name } }) {
-    #        $ports{ $_ } = 1  for  keys %$ports_ref;
-    #    }
-    #    $ports_for_service{ $name } = [sort keys %ports];
-    #}
+    for  my $name  (keys %ports_for_service_proto) {
+        my %ports;
+        for  my $protocol  (keys %{ $ports_for_service_proto{ $name } }) {
+            my $ports_ref = $ports_for_service_proto{ $name }{ $protocol };
+            $ports{ $_ } = 1  for  keys %$ports_ref;
+            $ports_for_service_proto{ $name }{ $protocol } = [sort keys %$ports_ref];
+        }
+        $ports_for_service{ $name } = [sort keys %ports];
+    }
     for  my $port  (keys %services_for_port_proto) {
         my %names;
-        for  my $ports_ref  (values %{ $services_for_port_proto{ $port } }) {
-            $names{ $_ } = 1  for  keys %$ports_ref;
+        for  my $protocol  (keys %{ $services_for_port_proto{ $port } }) {
+            my $service_ref = $services_for_port_proto{ $port }{ $protocol };
+            $names{ $_ } = 1  for  keys %$service_ref;
+            $services_for_port_proto{ $port }{ $protocol } = [sort keys %$service_ref]
         }
         $services_for_port{ $port } = [sort keys %names];
     }
@@ -726,28 +729,45 @@ __END_SPRINTF
             has => {
                 service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ service }, $name_for{ hash }{ service }),
 my ($service) = @_;
-return $%2$s->{ $service } ? 1 : 0;
+return %2$s->{ $service } ? 1 : 0;
 __END_SPRINTF
 
 
                 port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ port }, $name_for{ hash }{ port }),
 my ($port) = @_;
-return $%2$s->{ $port } ? 1 : 0;
+return %2$s->{ $port } ? 1 : 0;
 __END_SPRINTF
             },
 
 
 
             info => {
-                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ service }, $name_for{ hash }{ service } ),
+                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ service }, $name_for{ hash }{ service_info } ),
 my ($service, $protocol) = @_;
-return  defined $protocol ? %2$s->{ $service }{ $protocol } : %2$s->{ $service };
+my $serv_ref = %2$s->{ $service };
+if  (defined $serv_ref) {
+    return  defined $protocol ? $serv_ref->{ $protocol } : $serv_ref;
+}
+else {
+    return;
+}
 __END_SPRINTF
 
 
                 port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ port }, $name_for{ hash }{ port }, $name_for{ hash }{ port_proto } ),
 my ($port, $protocol) = @_;
-return  defined $protocol ? %3$s->{ $port }{ $protocol } : %2$s->{ $port };
+if  (defined $protocol) {
+    my $port_ref = %3$s->{ $port };
+    if  (defined $port_ref) {
+        return  $port_ref->{ $protocol };
+    }
+    else {
+        return;
+    }
+}
+else {
+    return %2$s->{ $port };
+}
 __END_SPRINTF
             },
         },
