@@ -666,7 +666,7 @@ The returned hash contains the following pieces of information (keys are lower c
 
 =for :list
 = Name
-The full name (with proper capitilization) for the requested service
+The full name (with proper capitalization) for the requested service
 = Desc
 A short synopsis of the service, usually a sentence or two long
 = Note
