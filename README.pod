@@ -572,10 +572,10 @@ The list of protocols running over the specified info (arrayref if in scalar con
 
 =head3 Examples
 
-    iana_info_for_port( 22 );    # [qw/ ssh]/]
+    iana_info_for_port( 22 );    # [qw/ ssh /]
     iana_info_for_port( 34221 ); # []
 
-    iana_info_for_port( 271, 'tcp' );  # [qw/ pt-tls]/]
+    iana_info_for_port( 271, 'tcp' );  # [qw/ pt-tls /]
     iana_info_for_port( 271, 'udp' );  # []
 
 =head2 iana_info_for_service

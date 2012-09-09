@@ -623,10 +623,10 @@ those running over that type.
 
 =head3 Examples
 
-    iana_info_for_port( 22 );    # [qw/ ssh]/]
+    iana_info_for_port( 22 );    # [qw/ ssh /]
     iana_info_for_port( 34221 ); # []
 
-    iana_info_for_port( 271, 'tcp' );  # [qw/ pt-tls]/]
+    iana_info_for_port( 271, 'tcp' );  # [qw/ pt-tls /]
     iana_info_for_port( 271, 'udp' );  # []
 
 =cut

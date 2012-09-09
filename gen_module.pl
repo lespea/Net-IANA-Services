@@ -745,10 +745,10 @@ those running over that type.
 
 =head3 Examples
 
-    %1$s( 22 );    # [qw/ ssh]/]
+    %1$s( 22 );    # [qw/ ssh /]
     %1$s( 34221 ); # []
 
-    %1$s( 271, 'tcp' );  # [qw/ pt-tls]/]
+    %1$s( 271, 'tcp' );  # [qw/ pt-tls /]
     %1$s( 271, 'udp' );  # []
 __END_SPRINTF
             },
