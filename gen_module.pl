@@ -698,9 +698,9 @@ Any additional information they wanted to provided that users should be aware of
 =head3 Examples
 
     %1$s( 'xribs' );  # { udp => { 2025 => { desc => '', name => 'xribs', note => '' } } }
-    %1$s( 'not-ss' ); # {}
+    %1$s( 'not-ss' ); # undef
 
-    %1$s( 'xribs', 'tcp' );  # {}
+    %1$s( 'xribs', 'tcp' );  # undef
     %1$s( 'xribs', 'udp' );  # { 2025 => { desc => '', name => 'xribs', note => '' } }
 __END_SPRINTF
 
@@ -749,10 +749,10 @@ those running over that type.
 =head3 Examples
 
     %1$s( 22 );    # [qw/ ssh /]
-    %1$s( 34221 ); # []
+    %1$s( 34221 ); # undef
 
     %1$s( 271, 'tcp' );  # [qw/ pt-tls /]
-    %1$s( 271, 'udp' );  # []
+    %1$s( 271, 'udp' );  # undef
 __END_SPRINTF
             },
         },
