@@ -6,7 +6,7 @@ Net::IANA::Services - Makes working with named ip services easier
 
 =head1 VERSION
 
-version 0.001000
+version 0.002000
 
 =head1 SYNOPSIS
 
