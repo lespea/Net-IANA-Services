@@ -41,11 +41,11 @@ my @regex_tests = (
 
     [$IANA_REGEX_PORTS_SCTP, 'sctp port regex',
         [qw/ 21  9901  9 /],
-        [qw/ 53    80  5 /],
+        [qw/ 53  1310  5 /],
     ],
     [$IANA_REGEX_SERVICES_SCTP, 'sctp service regex',
         [qw/ ftp    enrp-sctp  discard  /],
-        [qw/ blarg  http       zdiscard /],
+        [qw/ blarg  husky      zdiscard /],
     ],
 
     [$IANA_REGEX_PORTS_TCP, 'tcp port regex',
@@ -74,7 +74,7 @@ my $tests;
 for  my $test_ref  (@regex_tests) {
     $tests += @{$test_ref->[$_]}  for  2..3;
 }
-$tests +=  18;  # synopsis tests
+$tests +=  19;  # synopsis tests
 $tests +=  8;  # hash tests
 $tests +=  16;  # sub tests
 
@@ -172,11 +172,11 @@ for  my $test_ref  (@regex_tests) {
 
     for  my $okay_txt  (@$okay_ref) {
         my $msg = "$name matched $okay_txt correctly";
-        is $okay_txt =~ $regex, 1, $msg;
+        is $okay_txt =~ /\A$regex\z/xms, 1, $msg;
     }
     for  my $bad_txt  (@$bad_ref) {
         my $msg = "$name did not match $bad_txt correctly";
-        is $bad_txt =~ $regex, q{}, $msg;
+        is $bad_txt =~ /\A$regex\z/xms, q{}, $msg;
     }
 }
 
