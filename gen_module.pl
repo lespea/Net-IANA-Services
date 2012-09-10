@@ -50,7 +50,7 @@ sub trim;
 
 #  Control how our module works
 const  my $ZIP_YAML => 0;
-const  my $GEN_DOC  => 1;
+const  my $GEN_DOC  => 0;
 
 #  Used to parse the yml files
 const  my $IN_FILENAME      => 'service_mapping.yml';
@@ -161,7 +161,7 @@ This maps a service and a protocol to the information provided to us by IANA.
     #       '80' => {
     #           desc => 'HTTP',
     #           name => 'http',
-    #           note => 'Defined TXT keys => 'u=<username> p=<password> path=<path to document>',
+    #           note => 'Defined TXT keys: u=<username> p=<password> path=<path to document>',
     #       },
     #   },
     #   tcp => {
@@ -193,7 +193,7 @@ An empty list will be returned if nothing is found.  This respects wantarray>
 
     my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 };
     Dumper $port_22;
-    # [qw/ ssh /];
+    # [qw/ ssh /]
 
     my $port_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 };
     Dumper $port_1110;
@@ -209,15 +209,15 @@ This lists all of the services for the given port and protocol.
 
 =head3 Examples
 
-    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT->{ 22 }{ tcp };
+    my $port_22 = $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ 22 }{ tcp };
     Dumper $port_22;
-    # [qw/ ssh /];
+    # [qw/ ssh /]
 
-    my $port_tcp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ tcp };
+    my $port_tcp_1110 = $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ 1110 }{ tcp };
     Dumper $port_tcp_1110;
     # [qw/ webadmstart /]
 
-    my $port_udp_1110 = $IANA_HASH_SERVICES_FOR_PORT->{ 1110 }{ udp };
+    my $port_udp_1110 = $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ 1110 }{ udp };
     Dumper $port_udp_1110;
     # [qw/ nfsd-keepalive /]
 __END_SPRINTF
@@ -329,8 +329,8 @@ sub populate_globals {
                 $ports_for_service_proto{ $name_lookup }{ $protocol }{ $port        } = 1;
                 $services_for_port_proto{ $port        }{ $protocol }{ $name_lookup } = 1;
 
-                $assembler_for{ $ALL      }{ port    }->add( $p );
-                $assembler_for{ $protocol }{ port    }->add( $p );
+                $assembler_for{ $ALL      }{ port    }->add( "(?<!-)$p" );
+                $assembler_for{ $protocol }{ port    }->add( "(?<!-)$p" );
                 $assembler_for{ $protocol }{ service }->add( $n );
             }
 
@@ -368,6 +368,7 @@ sub populate_globals {
 
     if  ($GEN_DOC) {
         open  my $fh_doc, '>:encoding(utf8)', $DOC_SERVICES_FULLNAME;
+        binmode $fh_doc;
         $fh_doc->say( join qq{\n}, @services_doc_text);
     }
 }
@@ -518,6 +519,7 @@ sub gen_hash_refs {
     }
 
     open  my $fh_out, '>:encoding(utf8)', $HASHES_YAML_FULLNAME;
+    binmode $fh_out;
     DumpFile $fh_out, \%hash_dump;
 
     return join qq{\n\n\n}, @hash_defs;
@@ -696,9 +698,9 @@ Any additional information they wanted to provided that users should be aware of
 =head3 Examples
 
     %1$s( 'xribs' );  # { udp => { 2025 => { desc => '', name => 'xribs', note => '' } } }
-    %1$s( 'not-ss' ); # undef
+    %1$s( 'not-ss' ); # {}
 
-    %1$s( 'xribs', 'tcp' );  # undef
+    %1$s( 'xribs', 'tcp' );  # {}
     %1$s( 'xribs', 'udp' );  # { 2025 => { desc => '', name => 'xribs', note => '' } }
 __END_SPRINTF
 
@@ -740,6 +742,7 @@ those running over that type.
 =for :list
 * C<Array>
 * The list of protocols running over the specified info (arrayref if in scalar context)
+* Undefined if the searched was unsuccessful!
 
 =end :list
 
@@ -759,15 +762,37 @@ __END_SPRINTF
 
         body => {
             has => {
-                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ service }, $name_for{ hash }{ service }),
-my ($service) = @_;
-return %2$s->{ $service } ? 1 : 0;
+                service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ service }, $name_for{ hash }{ service }, $name_for{ hash }{ service_info }),
+my ($service, $protocol) = @_;
+if (defined $protocol) {
+    my $serv_ref = %3$s->{ $service };
+    if (defined $serv_ref) {
+        return $serv_ref->{ $protocol } ? 1 : 0;
+    }
+    else {
+        return 0;
+    }
+}
+else {
+    return %2$s->{ $service } ? 1 : 0;
+}
 __END_SPRINTF
 
 
-                port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ port }, $name_for{ hash }{ port }),
-my ($port) = @_;
-return %2$s->{ $port } ? 1 : 0;
+                port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ has }{ port }, $name_for{ hash }{ port }, $name_for{ hash }{ port_proto }),
+my ($port, $protocol) = @_;
+if (defined $protocol) {
+    my $port_ref = %3$s->{ $port };
+    if (defined $port_ref) {
+        return $port_ref->{ $protocol } ? 1 : 0;
+    }
+    else {
+        return 0;
+    }
+}
+else {
+    return %2$s->{ $port } ? 1 : 0;
+}
 __END_SPRINTF
             },
 
@@ -777,8 +802,12 @@ __END_SPRINTF
                 service => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ service }, $name_for{ hash }{ service_info } ),
 my ($service, $protocol) = @_;
 my $serv_ref = %2$s->{ $service };
+my $ret;
 if  (defined $serv_ref) {
-    return  defined $protocol ? $serv_ref->{ $protocol } : $serv_ref;
+    $ret = defined $protocol ? $serv_ref->{ $protocol } : $serv_ref;
+}
+if (defined $ret) {
+    return wantarray  ?  %%$ret  :  $ret;
 }
 else {
     return;
@@ -788,17 +817,21 @@ __END_SPRINTF
 
                 port => sprintf( <<'__END_SPRINTF', $name_for{ sub }{ info }{ port }, $name_for{ hash }{ port }, $name_for{ hash }{ port_proto } ),
 my ($port, $protocol) = @_;
+my $ret;
 if  (defined $protocol) {
     my $port_ref = %3$s->{ $port };
     if  (defined $port_ref) {
-        return  $port_ref->{ $protocol };
-    }
-    else {
-        return;
+        $ret = $port_ref->{ $protocol };
     }
 }
 else {
-    return %2$s->{ $port };
+    $ret = %2$s->{ $port };
+}
+if (defined $ret) {
+    return wantarray  ?  @$ret  :  $ret;
+}
+else {
+    return;
 }
 __END_SPRINTF
             },
@@ -828,6 +861,7 @@ sub gen_module {
     my $txt = gen_module_text;
 
     open  my $fh, '>:encoding(utf8)', $OUTPUT_MODULE_FULLPATH;
+    binmode $fh;
     $fh->say( $txt );
 }
 
@@ -898,13 +932,13 @@ use File::ShareDir qw/ dist_file /;
 
 
     #  Demonstration of the service hashes
-    $IANA_HASH_INFO_FOR_SERVICE->{ $service }{ tcp }; # { name => 'HTTPS', desc => 'https description', note => 'note about https' }
+    $IANA_HASH_INFO_FOR_SERVICE->{ $service }{ tcp }{ 443 }; # { name => 'https', desc => 'http protocol over TLS/SSL', note => '' }
 
     $IANA_HASH_PORTS_FOR_SERVICE      ->{ $service }; # [qw/ 443 /]              --  List of all the services that use that port
 
     #  Demonstration  of the port hashes
-    $IANA_HASH_SERVICES_FOR_PORT      ->{ $port };    # [qw/ ssh /]         --  List of all the services that use that port
-    $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ $port };    # {tcp => qw/ ssh /}  --  Hash of all the protocol/services that use that port
+    $IANA_HASH_SERVICES_FOR_PORT      ->{ $port }     ;  # [qw/ ssh /]  --  List of all the services that use that port
+    $IANA_HASH_SERVICES_FOR_PORT_PROTO->{ $port }{tcp};  # [qw/ ssh /]  --  Hash of all the protocol/services that use that port
 
 
     #  Demonstration of the service/port checker subroutines
@@ -950,9 +984,9 @@ hashes, functions, and regular expressions.
 
 
 
-##########################
-#  Subroutine constants  #
-##########################
+#################
+#  Subroutines  #
+#################
 
 
 %6$s

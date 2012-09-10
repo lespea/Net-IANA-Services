@@ -1,6 +1,16 @@
 Revision history for Net-IANA-Services
 
 {{$NEXT}}
+    [Enhancement]
+        *   Test the examples
+        *   Don't generate the massive port pod -- not very useful
+
+    [Bugs]
+        *   Fix inconsistencies in examples
+        *   Fix bad examples
+        *   Subroutines respect wantarray
+        *   'Has' subroutines actually use the optional protocol if it's given
+        *   Port regex makes sure the leading char isn't a negative symbol
 
 0.001000  2012-09-09 09:47:08 America/Chicago
     *   Initial version
