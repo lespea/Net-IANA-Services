@@ -1,6 +1,8 @@
 Revision history for Net-IANA-Services
 
 {{$NEXT}}
+
+0.003000  2012-09-10 21:07:15 America/Chicago
     [Bugs]
         *   Sub examples now correctly indicate undef instead of empty refs
         *   Don't use Dumper since it creates regexes that are only compatable with perls > 5.14
