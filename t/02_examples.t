@@ -172,11 +172,11 @@ for  my $test_ref  (@regex_tests) {
 
     for  my $okay_txt  (@$okay_ref) {
         my $msg = "$name matched $okay_txt correctly";
-        is $okay_txt =~ /\A$regex\z/xms, 1, $msg;
+        is $okay_txt =~ $regex, 1, $msg;
     }
     for  my $bad_txt  (@$bad_ref) {
         my $msg = "$name did not match $bad_txt correctly";
-        is $bad_txt =~ /\A$regex\z/xms, q{}, $msg;
+        is $bad_txt =~ $regex, q{}, $msg;
     }
 }
 

@@ -3,6 +3,8 @@ Revision history for Net-IANA-Services
 {{$NEXT}}
     [Bugs]
         *   Sub examples now correctly indicate undef instead of empty refs
+        *   Don't use Dumper since it creates regexes that are only compatable with perls > 5.14
+        *   Change service regex so they work without additional anchors
 
 0.002000  2012-09-10 07:09:44 America/Chicago
     [Enhancement]

@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 
 #  This is the 21st century
-use Modern::Perl qw/ 2012 /;
+use Modern::Perl qw/ 2010 /;
 use utf8;
 
 
@@ -331,7 +331,7 @@ sub populate_globals {
 
                 $assembler_for{ $ALL      }{ port    }->add( "(?<!-)$p" );
                 $assembler_for{ $protocol }{ port    }->add( "(?<!-)$p" );
-                $assembler_for{ $protocol }{ service }->add( $n );
+                $assembler_for{ $protocol }{ service }->add( "(?<![-])${n}(?![-])" );
             }
 
             push @services_doc_text, qq{=back\n}  if  $GEN_DOC;
@@ -342,7 +342,7 @@ sub populate_globals {
     for  my $assembler_name  (keys %assembler_for) {
         for  my $type  (keys %{ $assembler_for{ $assembler_name } }) {
             $assembler_for{ $assembler_name }{ $type } =
-                $assembler_for{ $assembler_name }{ $type }->anchor_word( 1 )->re;
+                $assembler_for{ $assembler_name }{ $type }->anchor_word( 1 )->as_string;
         }
     }
 
@@ -416,14 +416,14 @@ __END_SPRINTF
 
 sub gen_regex {
     my ($name, $regex_obj, $documentation) = @_;
-    my $regex_def = sprintf <<'__END_SPRINTF', map {trim $_} uc $name, scalar( Dumper( $regex_obj ) ), $documentation;
+    my $regex_def = sprintf <<'__END_SPRINTF', map {trim $_} uc $name, $regex_obj, $documentation;
 =const %1$s
 
 %3$s
 
 =cut
 
-our %1$s = %2$s;  ## no critic(RegularExpressions)
+our %1$s = qr{%2$s}i;  ## no critic(RegularExpressions)
 __END_SPRINTF
 
     return $regex_def;
@@ -1002,7 +1002,7 @@ __END_SPRINTF
 
 
 #  Escape a string so we can insert it into a q{} declaration in the generated module
-sub escape_curly_quote {
+sub escape_curly_quote($) {
     my ($txt) = @_;
     return $txt =~ s/(?=[\\{}])/\\/xmsgr;
 }

@@ -6,7 +6,7 @@ Net::IANA::Services - Makes working with named ip services easier
 
 =head1 VERSION
 
-version 0.002000
+version 0.003000
 
 =head1 SYNOPSIS
 
@@ -577,10 +577,10 @@ Undefined if the searched was unsuccessful!
 =head3 Examples
 
     iana_info_for_port( 22 );    # [qw/ ssh /]
-    iana_info_for_port( 34221 ); # []
+    iana_info_for_port( 34221 ); # undef
 
     iana_info_for_port( 271, 'tcp' );  # [qw/ pt-tls /]
-    iana_info_for_port( 271, 'udp' );  # []
+    iana_info_for_port( 271, 'udp' );  # undef
 
 =head2 iana_info_for_service
 
@@ -679,9 +679,9 @@ Any additional information they wanted to provided that users should be aware of
 =head3 Examples
 
     iana_info_for_service( 'xribs' );  # { udp => { 2025 => { desc => '', name => 'xribs', note => '' } } }
-    iana_info_for_service( 'not-ss' ); # {}
+    iana_info_for_service( 'not-ss' ); # undef
 
-    iana_info_for_service( 'xribs', 'tcp' );  # {}
+    iana_info_for_service( 'xribs', 'tcp' );  # undef
     iana_info_for_service( 'xribs', 'udp' );  # { 2025 => { desc => '', name => 'xribs', note => '' } }
 
 =encoding utf8
