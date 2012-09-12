@@ -1,12 +1,20 @@
 Revision history for Net-IANA-Services
 
 {{$NEXT}}
+    [Bugs]
+        *   Generate files with normal YAML instead of YAML::XS since it generates files that are
+            causing problems on cpantesters
+
+    [Enhancement]
+        *   Recommend YAML::XS since loading the module is extremely slow with normal YAML!
+
 
 0.003000  2012-09-10 21:07:15 America/Chicago
     [Bugs]
         *   Sub examples now correctly indicate undef instead of empty refs
         *   Don't use Dumper since it creates regexes that are only compatable with perls > 5.14
         *   Change service regex so they work without additional anchors
+
 
 0.002000  2012-09-10 07:09:44 America/Chicago
     [Enhancement]
@@ -19,6 +27,7 @@ Revision history for Net-IANA-Services
         *   Subroutines respect wantarray
         *   'Has' subroutines actually use the optional protocol if it's given
         *   Port regex makes sure the leading char isn't a negative symbol
+
 
 0.001000  2012-09-09 09:47:08 America/Chicago
     *   Initial version

@@ -9,7 +9,7 @@ use Data::Printer;
 
 use List::MoreUtils qw/ all /;
 use XML::Twig;
-use YAML::XS qw/ DumpFile /;
+use YAML     qw/ DumpFile /;
 
 const  my $xml_uri      => q{http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml};
 const  my $out_filename => 'service_mapping.yml';

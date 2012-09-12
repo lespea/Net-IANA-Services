@@ -22,7 +22,7 @@ use Data::Traverse      qw/ traverse /;
 use File::Path          qw/ make_path  remove_tree /;
 use File::Spec;
 use Regexp::Assemble;
-use YAML::XS            qw/ DumpFile  LoadFile /;
+use YAML                qw/ DumpFile  LoadFile /;
 
 
 #  Subroutine declaration
