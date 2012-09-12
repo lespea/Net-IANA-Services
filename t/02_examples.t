@@ -27,7 +27,7 @@ my @regex_tests = (
     ],
     [$IANA_REGEX_SERVICES, 'service regex',
         [qw/ http   htTPS   sSh   /],
-        [qw/ blarg  zhttpz  80ssh /],
+        [qw/ blarg  zhttpz  80ssh  blarg-ap /],
     ],
 
     [$IANA_REGEX_PORTS_DCCP, 'dccp port regex',

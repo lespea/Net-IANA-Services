@@ -275,7 +275,7 @@ sub populate_globals {
 
     for  my $name_lookup  (sort keys %$INFO_FOR_SERVICE) {
         my $n = quotemeta $name_lookup;
-        $assembler_for{ all }{ service }->add( quotemeta $n );
+        $assembler_for{ all }{ service }->add( "(?<![-])${n}(?![-])"  );
 
         push @services_doc_text, qq{=head2 $name_lookup\n}  if  $GEN_DOC;
 
