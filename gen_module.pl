@@ -932,9 +932,8 @@ use File::ShareDir qw/ dist_file /;
 
 
     #  Demonstration of the service hashes
-    $IANA_HASH_INFO_FOR_SERVICE->{ $service }{ tcp }{ 443 }; # { name => 'https', desc => 'http protocol over TLS/SSL', note => '' }
-
-    $IANA_HASH_PORTS_FOR_SERVICE      ->{ $service }; # [qw/ 443 /]              --  List of all the services that use that port
+    $IANA_HASH_INFO_FOR_SERVICE-> { $service }{ tcp }{ 443 }; # { name => 'https', desc => 'http protocol over TLS/SSL', note => '' }
+    $IANA_HASH_PORTS_FOR_SERVICE->{ $service };               # [qw/ 443 /]  --  List of all the services that use that port
 
     #  Demonstration  of the port hashes
     $IANA_HASH_SERVICES_FOR_PORT      ->{ $port }     ;  # [qw/ ssh /]  --  List of all the services that use that port
