@@ -1,6 +1,8 @@
 Revision history for Net-IANA-Services
 
 {{$NEXT}}
+
+0.003001  2012-09-11 23:05:39 America/Chicago
     [Bugs]
         *   Generate files with normal YAML instead of YAML::XS since it generates files that are
             causing problems on cpantesters
