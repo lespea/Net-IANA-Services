@@ -1709,6 +1709,22 @@ ah-esp-encap:
       desc: AH and ESP Encapsulated in UDP packet
       name: ah-esp-encap
       note: ''
+ahsp:
+  sctp:
+    4333:
+      desc: ArrowHead Service Protocol (AHSP)
+      name: ahsp
+      note: ''
+  tcp:
+    4333:
+      desc: ArrowHead Service Protocol (AHSP)
+      name: ahsp
+      note: ''
+  udp:
+    4333:
+      desc: ArrowHead Service Protocol (AHSP)
+      name: ahsp
+      note: ''
 aiagent:
   tcp:
     7738:
@@ -1763,6 +1779,12 @@ aicc-cmi:
     3316:
       desc: AICC/CMI
       name: aicc-cmi
+      note: ''
+ailith:
+  tcp:
+    17555:
+      desc: Ailith management of routers
+      name: ailith
       note: ''
 aimpp-hello:
   tcp:
@@ -2147,6 +2169,12 @@ altserviceboot:
       desc: Alternate Service Boot
       name: altserviceboot
       note: ''
+amahi-anywhere:
+  tcp:
+    4563:
+      desc: Amahi Anywhere
+      name: amahi-anywhere
+      note: ''
 amanda:
   tcp:
     10080:
@@ -2191,6 +2219,17 @@ amc:
       desc: Amcom Mobile Connect
       name: amc
       note: ''
+amcs:
+  tcp:
+    8766:
+      desc: Agilent Connectivity Service
+      name: amcs
+      note: ''
+  udp:
+    8766:
+      desc: Agilent Connectivity Service
+      name: amcs
+      note: ''
 amdsched:
   tcp:
     1931:
@@ -2201,6 +2240,23 @@ amdsched:
     1931:
       desc: AMD SCHED
       name: amdsched
+      note: ''
+amicon-fpsu-ra:
+  tcp:
+    30003:
+      desc: Amicon FPSU-IP Remote Administration
+      name: amicon-fpsu-ra
+      note: ''
+  udp:
+    30003:
+      desc: Amicon FPSU-IP Remote Administration
+      name: amicon-fpsu-ra
+      note: ''
+amicon-fpsu-s:
+  udp:
+    30004:
+      desc: Amicon FPSU-IP VPN
+      name: amicon-fpsu-s
       note: ''
 amiganetfs:
   tcp:
@@ -3730,6 +3786,12 @@ armadp:
       desc: armadp
       name: armadp
       note: ''
+armagetronad:
+  udp:
+    4534:
+      desc: Armagetron Advanced Game Server
+      name: armagetronad
+      note: ''
 armcenterhttp:
   tcp:
     9294:
@@ -4089,6 +4151,12 @@ asoki-sma:
       desc: Asoki SMA
       name: asoki-sma
       note: ''
+aspcoordination:
+  udp:
+    7235:
+      desc: ASP Coordination Protocol
+      name: aspcoordination
+      note: ''
 aspeclmd:
   tcp:
     1544:
@@ -4201,6 +4269,12 @@ asterix:
     8600:
       desc: Surveillance Data
       name: asterix
+      note: ''
+astrolink:
+  tcp:
+    27876:
+      desc: Astrolink Protocol
+      name: astrolink
       note: ''
 astromed-main:
   tcp:
@@ -4941,6 +5015,17 @@ avt-profile-2:
       desc: RTP control protocol
       name: avt-profile-2
       note: ''
+avtp:
+  tcp:
+    17220:
+      desc: IEEE 1722 Transport Protocol for Time Sensitive Applications
+      name: avtp
+      note: ''
+  udp:
+    17220:
+      desc: IEEE 1722 Transport Protocol for Time Sensitive Applications
+      name: avtp
+      note: ''
 awacs-ice:
   tcp:
     4488:
@@ -5278,6 +5363,17 @@ banyan-vip:
     573:
       desc: banyan-vip
       name: banyan-vip
+      note: ''
+barracuda-bbs:
+  tcp:
+    5120:
+      desc: Barracuda Backup Protocol
+      name: barracuda-bbs
+      note: ''
+  udp:
+    5120:
+      desc: Barracuda Backup Protocol
+      name: barracuda-bbs
       note: ''
 base:
   tcp:
@@ -5678,6 +5774,12 @@ bfd-echo:
       desc: BFD Echo Protocol
       name: bfd-echo
       note: ''
+bfd-lag:
+  udp:
+    6784:
+      desc: Bidirectional Forwarding Detection (BFD) on Link Aggregation Group (LAG) Interfaces
+      name: bfd-lag
+      note: ''
 bfd-multi-ctl:
   tcp:
     4784:
@@ -5872,6 +5974,12 @@ binderysupport:
     2302:
       desc: Bindery Support
       name: binderysupport
+      note: ''
+bingbang:
+  tcp:
+    29999:
+      desc: data exchange protocol for IEC61850 in wind power plants
+      name: bingbang
       note: ''
 binkp:
   tcp:
@@ -6463,6 +6571,12 @@ bnetgame:
     1119:
       desc: Battle.net Chat/Game Protocol
       name: bnetgame
+      note: ''
+bngsync:
+  udp:
+    10439:
+      desc: BalanceNG session table synchronization protocol
+      name: bngsync
       note: ''
 bnt-manager:
   tcp:
@@ -7190,6 +7304,12 @@ busboy:
       desc: ''
       name: busboy
       note: ''
+buschtrommel:
+  udp:
+    4747:
+      desc: peer-to-peer file exchange protocol
+      name: buschtrommel
+      note: ''
 business:
   tcp:
     3107:
@@ -7289,15 +7409,26 @@ bvcontrol:
       desc: bvcontrol
       name: bvcontrol
       note: ''
+bveapi:
+  tcp:
+    10880:
+      desc: BVEssentials HTTP API
+      name: bveapi
+      note: ''
+  udp:
+    10880:
+      desc: BVEssentials HTTP API
+      name: bveapi
+      note: ''
 bvtsonar:
   tcp:
     1149:
-      desc: BVT Sonar Service
+      desc: BlueView Sonar Service
       name: bvtsonar
       note: ''
   udp:
     1149:
-      desc: BVT Sonar Service
+      desc: BlueView Sonar Service
       name: bvtsonar
       note: ''
 bxp:
@@ -7749,12 +7880,12 @@ call-logging:
 call-sig-trans:
   tcp:
     2517:
-      desc: H.323 Annex E call signaling transport
+      desc: H.323 Annex E Call Control Signalling Transport
       name: call-sig-trans
       note: ''
   udp:
     2517:
-      desc: H.323 Annex E call signaling transport
+      desc: H.323 Annex E Call Control Signalling Transport
       name: call-sig-trans
       note: ''
 caller9:
@@ -8030,6 +8161,12 @@ canon-mfnp:
     8610:
       desc: Canon MFNP Service
       name: canon-mfnp
+      note: ''
+canto-roboflow:
+  tcp:
+    8998:
+      desc: Canto RoboFlow Control
+      name: canto-roboflow
       note: ''
 cap:
   tcp:
@@ -8672,6 +8809,12 @@ cedros_fds:
         This entry is an alias to "cedros-fds".
         This entry is now historic, not usable for use with many
         common service discovery mechanisms.
+cefd-vmp:
+  udp:
+    10023:
+      desc: Comtech EF-Data's Vipersat Management Protocol
+      name: cefd-vmp
+      note: ''
 celatalk:
   tcp:
     3485:
@@ -9095,6 +9238,18 @@ chmd:
     3099:
       desc: CHIPSY Machine Daemon
       name: chmd
+      note: ''
+choiceview-agt:
+  tcp:
+    4314:
+      desc: ChoiceView Agent
+      name: choiceview-agt
+      note: ''
+choiceview-clt:
+  tcp:
+    4316:
+      desc: ChoiceView Client
+      name: choiceview-clt
       note: ''
 chromagrafx:
   tcp:
@@ -9911,6 +10066,12 @@ coap:
       desc: Constrained Application Protocol
       name: coap
       note: ''
+coaps:
+  udp:
+    5684:
+      desc: DTLS-secured CoAP
+      name: coaps
+      note: ''
 coauthor:
   tcp:
     1529:
@@ -9959,12 +10120,18 @@ codemeter:
   tcp:
     22350:
       desc: CodeMeter Standard
-      name: CodeMeter
+      name: codemeter
       note: ''
   udp:
     22350:
       desc: CodeMeter Standard
-      name: CodeMeter
+      name: codemeter
+      note: ''
+codemeter-cmwan:
+  tcp:
+    22351:
+      desc: TPC/IP requests of copy protection software to a server
+      name: codemeter-cmwan
       note: ''
 codima-rtp:
   tcp:
@@ -10632,6 +10799,18 @@ cops-tls:
     3183:
       desc: COPS/TLS
       name: cops-tls
+      note: ''
+copy:
+  tcp:
+    8445:
+      desc: Port for copy peer sync feature
+      name: copy
+      note: ''
+copy-disc:
+  udp:
+    8445:
+      desc: Port for copy discovery
+      name: copy-disc
       note: ''
 copycat:
   tcp:
@@ -11448,6 +11627,12 @@ cso:
     105:
       desc: CCSO name server protocol
       name: cso
+      note: ''
+csoauth:
+  tcp:
+    7847:
+      desc: A product key authentication protocol made by CSO
+      name: csoauth
       note: ''
 csoft-plusclnt:
   tcp:
@@ -12308,6 +12493,12 @@ dali-port:
       desc: DALI Port
       name: dali-port
       note: ''
+damewaremobgtwy:
+  tcp:
+    6130:
+      desc: The DameWare Mobile Gateway Service
+      name: damewaremobgtwy
+      note: ''
 dandv-tester:
   tcp:
     3889:
@@ -12329,6 +12520,17 @@ danf-ak2:
     1041:
       desc: AK2 Product
       name: danf-ak2
+      note: ''
+daqstream:
+  tcp:
+    7411:
+      desc: Streaming of measurement data
+      name: daqstream
+      note: ''
+  udp:
+    7411:
+      desc: Streaming of measurement data
+      name: daqstream
       note: ''
 darcorp-lm:
   tcp:
@@ -13274,6 +13476,12 @@ deos:
       desc: Distributed External Object Store
       name: deos
       note: ''
+deploymentmap:
+  tcp:
+    4570:
+      desc: Service to distribute and update within a site deployment information for Oracle Communications Suite
+      name: deploymentmap
+      note: ''
 derby-repli:
   tcp:
     4851:
@@ -13372,6 +13580,18 @@ devshr-nts:
     552:
       desc: DeviceShare
       name: devshr-nts
+      note: ''
+dey-keyneg:
+  tcp:
+    8750:
+      desc: DEY Storage Key Negotiation
+      name: dey-keyneg
+      note: ''
+dey-sapi:
+  tcp:
+    4330:
+      desc: DEY Storage Administration REST API
+      name: dey-sapi
       note: ''
 dfn:
   tcp:
@@ -14144,6 +14364,12 @@ dlms-cosem:
       desc: DLMS/COSEM
       name: dlms-cosem
       note: ''
+dlpx-sp:
+  tcp:
+    8415:
+      desc: Delphix Session Protocol
+      name: dlpx-sp
+      note: ''
 dls:
   tcp:
     197:
@@ -14467,6 +14693,18 @@ doceri-view:
     7019:
       desc: doceri drawing service screen view
       name: doceri-view
+      note: ''
+docker:
+  tcp:
+    2375:
+      desc: Docker REST API (plain text)
+      name: docker
+      note: ''
+docker-s:
+  tcp:
+    2376:
+      desc: Docker REST API (ssl)
+      name: docker-s
       note: ''
 docstor:
   tcp:
@@ -15172,6 +15410,12 @@ dt-mgmtsvc:
       desc: Double-Take Management Service
       name: dt-mgmtsvc
       note: ''
+dt-vra:
+  tcp:
+    6326:
+      desc: Double-Take Virtual Recovery Assistant
+      name: dt-vra
+      note: ''
 dta-systems:
   tcp:
     13929:
@@ -15205,17 +15449,21 @@ dtk:
       desc: DTK
       name: dtk
       note: ''
-dtn-bundle-tcp:
+dtn-bundle:
+  dccp:
+    4556:
+      desc: DTN Bundle DCCP CL Protocol
+      name: dtn-bundle
+      note: ''
   tcp:
     4556:
       desc: DTN Bundle TCP CL Protocol
-      name: dtn-bundle-tcp
+      name: dtn-bundle
       note: ''
-dtn-bundle-udp:
   udp:
     4556:
       desc: DTN Bundle UDP CL Protocol
-      name: dtn-bundle-udp
+      name: dtn-bundle
       note: ''
 dtn1:
   tcp:
@@ -15707,6 +15955,12 @@ easy-soft-mux:
       desc: easy-soft Multiplexer
       name: easy-soft-mux
       note: ''
+easyengine:
+  tcp:
+    22222:
+      desc: EasyEngine is CLI tool to manage WordPress Sites on Nginx server
+      name: easyengine
+      note: ''
 eba:
   tcp:
     45678:
@@ -16049,6 +16303,12 @@ eforward:
     2181:
       desc: eforward
       name: eforward
+      note: ''
+efr:
+  tcp:
+    5618:
+      desc: Fiscal Registering Protocol
+      name: efr
       note: ''
 efs:
   tcp:
@@ -16528,6 +16788,23 @@ emc-vcas-udp:
       desc: EMV Virtual CAS Service Discovery
       name: emc-vcas-udp
       note: ''
+emc-xsw-dcache:
+  tcp:
+    11723:
+      desc: EMC XtremSW distributed cache
+      name: emc-xsw-dcache
+      note: ''
+  udp:
+    11723:
+      desc: EMC XtremSW distributed cache
+      name: emc-xsw-dcache
+      note: ''
+emc-xsw-dconfig:
+  tcp:
+    11623:
+      desc: EMC XtremSW distributed config
+      name: emc-xsw-dconfig
+      note: ''
 emcads:
   tcp:
     3945:
@@ -16716,6 +16993,50 @@ emwin:
     2211:
       desc: EMWIN
       name: emwin
+      note: ''
+enc-eps:
+  tcp:
+    3567:
+      desc: EMIT protocol stack
+      name: enc-eps
+      note: ''
+  udp:
+    3567:
+      desc: EMIT protocol stack
+      name: enc-eps
+      note: ''
+enc-eps-mc-sec:
+  tcp:
+    5567:
+      desc: EMIT protocol stack multicast/secure transport
+      name: enc-eps-mc-sec
+      note: ''
+  udp:
+    5567:
+      desc: EMIT protocol stack multicast/secure transport
+      name: enc-eps-mc-sec
+      note: ''
+enc-tunnel:
+  tcp:
+    8567:
+      desc: EMIT tunneling protocol
+      name: enc-tunnel
+      note: ''
+  udp:
+    8567:
+      desc: EMIT tunneling protocol
+      name: enc-tunnel
+      note: ''
+enc-tunnel-sec:
+  tcp:
+    3568:
+      desc: EMIT secure tunnel
+      name: enc-tunnel-sec
+      note: ''
+  udp:
+    3568:
+      desc: EMIT secure tunnel
+      name: enc-tunnel-sec
       note: ''
 encore:
   tcp:
@@ -18797,6 +19118,12 @@ filecast:
       desc: filecast
       name: filecast
       note: ''
+filemq:
+  tcp:
+    5670:
+      desc: ZeroMQ file publish-subscribe protocol
+      name: filemq
+      note: ''
 filenet-cm:
   tcp:
     32773:
@@ -19067,6 +19394,17 @@ firepower:
       desc: firepower
       name: firepower
       note: ''
+first-defense:
+  tcp:
+    1232:
+      desc: Remote systems monitoring
+      name: first-defense
+      note: Microsoft (unoffically) using 1232
+  udp:
+    1232:
+      desc: Remote systems monitoring
+      name: first-defense
+      note: Microsoft (unoffically) using 1232
 firstcall42:
   tcp:
     2673:
@@ -19837,6 +20175,12 @@ ft-role:
       desc: FT-ROLE
       name: ft-role
       note: ''
+ftnmtp:
+  tcp:
+    8502:
+      desc: FTN Message Transfer Protocol
+      name: ftnmtp
+      note: ''
 ftp:
   sctp:
     21:
@@ -20484,6 +20828,12 @@ gdp-port:
       desc: cisco Gateway Discovery Protocol
       name: gdp-port
       note: ''
+gdrive-sync:
+  tcp:
+    37483:
+      desc: Google Drive Sync
+      name: gdrive-sync
+      note: ''
 gds-adppiw-db:
   tcp:
     4550:
@@ -20555,6 +20905,23 @@ geneous:
     3381:
       desc: Geneous
       name: geneous
+      note: ''
+generalsync:
+  tcp:
+    7962:
+      desc: 'Encrypted, extendable, general-purpose synchronization protocol'
+      name: generalsync
+      note: ''
+  udp:
+    7962:
+      desc: 'Encrypted, extendable, general-purpose synchronization protocol'
+      name: generalsync
+      note: ''
+geneve:
+  udp:
+    6081:
+      desc: Generic Network Virtualization Encapsulation (Geneve)
+      name: geneve
       note: ''
 genie:
   tcp:
@@ -21072,6 +21439,18 @@ graphics:
       desc: Graphics
       name: graphics
       note: ''
+grcmp:
+  tcp:
+    9122:
+      desc: Global Relay compliant mobile instant messaging protocol
+      name: grcmp
+      note: ''
+grcp:
+  tcp:
+    9123:
+      desc: Global Relay compliant instant messaging protocol
+      name: grcp
+      note: ''
 grf-port:
   tcp:
     3757:
@@ -21496,12 +21875,12 @@ gxtelmd:
 h2250-annex-g:
   tcp:
     2099:
-      desc: H.225.0 Annex G
+      desc: H.225.0 Annex G Signalling
       name: h2250-annex-g
       note: ''
   udp:
     2099:
-      desc: H.225.0 Annex G
+      desc: H.225.0 Annex G Signalling
       name: h2250-annex-g
       note: ''
 h248-binary:
@@ -21545,56 +21924,56 @@ h2gf-w-2m:
 h323callsigalt:
   tcp:
     11720:
-      desc: h323 Call Signal Alternate
+      desc: H.323 Call Control Signalling Alternate
       name: h323callsigalt
       note: ''
   udp:
     11720:
-      desc: h323 Call Signal Alternate
+      desc: H.323 Call Control Signalling Alternate
       name: h323callsigalt
       note: ''
 h323gatedisc:
   tcp:
     1718:
-      desc: h323gatedisc
+      desc: H.323 Multicast Gatekeeper Discover
       name: h323gatedisc
       note: ''
   udp:
     1718:
-      desc: h323gatedisc
+      desc: H.323 Multicast Gatekeeper Discover
       name: h323gatedisc
       note: ''
 h323gatestat:
   tcp:
     1719:
-      desc: h323gatestat
+      desc: H.323 Unicast Gatekeeper Signaling
       name: h323gatestat
       note: ''
   udp:
     1719:
-      desc: h323gatestat
+      desc: H.323 Unicast Gatekeeper Signaling
       name: h323gatestat
       note: ''
 h323hostcall:
   tcp:
     1720:
-      desc: h323hostcall
+      desc: H.323 Call Control Signalling
       name: h323hostcall
       note: ''
   udp:
     1720:
-      desc: h323hostcall
+      desc: H.323 Call Control Signalling
       name: h323hostcall
       note: ''
 h323hostcallsc:
   tcp:
     1300:
-      desc: H323 Host Call Secure
+      desc: H.323 Secure Call Control Signalling
       name: h323hostcallsc
       note: ''
   udp:
     1300:
-      desc: H323 Host Call Secure
+      desc: H.323 Secure Call Control Signalling
       name: h323hostcallsc
       note: ''
 ha-cluster:
@@ -21922,6 +22301,12 @@ heartbeat:
       desc: Heartbeat Protocol
       name: heartbeat
       note: ''
+heathview:
+  tcp:
+    35000:
+      desc: HeathView
+      name: heathview
+      note: ''
 hecmtl-db:
   tcp:
     1551:
@@ -22024,23 +22409,23 @@ hexarc:
 hfcs:
   tcp:
     4900:
-      desc: HyperFileSQL Client/Server Database Engine
+      desc: HFSQL Client/Server Database Engine
       name: hfcs
       note: ''
   udp:
     4900:
-      desc: HyperFileSQL Client/Server Database Engine
+      desc: HFSQL Client/Server Database Engine
       name: hfcs
       note: ''
 hfcs-manager:
   tcp:
     4999:
-      desc: HyperFileSQL Client/Server Database Engine Manager
+      desc: HFSQL Client/Server Database Engine Manager
       name: hfcs-manager
       note: ''
   udp:
     4999:
-      desc: HyperFileSQL Client/Server Database Engine Manager
+      desc: HFSQL Client/Server Database Engine Manager
       name: hfcs-manager
       note: ''
 hhb-gateway:
@@ -22075,6 +22460,12 @@ hicp:
     3250:
       desc: HMS hicp port
       name: hicp
+      note: ''
+hid:
+  udp:
+    24322:
+      desc: Transport of Human Interface Device data streams
+      name: hid
       note: ''
 high-criteria:
   tcp:
@@ -22473,6 +22864,12 @@ hp-pxpib:
     3101:
       desc: HP PolicyXpert PIB Server
       name: hp-pxpib
+      note: ''
+hp-rda:
+  tcp:
+    2371:
+      desc: HP Remote Device Access
+      name: hp-rda
       note: ''
 hp-san-mgmt:
   tcp:
@@ -23169,39 +23566,6 @@ i3-sessionmgr:
     3952:
       desc: I3 Session Manager
       name: i3-sessionmgr
-      note: ''
-iad1:
-  tcp:
-    1030:
-      desc: BBN IAD
-      name: iad1
-      note: ''
-  udp:
-    1030:
-      desc: BBN IAD
-      name: iad1
-      note: ''
-iad2:
-  tcp:
-    1031:
-      desc: BBN IAD
-      name: iad2
-      note: ''
-  udp:
-    1031:
-      desc: BBN IAD
-      name: iad2
-      note: ''
-iad3:
-  tcp:
-    1032:
-      desc: BBN IAD
-      name: iad3
-      note: ''
-  udp:
-    1032:
-      desc: BBN IAD
-      name: iad3
       note: ''
 iadt:
   tcp:
@@ -24188,6 +24552,12 @@ iconp:
     3972:
       desc: ict-control Protocol
       name: iconp
+      note: ''
+iconstructsrv:
+  tcp:
+    6077:
+      desc: iConstruct Server
+      name: iconstructsrv
       note: ''
 icp:
   tcp:
@@ -26233,6 +26603,12 @@ iph-policy-cli:
       desc: IPH-POLICY-CLI
       name: iph-policy-cli
       note: ''
+iposplanet:
+  tcp:
+    7031:
+      desc: IPOSPLANET retailing multi devices protocol
+      name: iposplanet
+      note: ''
 ipp:
   tcp:
     631:
@@ -26409,6 +26785,12 @@ irc-serv:
       desc: IRC-SERV
       name: irc-serv
       note: ''
+ircs-u:
+  tcp:
+    6697:
+      desc: Internet Relay Chat via TLS/SSL
+      name: ircs-u
+      note: ''
 ircu:
   tcp:
     6665-6669:
@@ -26524,6 +26906,12 @@ ironstorm:
     3504:
       desc: IronStorm game server
       name: ironstorm
+      note: ''
+irp:
+  tcp:
+    4604:
+      desc: Identity Registration Protocol
+      name: irp
       note: ''
 irtrans:
   tcp:
@@ -27435,6 +27823,12 @@ jamserverport:
       desc: Jam Server Port
       name: jamserverport
       note: ''
+janus-disc:
+  udp:
+    7181:
+      desc: Janus Guidewire Enterprise Discovery Service Bus
+      name: janus-disc
+      note: ''
 jargon:
   tcp:
     148:
@@ -27577,6 +27971,12 @@ jdmn-port:
     4030:
       desc: Accell/JSP Daemon Port
       name: jdmn-port
+      note: ''
+jdp-disc:
+  udp:
+    7095:
+      desc: Java Discovery Protocol
+      name: jdp-disc
       note: ''
 jediserver:
   tcp:
@@ -27990,6 +28390,12 @@ jvclient:
       desc: JetVision Client Port
       name: jvclient
       note: ''
+jvl-mactalk:
+  udp:
+    47100:
+      desc: Configuration of motors connected to Industrial Ethernet
+      name: jvl-mactalk
+      note: ''
 jvserver:
   tcp:
     1939:
@@ -28172,6 +28578,12 @@ kdm:
     2115:
       desc: Key Distribution Manager
       name: kdm
+      note: ''
+kdnet:
+  udp:
+    5364:
+      desc: Microsoft Kernel Debugger
+      name: kdnet
       note: ''
 kentrox-prot:
   tcp:
@@ -28582,6 +28994,12 @@ kti-icad-srvr:
       desc: KTI/ICAD Nameserver
       name: kti-icad-srvr
       note: ''
+ktickets-rest:
+  tcp:
+    4331:
+      desc: ktickets REST API for event management and ticketing systems (embedded POS devices)
+      name: ktickets-rest
+      note: ''
 kv-agent:
   tcp:
     3361:
@@ -28647,6 +29065,12 @@ kyoceranetdev:
     1063:
       desc: KyoceraNetDev
       name: kyoceranetdev
+      note: ''
+kz-migr:
+  tcp:
+    8102:
+      desc: Oracle Kernel zones migration server
+      name: kz-migr
       note: ''
 l-acoustics:
   tcp:
@@ -28769,17 +29193,6 @@ l5nas-parchan:
     9747:
       desc: L5NAS Parallel Channel
       name: l5nas-parchan
-      note: ''
-la-maint:
-  tcp:
-    51:
-      desc: IMP Logical Address Maintenance
-      name: la-maint
-      note: ''
-  udp:
-    51:
-      desc: IMP Logical Address Maintenance
-      name: la-maint
       note: ''
 labrat:
   tcp:
@@ -29402,6 +29815,12 @@ light:
       desc: Light packets transfer protocol
       name: light
       note: ''
+limnerpressure:
+  tcp:
+    8191:
+      desc: Limner Pressure
+      name: limnerpressure
+      note: ''
 link:
   tcp:
     245:
@@ -29510,7 +29929,7 @@ lisp-cons:
 lisp-control:
   udp:
     4342:
-      desc: LISP Data-Triggered Control
+      desc: LISP Control Packets
       name: lisp-control
       note: ''
 lisp-data:
@@ -30092,6 +30511,12 @@ lotusnote:
       desc: Lotus Note
       name: lotusnote
       note: ''
+lpar2rrd:
+  tcp:
+    8162:
+      desc: LPAR2RRD client server communication
+      name: lpar2rrd
+      note: ''
 lpcp:
   tcp:
     1298:
@@ -30169,6 +30594,12 @@ ls3bcast:
       desc: ls3 Broadcast
       name: ls3bcast
       note: ''
+lsdp:
+  udp:
+    11430:
+      desc: Lenbrook Service Discovery Protocol
+      name: lsdp
+      note: ''
 lsi-bobcat:
   tcp:
     5574:
@@ -30232,6 +30663,11 @@ ltp:
       name: ltp
       note: ''
 ltp-deepspace:
+  dccp:
+    1113:
+      desc: Licklider Transmission Protocol
+      name: ltp-deepspace
+      note: ''
   tcp:
     1113:
       desc: Licklider Transmission Protocol
@@ -30375,17 +30811,6 @@ lyskom:
       desc: LysKOM Protocol A
       name: lyskom
       note: ''
-m-oap:
-  tcp:
-    5567:
-      desc: Multicast Object Access Protocol
-      name: m-oap
-      note: ''
-  udp:
-    5567:
-      desc: Multicast Object Access Protocol
-      name: m-oap
-      note: ''
 m-wnn:
   tcp:
     3732:
@@ -30446,6 +30871,18 @@ m3ap:
     36444:
       desc: M3 Application Part
       name: m3ap
+      note: ''
+m3da:
+  tcp:
+    44900:
+      desc: M3DA is used for efficient machine-to-machine communications
+      name: m3da
+      note: ''
+m3da-disc:
+  udp:
+    44900:
+      desc: M3DA Discovery is used for efficient machine-to-machine communications
+      name: m3da-disc
       note: ''
 m3ua:
   sctp:
@@ -30801,6 +31238,12 @@ markem-dcp:
     3836:
       desc: MARKEM NEXTGEN DCP
       name: markem-dcp
+      note: ''
+martalk:
+  tcp:
+    7073:
+      desc: MarTalk protocol
+      name: martalk
       note: ''
 masc:
   tcp:
@@ -31816,6 +32259,12 @@ metagram:
       desc: Metagram Relay
       name: metagram
       note: ''
+metalbend:
+  tcp:
+    7172:
+      desc: Port used for MetalBend programmable interface
+      name: metalbend
+      note: ''
 metasage:
   tcp:
     1207:
@@ -32398,6 +32847,12 @@ ml-svnet:
       desc: Maxlogic Supervisor Communication
       name: ml-svnet
       note: ''
+mle:
+  udp:
+    19788:
+      desc: Mesh Link Establishment
+      name: mle
+      note: ''
 mloadd:
   tcp:
     1427:
@@ -32671,6 +33126,18 @@ mondex:
       desc: Mondex
       name: mondex
       note: ''
+monetra:
+  tcp:
+    8665:
+      desc: Monetra
+      name: monetra
+      note: ''
+monetra-admin:
+  tcp:
+    8666:
+      desc: Monetra Administrative Access
+      name: monetra-admin
+      note: ''
 monitor:
   tcp:
     561:
@@ -32850,12 +33317,12 @@ moy-corp:
 mpc-lifenet:
   tcp:
     1213:
-      desc: MPC LIFENET
+      desc: Medtronic/Physio-Control LIFENET
       name: mpc-lifenet
       note: ''
   udp:
     1213:
-      desc: MPC LIFENET
+      desc: Medtronic/Physio-Control LIFENET
       name: mpc-lifenet
       note: ''
 mpfoncl:
@@ -32923,6 +33390,12 @@ mpl-gprs-port:
     3924:
       desc: MPL_GPRS_Port
       name: mpl-gprs-port
+      note: ''
+mpls-pm:
+  udp:
+    6634:
+      desc: MPLS Performance Measurement out-of-band response
+      name: mpls-pm
       note: ''
 mpm:
   tcp:
@@ -33772,11 +34245,6 @@ msrp:
       desc: MSRP over TCP
       name: msrp
       note: ''
-  udp:
-    2855:
-      desc: MSRP
-      name: msrp
-      note: ''
 msss:
   tcp:
     7742:
@@ -34182,6 +34650,12 @@ mynahautostart:
       desc: MYNAH AutoStart
       name: mynahautostart
       note: ''
+myq-termlink:
+  udp:
+    11108:
+      desc: Hardware Terminals Discovery and Low-Level Communication Protocol
+      name: myq-termlink
+      note: ''
 myrtle:
   tcp:
     1831:
@@ -34454,28 +34928,6 @@ nasmanager:
       desc: Merit DAC NASmanager
       name: nasmanager
       note: ''
-nat-pmp:
-  tcp:
-    5351:
-      desc: NAT Port Mapping Protocol
-      name: nat-pmp
-      note: ''
-  udp:
-    5351:
-      desc: NAT Port Mapping Protocol
-      name: nat-pmp
-      note: ''
-nat-pmp-status:
-  tcp:
-    5350:
-      desc: NAT-PMP Status Announcements
-      name: nat-pmp-status
-      note: ''
-  udp:
-    5350:
-      desc: NAT-PMP Status Announcements
-      name: nat-pmp-status
-      note: ''
 natdataservice:
   tcp:
     3927:
@@ -34552,6 +35004,18 @@ natuslink:
     2895:
       desc: NATUS LINK
       name: natuslink
+      note: ''
+nav-data:
+  udp:
+    6317:
+      desc: Navtech Radar Sensor Data
+      name: nav-data
+      note: ''
+nav-data-cmd:
+  tcp:
+    6317:
+      desc: Navtech Radar Sensor Data Command
+      name: nav-data-cmd
       note: ''
 nav-port:
   tcp:
@@ -35022,6 +35486,18 @@ ndmp:
       desc: Network Data Management Protocol
       name: ndmp
       note: ''
+ndmps:
+  tcp:
+    30000:
+      desc: Secure Network Data Management Protocol
+      name: ndmps
+      note: ''
+ndn:
+  udp:
+    6363:
+      desc: Named Data Networking
+      name: ndn
+      note: ''
 ndnp:
   tcp:
     2883:
@@ -35148,6 +35624,12 @@ nei-management:
     3886:
       desc: NEI management port
       name: nei-management
+      note: ''
+neo4j:
+  tcp:
+    7474:
+      desc: Neo4j Graph Database
+      name: neo4j
       note: ''
 neod1:
   tcp:
@@ -36000,6 +36482,12 @@ netops-broker:
       desc: NETOPS-BROKER
       name: netops-broker
       note: ''
+netperf:
+  tcp:
+    12865:
+      desc: control port for the netperf benchmark
+      name: netperf
+      note: ''
 netplan:
   tcp:
     2983:
@@ -36764,6 +37252,12 @@ newwavesearch:
     2058:
       desc: NewWaveSearchables RMI
       name: newwavesearch
+      note: ''
+nexentamv:
+  tcp:
+    8457:
+      desc: Nexenta Management GUI
+      name: nexentamv
       note: ''
 nexgen:
   tcp:
@@ -37632,6 +38126,12 @@ noteshare:
       desc: AquaMinds NoteShare
       name: noteshare
       note: ''
+notezilla-lan:
+  tcp:
+    21010:
+      desc: Notezilla.Lan Server
+      name: notezilla-lan
+      note: ''
 notify:
   udp:
     773:
@@ -37807,12 +38307,12 @@ npds-tracker:
 npep-messaging:
   tcp:
     2868:
-      desc: NPEP Messaging
+      desc: Norman Proprietaqry Events Protocol
       name: npep-messaging
       note: ''
   udp:
     2868:
-      desc: NPEP Messaging
+      desc: Norman Proprietaqry Events Protocol
       name: npep-messaging
       note: ''
 npmp:
@@ -38204,6 +38704,18 @@ ntp:
       desc: Network Time Protocol
       name: ntp
       note: ''
+ntz-p2p-storage:
+  tcp:
+    6778:
+      desc: netTsunami p2p storage system
+      name: ntz-p2p-storage
+      note: ''
+ntz-tracker:
+  tcp:
+    6777:
+      desc: netTsunami Tracker
+      name: ntz-tracker
+      note: ''
 nuauth:
   tcp:
     4129:
@@ -38348,6 +38860,12 @@ nv-video:
       desc: NV Video default
       name: nv-video
       note: ''
+nvc:
+  tcp:
+    8711:
+      desc: Nuance Voice Control
+      name: nvc
+      note: ''
 nvcnet:
   tcp:
     3999:
@@ -38449,39 +38967,6 @@ oa-system:
       desc: oa-system
       name: oa-system
       note: ''
-oap:
-  tcp:
-    3567:
-      desc: Object Access Protocol
-      name: oap
-      note: ''
-  udp:
-    3567:
-      desc: Object Access Protocol
-      name: oap
-      note: ''
-oap-admin:
-  tcp:
-    8567:
-      desc: Object Access Protocol Administration
-      name: oap-admin
-      note: ''
-  udp:
-    8567:
-      desc: Object Access Protocol Administration
-      name: oap-admin
-      note: ''
-oap-s:
-  tcp:
-    3568:
-      desc: Object Access Protocol over SSL
-      name: oap-s
-      note: ''
-  udp:
-    3568:
-      desc: Object Access Protocol over SSL
-      name: oap-s
-      note: ''
 obex:
   tcp:
     650:
@@ -38536,6 +39021,12 @@ obrpd:
     1092:
       desc: Open Business Reporting Protocol
       name: obrpd
+      note: ''
+observium-agent:
+  tcp:
+    36602:
+      desc: Observium statistics collection agent
+      name: observium-agent
       note: ''
 oc-lm:
   tcp:
@@ -39224,6 +39715,12 @@ onehome-remote:
       desc: OneHome Remote Access
       name: onehome-remote
       note: ''
+onep-tls:
+  tcp:
+    15002:
+      desc: Open Network Environment TLS
+      name: onep-tls
+      note: ''
 onesaf:
   tcp:
     3244:
@@ -39430,6 +39927,17 @@ opendeploy:
       desc: OpenDeploy Listener
       name: opendeploy
       note: ''
+openflow:
+  tcp:
+    6653:
+      desc: OpenFlow
+      name: openflow
+      note: ''
+  udp:
+    6653:
+      desc: OpenFlow
+      name: openflow
+      note: ''
 openhpid:
   tcp:
     4743:
@@ -39539,6 +40047,12 @@ openqueue:
     8764:
       desc: OPENQUEUE
       name: openqueue
+      note: ''
+openremote-ctrl:
+  tcp:
+    8688:
+      desc: OpenRemote Controller HTTP/REST
+      name: openremote-ctrl
       note: ''
 openstack-id:
   tcp:
@@ -40127,6 +40641,18 @@ ordinox-server:
       desc: Ordinox Server
       name: ordinox-server
       note: ''
+origo-native:
+  tcp:
+    3001:
+      desc: OrigoDB Server Native Interface
+      name: origo-native
+      note: port 3001 previously "Removed on 2006-05-25"
+origo-sync:
+  tcp:
+    11103:
+      desc: OrigoDB Server Sync Interface
+      name: origo-sync
+      note: ''
 orion:
   tcp:
     2407:
@@ -40464,6 +40990,12 @@ ovsam-mgmt:
       desc: hp OVSAM MgmtServer Disco
       name: ovsam-mgmt
       note: ''
+ovsdb:
+  tcp:
+    6640:
+      desc: Open vSwitch Database protocol
+      name: ovsdb
+      note: ''
 ovsessionmgr:
   tcp:
     2389:
@@ -40508,6 +41040,12 @@ owamp-control:
       desc: OWAMP-Control
       name: owamp-control
       note: ''
+owms:
+  tcp:
+    7878:
+      desc: Opswise Message Service
+      name: owms
+      note: ''
 owserver:
   tcp:
     4304:
@@ -40546,12 +41084,6 @@ p25cai:
     6082:
       desc: 'APCO Project 25 Common Air Interface - UDP encapsulation'
       name: p25cai
-      note: ''
-p2p-sip:
-  tcp:
-    6084:
-      desc: Peer to Peer Infrastructure Protocol
-      name: p2p-sip
       note: ''
 p2pcommunity:
   tcp:
@@ -40602,6 +41134,12 @@ p6ssmc:
     4311:
       desc: P6R Secure Server Management Console
       name: p6ssmc
+      note: ''
+pace-licensed:
+  tcp:
+    31400:
+      desc: PACE license server
+      name: pace-licensed
       note: ''
 pacerforum:
   tcp:
@@ -41265,6 +41803,12 @@ pcmail-srv:
       desc: PCMail Server
       name: pcmail-srv
       note: ''
+pcmk-remote:
+  tcp:
+    3121:
+      desc: The pacemaker remote (pcmk-remote) service extends high availability functionality outside of the Linux cluster into remote nodes.
+      name: pcmk-remote
+      note: port 3121 previously noted "Removed on 2003-09-17"
 pcoip:
   tcp:
     4172:
@@ -41275,6 +41819,12 @@ pcoip:
     4172:
       desc: PC over IP
       name: pcoip
+      note: ''
+pcoip-mgmt:
+  tcp:
+    5172:
+      desc: PC over IP Endpoint Management
+      name: pcoip-mgmt
       note: ''
 pconnectmgr:
   tcp:
@@ -41289,9 +41839,15 @@ pconnectmgr:
       note: ''
 pcp:
   udp:
-    44323:
+    5351:
       desc: Port Control Protocol
       name: pcp
+      note: ''
+pcp-multicast:
+  udp:
+    5350:
+      desc: Port Control Protocol Multicast
+      name: pcp-multicast
       note: ''
 pcptcpservice:
   tcp:
@@ -42460,6 +43016,12 @@ pmsm-webrctl:
       desc: PMSM Webrctl
       name: pmsm-webrctl
       note: ''
+pmwebapi:
+  tcp:
+    44323:
+      desc: HTTP binding for Performance Co-Pilot client API
+      name: pmwebapi
+      note: ''
 pn-requester:
   tcp:
     2717:
@@ -42985,6 +43547,12 @@ presence:
       desc: XMPP Link-Local Messaging
       name: presence
       note: 'Defined TXT keys: See http://www.xmpp.org/registrar/linklocal.html'
+presonus-ucnet:
+  udp:
+    47809:
+      desc: PreSonus Universal Control Network Protocol
+      name: presonus-ucnet
+      note: ''
 press:
   tcp:
     3582:
@@ -43793,7 +44361,7 @@ pt-tls:
     271:
       desc: IETF Network Endpoint Assessment (NEA) Posture Transport Protocol over TLS (PT-TLS)
       name: pt-tls
-      note: 1 year TEMPORARY Assignment
+      note: ''
 pt2-discover:
   tcp:
     1101:
@@ -43915,6 +44483,12 @@ purenoise:
     663:
       desc: PureNoise
       name: purenoise
+      note: ''
+purityrpc:
+  tcp:
+    8117:
+      desc: Purity replication clustering and remote management
+      name: purityrpc
       note: ''
 pushns:
   tcp:
@@ -44632,6 +45206,12 @@ quake:
     26000:
       desc: quake
       name: quake
+      note: ''
+quantastor:
+  tcp:
+    8153:
+      desc: QuantaStor Management Interface
+      name: quantastor
       note: ''
 quartus-tcl:
   tcp:
@@ -45619,6 +46199,18 @@ recipe:
       desc: RECIPe
       name: recipe
       note: ''
+recvr-rc:
+  tcp:
+    43000:
+      desc: Receiver Remote Control
+      name: recvr-rc
+      note: ''
+recvr-rc-disc:
+  udp:
+    43000:
+      desc: Receiver Remote Control Discovery
+      name: recvr-rc-disc
+      note: ''
 redstone-cpss:
   tcp:
     2928:
@@ -45791,6 +46383,12 @@ rellpack:
     2018:
       desc: ''
       name: rellpack
+      note: ''
+reload-config:
+  tcp:
+    6084:
+      desc: Peer to Peer Infrastructure Configuration
+      name: reload-config
       note: ''
 remcap:
   tcp:
@@ -46399,6 +46997,12 @@ rlm-admin:
       desc: RLM administrative interface
       name: rlm-admin
       note: ''
+rlm-disc:
+  udp:
+    5053:
+      desc: RLM Discovery Server
+      name: rlm-disc
+      note: ''
 rlp:
   tcp:
     39:
@@ -46641,6 +47245,17 @@ roboer:
     2919:
       desc: roboER
       name: roboer
+      note: ''
+robotraconteur:
+  tcp:
+    48653:
+      desc: Robot Raconteur transport
+      name: robotraconteur
+      note: ''
+  udp:
+    48653:
+      desc: Robot Raconteur transport
+      name: robotraconteur
       note: ''
 rockwell-csp1:
   tcp:
@@ -47092,6 +47707,23 @@ rsync:
       desc: rsync
       name: rsync
       note: ''
+rt-classmanager:
+  tcp:
+    35004:
+      desc: ReadyTech ClassManager
+      name: rt-classmanager
+      note: ''
+  udp:
+    35004:
+      desc: ReadyTech ClassManager
+      name: rt-classmanager
+      note: ''
+rt-devicemapper:
+  tcp:
+    35003:
+      desc: ReadyTech DeviceMapper Server
+      name: rt-devicemapper
+      note: ''
 rt-event:
   tcp:
     3706:
@@ -47113,6 +47745,35 @@ rt-event-s:
     3707:
       desc: Real-Time Event Secure Port
       name: rt-event-s
+      note: ''
+rt-helper:
+  tcp:
+    35006:
+      desc: ReadyTech Helper Service
+      name: rt-helper
+      note: ''
+rt-labtracker:
+  tcp:
+    35005:
+      desc: ReadyTech LabTracker
+      name: rt-labtracker
+      note: ''
+rt-sound:
+  tcp:
+    35002:
+      desc: ReadyTech Sound Server
+      name: rt-sound
+      note: ''
+rt-viewer:
+  tcp:
+    35001:
+      desc: ReadyTech Viewer
+      name: rt-viewer
+      note: ''
+  udp:
+    35001:
+      desc: ReadyTech Viewer
+      name: rt-viewer
       note: ''
 rtc-pm-port:
   tcp:
@@ -47683,6 +48344,12 @@ samd:
       desc: SAMD
       name: samd
       note: ''
+samsung-disc:
+  udp:
+    30832:
+      desc: Samsung Convergence Discovery Protocol
+      name: samsung-disc
+      note: ''
 samsung-unidex:
   tcp:
     4010:
@@ -48020,6 +48687,17 @@ scinet:
       desc: scientia.net
       name: scinet
       note: ''
+scintilla:
+  tcp:
+    19007:
+      desc: Scintilla protocol for device services
+      name: scintilla
+      note: ''
+  udp:
+    19007:
+      desc: Scintilla protocol for device services
+      name: scintilla
+      note: ''
 scipticslsrvr:
   tcp:
     2577:
@@ -48151,6 +48829,12 @@ scoremgr:
     2034:
       desc: ''
       name: scoremgr
+      note: ''
+scotty-disc:
+  udp:
+    14002:
+      desc: Discovery of a SCOTTY hardware codec board
+      name: scotty-disc
       note: ''
 scotty-ft:
   tcp:
@@ -48285,11 +48969,6 @@ scte30:
       name: scte30
       note: ''
 sctp-tunneling:
-  tcp:
-    9899:
-      desc: SCTP TUNNELING
-      name: sctp-tunneling
-      note: ''
   udp:
     9899:
       desc: SCTP TUNNELING
@@ -49446,6 +50125,12 @@ sgi-arrayd:
       desc: SGI Array Services Daemon
       name: sgi-arrayd
       note: ''
+sgi-dmfmgr:
+  tcp:
+    11109:
+      desc: Data migration facility Manager (DMF) is a browser based interface to DMF
+      name: sgi-dmfmgr
+      note: ''
 sgi-esphttp:
   tcp:
     5554:
@@ -49478,6 +50163,12 @@ sgi-lk:
     11106:
       desc: SGI LK Licensing service
       name: sgi-lk
+      note: ''
+sgi-soap:
+  tcp:
+    11110:
+      desc: Data migration facility (DMF) SOAP is a web server protocol to support remote access to DMF
+      name: sgi-soap
       note: ''
 sgi-storman:
   tcp:
@@ -50070,6 +50761,11 @@ simslink:
       name: simslink
       note: ''
 sip:
+  sctp:
+    5060:
+      desc: SIP
+      name: sip
+      note: ''
   tcp:
     5060:
       desc: SIP
@@ -50080,16 +50776,21 @@ sip:
       desc: SIP
       name: sip
       note: ''
-sip-tls:
+sips:
+  sctp:
+    5061:
+      desc: SIP-TLS
+      name: sips
+      note: ''
   tcp:
     5061:
       desc: SIP-TLS
-      name: sip-tls
+      name: sips
       note: ''
   udp:
     5061:
       desc: SIP-TLS
-      name: sip-tls
+      name: sips
       note: ''
 sis-emt:
   tcp:
@@ -51536,12 +52237,6 @@ soundsvirtual:
       desc: Sounds Virtual
       name: soundsvirtual
       note: ''
-sp-remotetablet:
-  tcp:
-    46998:
-      desc: Connection between a desktop computer or server and a signature tablet to capture handwritten signatures
-      name: sp-remotetablet
-      note: ''
 spamtrap:
   tcp:
     2568:
@@ -51776,6 +52471,12 @@ spramsd:
       desc: x509solutions Secure Data
       name: spramsd
       note: ''
+spremotetablet:
+  tcp:
+    46998:
+      desc: Connection between a desktop computer or server and a signature tablet to capture handwritten signatures
+      name: spremotetablet
+      note: ''
 sps-tunnel:
   tcp:
     2876:
@@ -51830,6 +52531,12 @@ spt-automation:
     5814:
       desc: Support Automation
       name: spt-automation
+      note: ''
+sptx:
+  tcp:
+    40404:
+      desc: Simplify Printing TX
+      name: sptx
       note: ''
 spugna:
   tcp:
@@ -52776,6 +53483,12 @@ streettalk:
       desc: streettalk
       name: streettalk
       note: ''
+streletz:
+  tcp:
+    6344:
+      desc: Argus-Spectr security and fire-prevention systems service
+      name: streletz
+      note: ''
 stresstester:
   tcp:
     5397:
@@ -52841,6 +53554,12 @@ stt:
     1607:
       desc: stt
       name: stt
+      note: ''
+sttunnel:
+  tcp:
+    7471:
+      desc: Stateless Transport Tunneling Protocol
+      name: sttunnel
       note: ''
 stun:
   tcp:
@@ -54147,6 +54866,12 @@ syncserverssl:
     2679:
       desc: Sync Server SSL
       name: syncserverssl
+      note: ''
+synctest:
+  tcp:
+    45045:
+      desc: Remote application control protocol
+      name: synctest
       note: ''
 synel-data:
   tcp:
@@ -56043,6 +56768,12 @@ toad:
       desc: TOAD
       name: toad
       note: ''
+toad-bi-appsrvr:
+  tcp:
+    8066:
+      desc: Toad BI Application Server
+      name: toad-bi-appsrvr
+      note: ''
 tolfab:
   tcp:
     20167:
@@ -56279,6 +57010,12 @@ tragic:
     2642:
       desc: Tragic
       name: tragic
+      note: ''
+traingpsdata:
+  udp:
+    9277:
+      desc: GPS Data transmitted from train to ground network
+      name: traingpsdata
       note: ''
 tram:
   tcp:
@@ -57355,6 +58092,12 @@ udt_os:
         This entry is an alias to "udt-os".
         This entry is now historic, not usable for use with many
         common service discovery mechanisms.
+uec:
+  tcp:
+    8778:
+      desc: Stonebranch Universal Enterprise Controller
+      name: uec
+      note: ''
 ufastro-instr:
   tcp:
     3720:
@@ -58402,6 +59145,12 @@ vcscmd:
       desc: Veritas Cluster Server Command Server
       name: vcscmd
       note: ''
+vdab:
+  tcp:
+    1775:
+      desc: data interchange between visual processing containers
+      name: vdab
+      note: ''
 vdmplay:
   tcp:
     1707:
@@ -58590,6 +59339,12 @@ versiera:
     9050:
       desc: Versiera Agent Listener
       name: versiera
+      note: ''
+vestasdlp:
+  tcp:
+    17184:
+      desc: Vestas Data Layer Protocol
+      name: vestasdlp
       note: ''
 vettcp:
   tcp:
@@ -59094,6 +59849,12 @@ vnetd:
       desc: Veritas Network Utility
       name: vnetd
       note: ''
+vns-tp:
+  udp:
+    7802:
+      desc: Virtualized Network Services Tunnel Protocol
+      name: vns-tp
+      note: ''
 vnsstr:
   tcp:
     3321:
@@ -59118,11 +59879,6 @@ vnwk-prapi:
       note: ''
 vnyx:
   tcp:
-    8699:
-      desc: VNYX Primary Port
-      name: vnyx
-      note: ''
-  udp:
     8699:
       desc: VNYX Primary Port
       name: vnyx
@@ -59221,6 +59977,17 @@ vopied:
     13783:
       desc: VOPIED Protocol
       name: vopied
+      note: ''
+voxelstorm:
+  tcp:
+    28200:
+      desc: VoxelStorm game server
+      name: voxelstorm
+      note: ''
+  udp:
+    28200:
+      desc: VoxelStorm game server
+      name: voxelstorm
       note: ''
 vp2p:
   tcp:
@@ -59791,6 +60558,12 @@ vxcrnbuport:
       desc: VxCR NBU Default Port
       name: vxcrnbuport
       note: ''
+vxlan:
+  udp:
+    4789:
+      desc: Virtual eXtensible Local Area Network (VXLAN)
+      name: vxlan
+      note: ''
 vytalvaultbrtp:
   tcp:
     2546:
@@ -60226,6 +60999,23 @@ wcr-remlib:
       desc: WordCruncher Remote Library Service
       name: wcr-remlib
       note: ''
+weandsf:
+  tcp:
+    48050:
+      desc: WeFi Access Network Discovery and Selection Function
+      name: weandsf
+      note: ''
+weave:
+  tcp:
+    11095:
+      desc: Nest device-to-device and device-to-service application protocol
+      name: weave
+      note: ''
+  udp:
+    11095:
+      desc: Nest device-to-device and device-to-service application protocol
+      name: weave
+      note: ''
 web2host:
   tcp:
     1559:
@@ -60557,12 +61347,12 @@ wibukey:
   tcp:
     22347:
       desc: WibuKey Standard WkLan
-      name: WibuKey
+      name: wibukey
       note: ''
   udp:
     22347:
       desc: WibuKey Standard WkLan
-      name: WibuKey
+      name: wibukey
       note: ''
 wiegand:
   tcp:
@@ -61017,17 +61807,6 @@ worldscores:
     4545:
       desc: WorldScores
       name: worldscores
-      note: ''
-worldwire:
-  tcp:
-    2371:
-      desc: Compaq WorldWire Port
-      name: worldwire
-      note: ''
-  udp:
-    2371:
-      desc: Compaq WorldWire Port
-      name: worldwire
       note: ''
 wpages:
   tcp:
@@ -62304,6 +63083,18 @@ xxnetserver:
       desc: xxNETserver
       name: xxnetserver
       note: ''
+xybrid-cloud:
+  tcp:
+    9925:
+      desc: XYBRID Cloud
+      name: xybrid-cloud
+      note: ''
+xybrid-rt:
+  tcp:
+    9978:
+      desc: XYBRID RT Server
+      name: xybrid-rt
+      note: ''
 xyplex-mux:
   tcp:
     173:
@@ -62335,13 +63126,19 @@ yo-main:
 z-wave:
   tcp:
     4123:
-      desc: Zensys Z-Wave Control Protocol
+      desc: Z-Wave Protocol
       name: z-wave
       note: ''
   udp:
     4123:
-      desc: Zensys Z-Wave Control Protocol
+      desc: Z-Wave Protocol
       name: z-wave
+      note: ''
+z-wave-s:
+  tcp:
+    44123:
+      desc: Z-Wave Secure Tunnel
+      name: z-wave-s
       note: ''
 z39-50:
   tcp:
@@ -62579,6 +63376,18 @@ zmp:
     3925:
       desc: Zoran Media Port
       name: zmp
+      note: ''
+zoomcp:
+  tcp:
+    9666:
+      desc: Zoom Control Panel Game Server Management
+      name: zoomcp
+      note: ''
+zre-disc:
+  udp:
+    5670:
+      desc: Local area discovery and messaging over ZeroMQ
+      name: zre-disc
       note: ''
 zsecure:
   tcp:

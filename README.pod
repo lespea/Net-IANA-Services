@@ -6,7 +6,7 @@ Net::IANA::Services - Makes working with named ip services easier
 
 =head1 VERSION
 
-version 0.003002
+version 0.004000
 
 =head1 SYNOPSIS
 
@@ -39,9 +39,8 @@ version 0.003002
 
 
     #  Demonstration of the service hashes
-    $IANA_HASH_INFO_FOR_SERVICE->{ $service }{ tcp }{ 443 }; # { name => 'https', desc => 'http protocol over TLS/SSL', note => '' }
-
-    $IANA_HASH_PORTS_FOR_SERVICE      ->{ $service }; # [qw/ 443 /]              --  List of all the services that use that port
+    $IANA_HASH_INFO_FOR_SERVICE-> { $service }{ tcp }{ 443 }; # { name => 'https', desc => 'http protocol over TLS/SSL', note => '' }
+    $IANA_HASH_PORTS_FOR_SERVICE->{ $service };               # [qw/ 443 /]  --  List of all the services that use that port
 
     #  Demonstration  of the port hashes
     $IANA_HASH_SERVICES_FOR_PORT      ->{ $port }     ;  # [qw/ ssh /]  --  List of all the services that use that port
@@ -818,7 +817,7 @@ L<https://github.com/lespea/net-iana-services>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Adam Lesperance.
+This software is copyright (c) 2014 by Adam Lesperance.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
@@ -846,3 +845,4 @@ FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
 SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
 DAMAGES.
 
+=cut
